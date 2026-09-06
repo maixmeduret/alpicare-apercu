@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ce qui est couvert · ALPICARE</title>
+<meta name="description" content="Le détail de ce que remboursent les formules Essentiel, Confort et Premium d’ALPICARE, en France comme en Suisse : soins courants, hospitalisation, optique, dentaire, médecines complémentaires.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6F1E7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23123047%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2711%27 fill=%27%23E8733F%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="styles.css">
+<script src="tarif.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+
+<div class="progres" aria-hidden="true"><i data-progres></i></div>
+
+<header class="barre" data-barre>
+  <div class="barre__i">
+    <a class="marque" href="index.html">ALPICARE</a>
+    <nav aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="couverture.html" aria-current="page">Ce qui est couvert</a>
+      <a href="guide-lamal-cmu.html">LAMal ou CMU</a>
+    </nav>
+    <a class="btn btn--sm" href="index.html#adherer">Adhérer</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="tete env">
+    <p class="slogan pose">L’assurance qui survole la frontière</p>
+    <h1 class="pose">Ce qui est couvert,<br><span class="bleu">formule par formule.</span></h1>
+    <p class="lead pose">Trois formules, pas six niveaux. Chacune rembourse les mêmes choses en Suisse et se distingue sur ce qu’elle ajoute en France. Voici le détail, poste par poste.</p>
+    <div class="tete__bas pose">
+      <a class="btn btn--bleu" href="index.html#formules">Calculer ma cotisation</a>
+      <a class="btn btn--clair" href="#toujours">Ce qui est inclus partout</a>
+    </div>
+  </section>
+
+  <div class="env">
+    <figure class="bande pose">
+      <img src="img/leman.webp" srcset="img/leman@1000.webp 1000w, img/leman.webp 1600w"
+           sizes="100vw" width="1600" height="600" loading="lazy" data-parallaxe
+           alt="Des vignes en terrasses descendent vers le lac Léman en fin de journée.">
+      <figcaption class="bande__leg">Quelle que soit la formule, votre quote-part et vos jours d’hôpital en Suisse sont remboursés à 100 %.</figcaption>
+    </figure>
+  </div>
+
+  <section class="env" id="essentiel">
+    <div class="duo">
+      <div>
+        <span class="sur pose">39 € par mois, tout compris</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Essentiel</h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Vous vous soignez surtout en Suisse. En France, vous voyez un médecin de temps en temps, vous portez des lunettes simples et vous consultez à l’occasion un ostéopathe.</p>
+        <a class="btn btn--bleu pose" href="index.html#adherer" style="margin-top:var(--e4)">Choisir Essentiel</a>
+      </div>
+      <figure class="duo__img pose">
+        <img src="img/f-essentiel.webp" srcset="img/f-essentiel@800.webp 800w, img/f-essentiel.webp 1200w"
+             sizes="(min-width:900px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Une silhouette lointaine marche sur un sentier au-dessus d’un grand lac de montagne.">
+      </figure>
+    </div>
+
+    <h3 class="pose" style="margin-top:var(--e6)">En France</h3>
+    <ul class="liste pose">
+          <li><span><b>Soins courants</b><small>Médecin traitant, spécialiste, analyses, radiologie, pharmacie remboursable.</small></span><i>150 % de la base</i></li>
+          <li><span><b>Hospitalisation</b><small>Frais de séjour aux frais réels, forfait journalier compris.</small></span><i>150 %, chambre 30 € par jour</i></li>
+          <li><span><b>Optique</b><small>Une paire tous les deux ans, ou tous les ans pour un enfant ou en cas de changement de vue.</small></span><i>125 € pour des verres simples</i></li>
+          <li><span><b>Dentaire</b><small>Le panier 100 % Santé reste sans reste à charge.</small></span><i>150 %, plafond 900 € par an</i></li>
+          <li><span><b>Médecines complémentaires</b><small>Ostéopathe, chiropracteur, psychologue, en France comme en Suisse.</small></span><i>30 € par séance, quatre par an</i></li>
+    </ul>
+
+    <h3 class="pose" style="margin-top:var(--e6)">En Suisse</h3>
+    <ul class="liste pose">
+          <li><span><b>Votre quote-part</b><small>Les 10 % qui restent à votre charge après la franchise, jusqu’à 700 CHF par an.</small></span><i>Remboursée à 100 %</i></li>
+          <li><span><b>Votre contribution journalière</b><small>Les 15 CHF facturés pour chaque jour passé à l’hôpital.</small></span><i>Remboursée à 100 %</i></li>
+    </ul>
+  </section>
+
+  <section class="env" id="confort">
+    <div class="duo">
+      <div>
+        <span class="sur pose">49 € par mois, tout compris</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Confort</h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Vous vous soignez des deux côtés de la frontière, souvent avec vos enfants, et vous savez que des soins dentaires ou des lunettes plus complexes vous attendent.</p>
+        <a class="btn btn--bleu pose" href="index.html#adherer" style="margin-top:var(--e4)">Choisir Confort</a>
+      </div>
+      <figure class="duo__img pose">
+        <img src="img/f-confort.webp" srcset="img/f-confort@800.webp 800w, img/f-confort.webp 1200w"
+             sizes="(min-width:900px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Deux adultes et deux enfants marchent sur un chemin de campagne vers des montagnes lointaines.">
+      </figure>
+    </div>
+
+    <h3 class="pose" style="margin-top:var(--e6)">En France</h3>
+    <ul class="liste pose">
+          <li><span><b>Soins courants</b><small>De quoi absorber les dépassements d’honoraires courants en France.</small></span><i>200 % de la base</i></li>
+          <li><span><b>Hospitalisation</b><small>Le niveau qui compte si la chambre particulière vous importe.</small></span><i>200 %, chambre 50 € par jour</i></li>
+          <li><span><b>Optique</b><small>Montures comprises, dans la limite réglementaire de 100 €.</small></span><i>225 € pour des verres simples, 325 € pour des verres complexes</i></li>
+          <li><span><b>Dentaire</b><small>Le plafond passe à 1 650 € à partir de la troisième année d’adhésion.</small></span><i>175 %, plafond 1 100 € par an</i></li>
+          <li><span><b>Médecines complémentaires</b><small>Ostéopathe, chiropracteur, psychologue, en France comme en Suisse.</small></span><i>40 € par séance, quatre par an</i></li>
+    </ul>
+
+    <h3 class="pose" style="margin-top:var(--e6)">En Suisse</h3>
+    <ul class="liste pose">
+          <li><span><b>Votre quote-part</b><small>Les 10 % qui restent à votre charge après la franchise, jusqu’à 700 CHF par an.</small></span><i>Remboursée à 100 %</i></li>
+          <li><span><b>Votre contribution journalière</b><small>Les 15 CHF facturés pour chaque jour passé à l’hôpital.</small></span><i>Remboursée à 100 %</i></li>
+          <li><span><b>Transport</b><small>Ce que la LAMal ne prend pas en charge lors d’un transport sanitaire.</small></span><i>50 € par an</i></li>
+    </ul>
+  </section>
+
+  <section class="env" id="premium">
+    <div class="duo">
+      <div>
+        <span class="sur pose">59 € par mois, tout compris</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Premium</h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Une prothèse est prévue dans l’année, vos verres sont progressifs, ou un enfant commence un traitement d’orthodontie.</p>
+        <a class="btn btn--bleu pose" href="index.html#adherer" style="margin-top:var(--e4)">Choisir Premium</a>
+      </div>
+      <figure class="duo__img pose">
+        <img src="img/f-premium.webp" srcset="img/f-premium@800.webp 800w, img/f-premium.webp 1200w"
+             sizes="(min-width:900px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Deux silhouettes accoudées à une terrasse en bois qui domine un lac dans la brume, au petit matin.">
+      </figure>
+    </div>
+
+    <h3 class="pose" style="margin-top:var(--e6)">En France</h3>
+    <ul class="liste pose">
+          <li><span><b>Soins courants</b><small>Y compris chez des praticiens qui pratiquent des dépassements non maîtrisés.</small></span><i>250 % de la base</i></li>
+          <li><span><b>Hospitalisation</b><small>Le niveau adapté à une chirurgie programmée en secteur 2.</small></span><i>250 %, chambre 70 € par jour</i></li>
+          <li><span><b>Optique</b><small>Le niveau à retenir pour des verres progressifs.</small></span><i>325 € pour des verres simples, 450 € pour des verres complexes</i></li>
+          <li><span><b>Dentaire</b><small>Avec 100 € par an et par enfant pour l’orthodontie non remboursée.</small></span><i>225 %, plafond 1 200 € par an</i></li>
+          <li><span><b>Médecines complémentaires</b><small>Ostéopathe, chiropracteur, psychologue, en France comme en Suisse.</small></span><i>50 € par séance, quatre par an</i></li>
+    </ul>
+
+    <h3 class="pose" style="margin-top:var(--e6)">En Suisse</h3>
+    <ul class="liste pose">
+          <li><span><b>Votre quote-part</b><small>Les 10 % qui restent à votre charge après la franchise, jusqu’à 700 CHF par an.</small></span><i>Remboursée à 100 %</i></li>
+          <li><span><b>Votre contribution journalière</b><small>Les 15 CHF facturés pour chaque jour passé à l’hôpital.</small></span><i>Remboursée à 100 %</i></li>
+          <li><span><b>Transport</b><small>Ce que la LAMal ne prend pas en charge lors d’un transport sanitaire.</small></span><i>100 € par an</i></li>
+    </ul>
+  </section>
+
+  <section class="env" id="toujours">
+    <div class="duo">
+      <div>
+        <span class="sur pose">Dans les trois formules</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Ce qui ne change<br>jamais.</h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Ces services sont identiques quelle que soit la formule que vous choisissez. Ils ne dépendent ni de votre âge, ni de votre régime.</p>
+      </div>
+      <figure class="duo__img pose">
+        <img src="img/soin-courant.webp" width="1000" height="667" loading="lazy"
+             alt="Une salle d’attente claire et paisible, banquette en bois, grande baie vitrée sur la montagne.">
+      </figure>
+    </div>
+    <ul class="liste pose">
+        <li><span><b>Téléconsultation, jour et nuit</b><small>Illimitée et sans frais, des deux côtés de la frontière, surtout utile quand votre cabinet habituel est fermé.</small></span></li>
+        <li><span><b>Tiers payant en France</b><small>Vous n’avancez rien chez le pharmacien, chez le médecin ni à l’hôpital, et les décomptes de la Sécurité sociale nous parviennent seuls.</small></span></li>
+        <li><span><b>100 % Santé</b><small>Les lunettes de classe A, les prothèses du panier 100 % Santé et les aides auditives de classe I ne vous laissent aucun reste à charge.</small></span></li>
+        <li><span><b>Assistance à domicile</b><small>Jusqu’à 500 € par an d’aide à domicile, de garde d’enfants ou de transport d’un proche, en cas d’hospitalisation.</small></span></li>
+        <li><span><b>Protection juridique santé</b><small>Des juristes vous accompagnent en cas de litige de santé, en France comme en Suisse, sans franchise.</small></span></li>
+        <li><span><b>Soins urgents partout dans le monde</b><small>Lors d’un séjour de moins de trois mois hors de France et de Suisse, le contrat complète ce que votre régime prend en charge.</small></span></li>
+        <li><span><b>Aucun questionnaire médical</b><small>Ni formalité médicale, ni délai d’attente, quel que soit votre état de santé au moment de l’adhésion.</small></span></li>
+        <li><span><b>Aucun frais</b><small>Ni frais de dossier, ni droit d’entrée, ni cotisation d’association. Le prix affiché est le prix payé.</small></span></li>
+    </ul>
+  </section>
+
+  <section class="env" id="jamais">
+    <span class="sur pose">Les limites</span>
+    <h2 class="pose" style="margin-top:var(--e3)">Ce qui n’est jamais<br>remboursé.</h2>
+    <p class="lead pose" style="margin-top:var(--e4)">Nous préférons vous le dire ici plutôt que dans une note de bas de page. Ces quatre postes restent à votre charge, quelle que soit la formule.</p>
+    <ul class="liste pose">
+        <li><span><b>La franchise LAMal</b><small>Les 300 CHF annuels que vous réglez avant tout remboursement de votre caisse suisse.</small></span></li>
+        <li><span><b>La chambre privée ou semi-privée en Suisse</b><small>Seule la division commune est couverte.</small></span></li>
+        <li><span><b>Les lunettes, le dentaire et la pharmacie achetés en Suisse</b><small>Les forfaits d’optique et de dentaire s’utilisent en France.</small></span></li>
+        <li><span><b>Un séjour programmé en Suisse sans autorisation préalable</b><small>Pour un affilié à la Sécurité sociale française, le formulaire S2 reste indispensable.</small></span></li>
+    </ul>
+    <p class="note pose" style="margin-top:var(--e4);max-width:76ch">Deux assureurs français couvrent la franchise LAMal de 300 CHF. Nous ne la couvrons pas, et nous vous le disons : si c’est votre principal reste à charge, comparez avant de nous choisir. <a class="lien" href="guide-lamal-cmu.html">Le guide vous explique ce que chaque régime laisse à votre charge</a>.</p>
+  </section>
+
+  <section class="env" id="regimes">
+    <div class="duo">
+      <div>
+        <span class="sur pose">LAMal ou CMU</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Le même contrat,<br>quel que soit votre régime.</h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Que vous cotisiez à l’assurance maladie suisse ou à la Sécurité sociale française, vos garanties en France sont identiques. Seule change la façon dont vous êtes remboursé en Suisse.</p>
+        <ul class="liste pose">
+          <li><span><b>Vous êtes à la LAMal</b><small>Nous remboursons votre quote-part et votre contribution journalière à 100 %. La franchise reste à votre charge.</small></span></li>
+          <li><span><b>Vous êtes à la CMU</b><small>Nous complétons la part de la Sécurité sociale sur vos soins urgents en Suisse, et sur les soins reçus en marge de votre travail.</small></span></li>
+        </ul>
+        <a class="lien pose" href="guide-lamal-cmu.html" style="display:inline-block;margin-top:var(--e4)">Tout comprendre : le guide LAMal ou CMU</a>
+      </div>
+      <figure class="duo__img pose">
+        <img src="img/guide-lamal-cmu.webp" srcset="img/guide-lamal-cmu.webp 900w, img/guide-lamal-cmu@1400.webp 1400w"
+             sizes="(min-width:900px) 50vw, 100vw" width="1400" height="788" loading="lazy"
+             alt="Illustration sérigraphiée : deux versants de montagne face à face, reliés par un pont clair.">
+      </figure>
+    </div>
+  </section>
+
+  <section class="adh env" id="adherer">
+    <div class="adh__g">
+      <div>
+        <span class="sur pose">Adhérer</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Trois gestes,<br><span class="bleu">et vous êtes couvert.</span></h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Aucune pièce à joindre avant de signer, aucun questionnaire médical, aucun rendez-vous. Votre numéro de sécurité sociale suffit.</p>
+        <a class="btn btn--bleu pose" href="index.html#formules" style="margin-top:var(--e4)">Calculer ma cotisation</a>
+        <figure class="adh__img pose">
+          <img src="img/table.webp" srcset="img/table@1000.webp 1000w, img/table.webp 1400w"
+               sizes="(min-width:900px) 46vw, 100vw" width="1400" height="933" loading="lazy"
+               alt="Un coin de table en bois devant une fenêtre ouverte sur la montagne, un téléphone et une tasse de café.">
+        </figure>
+      </div>
+      <ol class="pose">
+        <li><span><b>Votre situation</b><span>Votre âge, votre régime et la composition de votre foyer. Trente secondes, sans laisser vos coordonnées.</span></span></li>
+        <li><span><b>Votre formule</b><span>Vous choisissez, et nous vous disons laquelle suffit. Le prix détaillé s’affiche ligne par ligne.</span></span></li>
+        <li><span><b>Votre signature</b><span>En ligne, depuis votre téléphone. Vous êtes couvert dès le lendemain.</span></span></li>
+      </ol>
+    </div>
+    <p class="note pose" style="margin-top:var(--e5);max-width:76ch">Vous n’avez qu’une pièce à fournir, et c’est après la signature : un justificatif de votre statut de frontalier, que vous photographiez avec votre téléphone. Le délai de renonciation est de 14 jours et s’exerce en ligne. Maquette de travail : les garanties et les tarifs restent à confirmer avec l’assureur.</p>
+  </section>
+
+  <div class="env">
+    <figure class="bande pose" style="margin-bottom:0">
+      <img src="img/montblanc-bande.webp" srcset="img/montblanc-bande@1000.webp 1000w, img/montblanc-bande.webp 1600w"
+           sizes="100vw" width="1600" height="600" loading="lazy" data-parallaxe
+           alt="Le massif du Mont-Blanc éclairé par la lumière de fin d’après-midi, vu des prés du Chablais.">
+    </figure>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <a class="marque" href="index.html">ALPICARE</a>
+    <p class="pied__slogan">L’assurance qui survole la frontière</p>
+    <div class="pied__g">
+      <p>La complémentaire santé des frontaliers franco-suisses, proposée par l’équipe de Flytel. Maquette de travail : nous ne collectons aucune donnée et ne distribuons aucun contrat depuis cette page.</p>
+      <nav aria-label="L’offre">
+        <b>L’offre</b>
+        <a href="couverture.html">Les trois formules</a>
+        <a href="couverture.html">Ce qui est couvert</a>
+        <a href="couverture.html#jamais">Ce qui n’est pas couvert</a>
+        <a href="#adherer">Adhérer en ligne</a>
+      </nav>
+      <nav aria-label="Comprendre">
+        <b>Comprendre</b>
+        <a href="guide-lamal-cmu.html">LAMal ou CMU</a>
+        <a href="guide-lamal-cmu.html#restes">Ce qui reste à payer</a>
+        <a href="couverture.html#toujours">Ce qui est inclus partout</a>
+        <a href="couverture.html#regimes">Ce que change votre régime</a>
+      </nav>
+    </div>
+    <div class="pied__legal">
+      <p><b>ALPICARE SAS</b>, courtier en assurance, immatriculation ORIAS <mark>[à compléter]</mark>, vérifiable sur orias.fr, sous le contrôle de l’ACPR. ALPICARE conçoit, distribue et gère le contrat ; le risque est porté par <mark>[assureur à confirmer]</mark>, entreprise d’assurance agréée. ALPICARE est rémunéré par une commission incluse dans la cotisation et ne fournit pas de service de recommandation fondé sur une analyse impartiale du marché.</p>
+      <p>Le contrat est réservé aux salariés frontaliers qui résident en France et travaillent en Suisse, jusqu’à 67 ans. Le prix affiché est le prix payé : ni frais de dossier, ni droit d’entrée, ni cotisation d’association. Un devis personnalisé vous est remis avant toute adhésion et fait foi. Contrat annuel, résiliable à tout moment après la première année avec un préavis d’un mois. Délai de renonciation : 14 jours, exerçable en ligne.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

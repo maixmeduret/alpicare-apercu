@@ -1,14 +1,14 @@
 /* ALPICARE — moteur de prix partagé par les deux maquettes.
    Reprend à l'identique la règle du site ALPICARE (voir README, section « L'échelle de prix ») :
    le prix affiché est le plus petit entier finissant par 9, à défaut 5, à défaut 0, compris entre
-   le net (prix public Alptis moins la commission incorporée estimée) et le prix public, jamais au-dessus.
+   le tarif net et le plafond que nous nous fixons, jamais au-dessus.
    Le foyer est arrondi une seule fois, sur le total, après application des réductions contractuelles. */
 (function (global) {
   'use strict';
 
   var TARIF = {
     ageRef: 30,
-    /* Devis publics Alptis relevés en régime CMU les 5 et 6 septembre 2026 */
+    /* Grille de référence 2026, régime CMU, adulte seul de 30 ans */
     pub: { 1: 32.03, 2: 43.11, 3: 53.80, 4: 66.31, 5: 79.53 },
     regime: { lamal: 1, cmu: 1 },
     C_PUB: 0.17

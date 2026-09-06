@@ -497,3 +497,9 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 /* Un enfant de grille ne doit jamais imposer sa largeur intrinsèque au parent */
 .article>*{min-width:0}
 .simu>*{min-width:0}
+
+/* ---------- Deux actions au pied d'une carte de formule ---------- */
+.carte__a{margin-top:auto;display:grid;gap:var(--e2);justify-items:start}
+.carte__a .btn{width:100%;margin-top:var(--e3)}
+.carte__plus{font-size:13px;color:var(--terre);text-decoration:underline;text-underline-offset:3px}
+.carte--phare .carte__plus{color:var(--terre-vif)}
