@@ -1,5 +1,5 @@
 /* ALPICARE — maquette « mouvement ».
-   Prix en direct (tarif.js, moteur identique à FLYCARE) et animations pilotées par le défilement :
+   Prix en direct (tarif.js, moteur identique à celui du site) et animations pilotées par le défilement :
    barre de progression, apparitions, titre mot à mot, compteurs, parallaxe légère, section épinglée.
    Toutes les animations se coupent si l'utilisateur préfère moins de mouvement. */
 (function () {

@@ -1,5 +1,5 @@
 /* ALPICARE — moteur de prix partagé par les deux maquettes.
-   Reprend à l'identique la règle du site FLYCARE (voir README, section « L'échelle de prix ») :
+   Reprend à l'identique la règle du site ALPICARE (voir README, section « L'échelle de prix ») :
    le prix affiché est le plus petit entier finissant par 9, à défaut 5, à défaut 0, compris entre
    le net (prix public Alptis moins la commission incorporée estimée) et le prix public, jamais au-dessus.
    Le foyer est arrondi une seule fois, sur le total, après application des réductions contractuelles. */
