@@ -232,7 +232,7 @@
       var h = '<div class="simu__c"><h3>Les formules pour votre foyer</h3><p>Voici les tarifs 2026 pour ' + libFoyer(v.adultes, v.enfants) + ', ' + unite(v) + ', hors cotisation d’association et droit d’entrée.</p><div class="simu__f">';
       [2, 3, 4].forEach(function (n) {
         var g = GRILLE[n], p = prix(n, v.adultes, v.enfants), on = c && c.niv === n;
-        h += '<div class="simu__fc' + (on ? ' simu__fc--on' : '') + '"><b>' + g.formule + '<i>' + g.nom + (on ? ' · conseillé' : '') + '</i></b><small>' + g.nom + '</small><span class="n">' + montant(p.fly, v) + '<small>par mois</small></span></div>';
+        h += '<div class="simu__fc' + (on ? ' simu__fc--on' : '') + '"><b>' + g.formule + '<i>' + g.nom + (on ? ' · conseillé' : '') + '</i></b><span class="n">' + montant(p.fly, v) + '<small>par mois</small></span></div>';
       });
       [1, 5].forEach(function (n) {
         var g = GRILLE[n], on = c && c.niv === n;
@@ -241,7 +241,7 @@
           return;
         }
         var p = prix(n, v.adultes, v.enfants);
-        h += '<div class="simu__fc simu__fc--mini' + (on ? ' simu__fc--on' : '') + '"><b>' + g.nom + '<i>voir aussi' + (on ? ' · conseillé' : '') + '</i></b><small>' + g.nom + '</small><span class="n">' + montant(p.fly, v) + '<small>par mois</small></span></div>';
+        h += '<div class="simu__fc simu__fc--mini' + (on ? ' simu__fc--on' : '') + '"><b>' + g.nom + '<i>voir aussi' + (on ? ' · conseillé' : '') + '</i></b><span class="n">' + montant(p.fly, v) + '<small>par mois</small></span></div>';
       });
       h += '<div class="simu__fc simu__fc--mini"><b>Niveau 6<i>voir aussi</i></b><small>Ce niveau n’est pas coté sur le devis public relevé</small><span class="n" style="font-size:1rem">Sur devis</span></div>';
       h += '</div>';
