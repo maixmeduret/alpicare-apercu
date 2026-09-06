@@ -185,7 +185,6 @@
         var cible = prix(3, v.adultes, v.enfants);
         h += '<p class="simu__niv">Le prix pour votre foyer<small>' + foyer + ' · ' + (v.regime === 'lamal' ? 'affilié LAMal' : 'affilié CMU') + (v.alsace ? ' · Alsace-Moselle' : '') + '. Répondez aux cinq questions « Vos soins » (' + v.repondu + ' sur 5) pour obtenir un niveau conseillé.</small></p>';
         h += '<div class="simu__prix"><b>' + montant(cible.fly, v) + '</b><span>' + unite(v) + ' en formule Confort (niveau 3), tarif 2026</span></div>';
-        h += '<span class="simu__eco">Économie attendue <b>≈ ' + cible.ecoAn + ' € par an</b></span>';
         h += '<div class="simu__msg">Il faut y ajouter ' + eur(ASSO, 0) + ' par mois de cotisation d’association et ' + eur(ENTREE, 0) + ' de droit d’entrée, une seule fois, dans tous les canaux. Les trois formules pour votre foyer sont détaillées ci-dessous.</div>';
         h += '<a class="btn btn--creme" href="#adherer">Adhérer en ligne</a></div>';
         return h;
@@ -195,7 +194,6 @@
       var titre = g.formule ? 'ALPICARE ' + g.formule + ' <small style="display:inline;color:inherit">· Alptis ' + g.nom + '</small>' : 'Alptis ' + g.nom + ' <small style="display:inline;color:inherit">· « voir aussi »</small>';
       h += '<p class="simu__niv">Niveau conseillé : ' + titre + '<small>' + foyer + ' · ' + (v.regime === 'lamal' ? 'affilié LAMal' : 'affilié CMU') + (v.alsace ? ' · Alsace-Moselle' : '') + '</small></p>';
       h += '<div class="simu__prix"><b>' + montant(p.fly, v) + '</b><span>' + unite(v) + ', tarif 2026</span></div>';
-      h += '<span class="simu__eco">Économie attendue <b>≈ ' + p.ecoAn + ' € par an</b></span>';
       h += '<div class="simu__msg">Il faut y ajouter ' + eur(ASSO, 0) + ' par mois de cotisation d’association, soit ' + eur(ASSO * 12, 0) + ' par an, et ' + eur(ENTREE, 0) + ' de droit d’entrée, une seule fois. La première année vous revient donc, tout compris, à environ ' + eur(Math.round(p.fly * 12 + ASSO * 12 + ENTREE), 0) + '.</div>';
 
       if (c.n0) {
