@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALPICARE · l’assurance qui survole la frontière</title>
+<meta name="description" content="L’assurance qui survole la frontière. Un seul contrat pour les frontaliers franco-suisses, que vous releviez de la LAMal ou de la CMU. Votre prix s’affiche immédiatement, sans laisser vos coordonnées.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6F1E7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23123047%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2711%27 fill=%27%23E8733F%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="styles.css">
+<script src="tarif.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body>
+
+<div class="progres" aria-hidden="true"><i data-progres></i></div>
+
+<header class="barre" data-barre>
+  <div class="barre__i">
+    <a class="marque" href="#">ALPICARE</a>
+    <nav aria-label="Navigation principale">
+      <a href="#comment">Le parcours</a>
+      <a href="#formules">Formules</a>
+      <a href="#adherer">Adhérer</a>
+    </nav>
+    <a class="btn btn--sm" href="#formules">Calculer ma cotisation</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="env">
+      <p class="slogan pose">L’assurance qui survole la frontière</p>
+      <h1 data-mots><span>Vous vivez en France.</span><span>Vous travaillez en Suisse.</span><span class="bleu">Vous êtes soigné des deux côtés.</span></h1>
+      <div class="hero__g">
+        <div>
+          <p class="lead pose">Un seul contrat vous couvre, que vous releviez de la LAMal ou de la CMU. Votre prix s’affiche immédiatement, sans avoir à laisser votre nom, votre adresse électronique ni votre numéro de téléphone.</p>
+          <div class="hero__cta pose">
+            <a class="btn btn--bleu" href="#formules">Calculer ma cotisation</a>
+            <a class="btn btn--clair" href="#comment">Voir le parcours</a>
+          </div>
+        </div>
+        <figure class="hero__img pose">
+          <img src="img/lac.webp" srcset="img/lac@900.webp 900w, img/lac.webp 1400w"
+               sizes="(min-width:900px) 44vw, 100vw" width="1400" height="1867" data-parallaxe
+               alt="Le lac Léman vu des hauteurs françaises au lever du jour, les Alpes suisses sur la rive d’en face.">
+        </figure>
+      </div>
+      <p class="hero__bas pose">
+        <span class="defiler"><i></i> Lisez la suite</span>
+        <span>Dès <b data-des>39 €</b> par mois</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CHIFFRES ===== -->
+  <section class="env">
+    <div class="chiffres">
+      <p class="chiffre pose"><b data-compte="241089">0</b><span>frontaliers résidant en France travaillent en Suisse. Source : Office fédéral de la statistique, premier trimestre 2026.</span></p>
+      <p class="chiffre pose"><b data-compte="1000" data-suffixe=" CHF">0</b><span>restent à votre charge chaque année avec la LAMal : 300 CHF de franchise et jusqu’à 700 CHF de quote-part.</span></p>
+      <p class="chiffre pose"><b data-compte="0" data-texte="0 €">0 €</b><span>de frais de dossier. Vous n’avez ni conseiller à rappeler, ni questionnaire médical à remplir.</span></p>
+    </div>
+  </section>
+
+  <!-- ===== SECTION ÉPINGLÉE ===== -->
+  <section class="epingle env" id="comment">
+    <div class="epingle__g">
+      <div>
+        <span class="sur pose">Votre parcours</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Trois gestes<br>et cinq minutes suffisent.</h2>
+        <div data-etapes>
+          <div class="etape on" data-img="0">
+            <b>01 · Vous ajustez</b>
+            <h3>Vous indiquez votre âge, votre régime et la composition de votre foyer.</h3>
+            <p>Déplacez le curseur, changez de régime ou de foyer : le prix des trois formules se recalcule aussitôt. Vous n’avez aucun formulaire à remplir, aucune coordonnée à laisser, rien à valider pour obtenir un chiffre.</p>
+          </div>
+          <div class="etape" data-img="1">
+            <b>02 · Vous choisissez</b>
+            <h3>Nous vous conseillons le bon niveau, pas le plus cher.</h3>
+            <p>Cinq questions sur vos soins nous suffisent pour vous indiquer le niveau qui convient. Nous pouvons vous conseiller un niveau plus bas, voire aucune complémentaire.</p>
+          </div>
+          <div class="etape" data-img="2">
+            <b>03 · Vous signez</b>
+            <h3>Vous signez en ligne, depuis votre téléphone.</h3>
+            <p>La signature est électronique, sans questionnaire médical ni rendez-vous. Vous êtes couvert dès le lendemain, des deux côtés de la frontière.</p>
+          </div>
+        </div>
+      </div>
+      <figure class="epingle__v pose">
+        <img class="on" src="img/cretes.webp" width="800" height="800" loading="lazy"
+             alt="Les crêtes du Jura émergent d’une mer de nuages au petit matin.">
+        <img src="img/ponton.webp" width="800" height="800" loading="lazy"
+             alt="Un ponton de bois s’avance dans l’eau calme du lac, au lever du jour.">
+        <img src="img/village.webp" width="800" height="800" loading="lazy"
+             alt="Un village de la frontière au crépuscule, quelques fenêtres éclairées, les Alpes derrière.">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== FORMULES ===== -->
+  <section class="env" id="formules" style="padding-top:var(--e6)">
+    <span class="sur pose">Les formules</span>
+    <h2 class="pose" style="margin-top:var(--e3)">Votre prix s’affiche<br>sans attendre.</h2>
+
+    <div class="reglage pose">
+      <div>
+        <label class="champ__l" for="age">Votre âge <b data-age-out>30 ans</b></label>
+        <input type="range" id="age" min="18" max="67" step="1" value="30">
+      </div>
+      <div>
+        <span class="champ__l" id="l-reg">Votre régime</span>
+        <div class="groupe" role="group" aria-labelledby="l-reg">
+          <button class="opt" type="button" data-regime="lamal" aria-pressed="true">LAMal</button>
+          <button class="opt" type="button" data-regime="cmu" aria-pressed="false">CMU</button>
+        </div>
+      </div>
+      <div>
+        <span class="champ__l" id="l-foy">Votre foyer</span>
+        <div class="groupe" role="group" aria-labelledby="l-foy">
+          <button class="opt" type="button" data-adultes="1" aria-pressed="true">Un adulte</button>
+          <button class="opt" type="button" data-adultes="2" aria-pressed="false">Deux adultes</button>
+          <span class="compteur">
+            <button type="button" data-enfants="-1" aria-label="Retirer un enfant">−</button>
+            <span><b data-nb>0</b> <span data-mot>enfant</span></span>
+            <button type="button" data-enfants="1" aria-label="Ajouter un enfant">+</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="trio">
+      <article class="carte pose" data-niveau="2">
+        <h3>Essentiel</h3>
+        <p class="note" style="margin-top:var(--e2)">Vous vous soignez surtout en Suisse et vous prévoyez des lunettes ou quelques séances d’ostéopathie.</p>
+        <ul>
+          <li><b>Soins courants</b><span>150 %</span></li>
+          <li><b>Dentaire</b><span>150 %, plafond 900 €</span></li>
+          <li><b>Optique</b><span>125 €</span></li>
+          <li><b>En Suisse</b><span data-suisse-2>Quote-part remboursée à 100 %</span></li>
+        </ul>
+        <p class="prix"><span data-prix>39 €</span><small>par mois</small></p>
+        <a class="btn btn--clair" href="#adherer">Choisir la formule Essentiel</a>
+      </article>
+
+      <article class="carte carte--phare pose" data-niveau="3">
+        <span class="carte__b">La plus choisie</span>
+        <h3>Confort</h3>
+        <p class="note" style="margin-top:var(--e2)">Vous vous soignez des deux côtés de la frontière, avec vos enfants, et vous prévoyez des soins dentaires.</p>
+        <ul>
+          <li><b>Soins courants</b><span>200 %</span></li>
+          <li><b>Dentaire</b><span>175 %, plafond 1 100 €</span></li>
+          <li><b>Optique</b><span>225 €</span></li>
+          <li><b>En Suisse</b><span data-suisse-3>Quote-part remboursée à 100 % et 50 € de transport</span></li>
+        </ul>
+        <p class="prix"><span data-prix>49 €</span><small>par mois</small></p>
+        <a class="btn" href="#adherer">Choisir la formule Confort</a>
+      </article>
+
+      <article class="carte pose" data-niveau="4">
+        <h3>Premium</h3>
+        <p class="note" style="margin-top:var(--e2)">Vous prévoyez une prothèse dans l’année, des verres complexes ou un traitement d’orthodontie.</p>
+        <ul>
+          <li><b>Soins courants</b><span>250 %</span></li>
+          <li><b>Dentaire</b><span>225 %, plafond 1 200 €</span></li>
+          <li><b>Optique</b><span>325 / 450 €</span></li>
+          <li><b>En Suisse</b><span data-suisse-4>Quote-part remboursée à 100 % et 100 € de transport</span></li>
+        </ul>
+        <p class="prix"><span data-prix>59 €</span><small>par mois</small></p>
+        <a class="btn btn--clair" href="#adherer">Choisir la formule Premium</a>
+      </article>
+    </div>
+
+    <p class="note pose" style="margin-top:var(--e4);max-width:76ch">Ces tarifs 2026 sont indicatifs et n’intègrent ni la cotisation d’association (2 € par mois) ni le droit d’entrée (11 €), qui restent identiques dans tous les canaux de distribution. Le contrat Alptis Santé Frontaliers Suisses est assuré par CNP Assurances et réservé aux salariés frontaliers. Maquette de travail : les prix restent à valider auprès d’Alptis.</p>
+
+    <figure class="bande pose">
+      <img src="img/leman.webp" srcset="img/leman@1000.webp 1000w, img/leman.webp 1600w"
+           sizes="100vw" width="1600" height="600" loading="lazy" data-parallaxe
+           alt="Des vignes en terrasses descendent vers le lac Léman en fin de journée.">
+      <figcaption class="bande__leg">D’une rive à l’autre, vous gardez le même contrat et les mêmes garanties.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ===== DEUX PAYS ===== -->
+  <section class="env" id="deuxpays">
+    <div class="duo">
+      <div>
+        <span class="sur pose">Deux pays, un contrat</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Ce qui change<br>selon votre régime.</h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Que vous soyez affilié à la LAMal suisse ou à la CMU française, le contrat s’ajuste à votre situation sans que vous ayez à changer quoi que ce soit.</p>
+        <ul class="liste pose">
+          <li><span><b>Votre quote-part LAMal</b><small>Les 10 % qui restent à votre charge, jusqu’à 700 CHF par an.</small></span><i>Remboursée</i></li>
+          <li><span><b>Votre contribution journalière</b><small>Les 15 CHF facturés pour chaque jour passé à l’hôpital.</small></span><i>Remboursée</i></li>
+          <li><span><b>Vos soins en France</b><small>Consultations, hospitalisation, dentaire et optique.</small></span><i>Couverts</i></li>
+          <li><span><b>Votre franchise LAMal</b><small>Les 300 CHF annuels que ce contrat ne prend jamais en charge.</small></span><i>À votre charge</i></li>
+        </ul>
+        <p class="note pose" style="margin-top:var(--e4)">En Suisse, vous réglez la facture, votre caisse rembourse sa part, puis nous complétons en euros au taux du jour.</p>
+      </div>
+      <figure class="duo__img pose">
+        <img src="img/arc.webp" srcset="img/arc@1000.webp 1000w, img/arc.webp 1400w"
+             sizes="(min-width:900px) 50vw, 100vw" width="1400" height="788" loading="lazy"
+             alt="Illustration sérigraphiée de l’arc lémanique, les deux rives en terre et en sable, l’eau en bleu profond, une route claire qui les relie.">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== ADHÉSION ===== -->
+  <section class="adh env" id="adherer">
+    <div class="adh__g">
+      <div>
+        <span class="sur pose">Adhérer</span>
+        <h2 class="pose" style="margin-top:var(--e3)">Cinq écrans à remplir,<br><span class="bleu">aucun document à joindre.</span></h2>
+        <p class="lead pose" style="margin-top:var(--e4)">Vous n’avez aucune pièce à fournir avant de signer, ni de carte Vitale à envoyer : votre numéro de sécurité sociale suffit.</p>
+        <a class="btn btn--bleu pose" href="#formules" style="margin-top:var(--e4)">Commencer mon adhésion</a>
+        <figure class="adh__img pose">
+          <img src="img/table.webp" srcset="img/table@1000.webp 1000w, img/table.webp 1400w"
+               sizes="(min-width:900px) 46vw, 100vw" width="1400" height="933" loading="lazy"
+               alt="Un coin de table en bois devant une fenêtre ouverte sur la montagne, un téléphone et une tasse de café.">
+        </figure>
+      </div>
+      <ol class="pose">
+        <li><span><b>Y avez-vous droit ?</b><span>Nous vérifions en trente secondes votre statut de frontalier salarié, votre résidence, votre régime et la composition de votre foyer.</span></span></li>
+        <li><span><b>Ce qui compte pour vous</b><span>Nous vous posons cinq questions fermées, et aucune ne porte sur votre santé.</span></span></li>
+        <li><span><b>Votre formule et votre prix</b><span>Nous vous remettons un conseil écrit et motivé, avec le prix détaillé ligne par ligne.</span></span></li>
+        <li><span><b>Vos informations</b><span>Vous saisissez votre identité, votre adresse, votre numéro de sécurité sociale et vos coordonnées bancaires.</span></span></li>
+        <li><span><b>Vérifiez et signez</b><span>Vous téléchargez tous les documents, puis vous signez électroniquement.</span></span></li>
+      </ol>
+    </div>
+    <p class="note pose" style="margin-top:var(--e5);max-width:76ch">Vous n’avez qu’une pièce à fournir, et c’est après la signature : un justificatif de votre statut de frontalier, que vous photographiez avec votre téléphone. Le délai de renonciation est de 14 jours et s’exerce en ligne.</p>
+  </section>
+  <div class="env">
+    <figure class="bande pose" style="margin-bottom:0">
+    <img src="img/montblanc-bande.webp" srcset="img/montblanc-bande@1000.webp 1000w, img/montblanc-bande.webp 1600w"
+         sizes="100vw" width="1600" height="600" loading="lazy" data-parallaxe
+         alt="Le massif du Mont-Blanc éclairé par la lumière de fin d’après-midi, vu des prés du Chablais.">
+    </figure>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <a class="marque" href="#">ALPICARE</a>
+    <p class="pied__slogan">L’assurance qui survole la frontière</p>
+    <div class="pied__g">
+      <p>Cette maquette de travail est la variante « mouvement » du projet FLYCARE. Nous ne collectons aucune donnée et ne distribuons aucun contrat depuis cette page.</p>
+      <p><b>Le contrat</b><br>Alptis Santé Frontaliers Suisses est souscrit par l’association Alptis Frontaliers auprès de CNP Assurances. Il est réservé aux salariés frontaliers résidant en France.</p>
+      <p><b>Mentions</b><br>ALPICARE, courtier en assurance, est immatriculé à l’ORIAS sous le numéro <mark>[à compléter]</mark>. Nous sommes rémunérés par une commission incluse dans la cotisation. Nous ne fournissons pas de service de recommandation fondé sur une analyse impartiale.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

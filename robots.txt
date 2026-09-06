@@ -1,0 +1,3 @@
+# Aperçu privé, partagé de la main à la main. Aucun moteur ne doit l'indexer.
+User-agent: *
+Disallow: /

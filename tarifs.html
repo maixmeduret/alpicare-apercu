@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formules et tarifs · FLYCARE</title>
+  <meta name="description" content="Essentiel, Confort et Premium sont les trois formules FLYCARE adossées au contrat Alptis Santé Frontaliers Suisses. Nous les détaillons poste par poste, en affichant à côté le prix public d’Alptis. Calculez le prix de votre foyer, à la LAMal ou à la CMU, puis adhérez en ligne.">
+  <!-- ⚠ noindex tant que les mentions légales (ORIAS, RCS) ne sont pas complétées. Passer à « index, follow » ensuite. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#F6F1E7">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23123047%27/%3E%3Ctext x=%2732%27 y=%2744%27 text-anchor=%27middle%27 font-family=%27Archivo Black, Arial Black, sans-serif%27 font-weight=%27900%27 font-size=%2736%27 fill=%27%23F6F1E7%27%3EF%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@100..900&family=Literata:opsz,wght@7..72,400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <script src="simulateur.js" defer></script>
+  <style>
+    /* Compléments propres à la page « Formules et tarifs » — tokens de styles.css uniquement, aucune couleur nouvelle. */
+    .hero--page{min-height:0;padding:126px 0 40px}
+    @media(min-width:900px){.hero--page{min-height:0;padding:164px 0 56px}}
+    .section{padding-bottom:112px}
+    @media(max-width:899px){.section{padding-bottom:88px}}
+    .voir__g--ouvert{margin-top:var(--e-6)}
+    .carte--mini .jauges{margin-top:var(--e-4);padding:14px var(--e-4);gap:8px}
+    .carte--mini .jauge__c i{height:18px;width:8px}
+    /* Tableaux */
+    .tab__defile{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .tab th small,.tab td small{display:block;font-size:var(--t-micro);color:var(--gris);font-weight:var(--g-corps);line-height:1.35;margin-top:3px;text-transform:none;letter-spacing:0}
+    .tab thead th b{display:block;font-family:var(--display);font-size:var(--t-petit);letter-spacing:-.01em;text-transform:none;color:var(--lac);margin-bottom:2px}
+    .tab thead th.phare,.tab tbody td.phare{background:var(--terre-pale)}
+    .tab--postes tbody td:first-child{font-family:var(--texte);font-weight:var(--g-appuye);text-transform:none;letter-spacing:0;min-width:230px;color:var(--lac)}
+    .tab--postes tbody td{font-weight:var(--g-appuye)}
+    .tab tr.groupe td{background:var(--creme-2);font-family:var(--display);font-size:var(--t-micro);font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--lac-2);padding:var(--e-3) var(--e-5);border-bottom:2px solid var(--regle)}
+    .tab tr.prixLigne td{font-family:var(--display);font-weight:900;font-size:var(--t-lu);letter-spacing:-.02em;color:var(--lac)}
+    .tab tr.prixLigne td:first-child{font-size:var(--t-petit)}
+    .tab td.oui{color:var(--terre-sable);font-weight:var(--g-fort)}
+    .tab td.non{color:var(--gris)}
+    .tab--six tbody td:first-child{min-width:150px}
+    .tab--six tbody td:first-child i{display:block;font-style:normal;font-family:var(--texte);font-weight:var(--g-corps);text-transform:none;letter-spacing:0;font-size:var(--t-mini);color:var(--gris);margin-top:2px}
+    .tab--six th,.tab--six td{padding:14px 16px}
+    .tab--six td{white-space:nowrap}
+    .tab--six td:first-child,.tab--six th:first-child,.tab--six td:last-child{white-space:normal}
+    .tab--six td:last-child{min-width:180px}
+    .tab--six th small{white-space:normal}
+    @media(max-width:759px){
+      .tab tr.groupe{display:block;background:transparent;border:0;padding:var(--e-4) 0 4px;margin:0}
+      .tab tr.groupe td{display:block;background:transparent;border:0;padding:0;text-align:left}
+      .tab--postes tbody td:first-child{min-width:0;display:block;padding-top:var(--e-4);padding-bottom:6px}
+      .tab tr.prixLigne td:first-child{display:block}
+      .tab thead th.phare,.tab tbody td.phare{background:transparent}
+      .tab tbody td.phare{border-left:3px solid var(--terre);padding-left:10px}
+      .tab--six td{white-space:normal}
+      .tab--postes tbody td{flex-wrap:wrap}
+      .tab--postes tbody td small{flex-basis:100%;text-align:right}
+      .tab--postes tbody td:first-child small{text-align:left}
+    }
+    .legende{display:flex;flex-wrap:wrap;gap:var(--e-2) var(--e-5);margin-top:var(--e-4);font-size:var(--t-mini);color:var(--gris)}
+    .legende b{font-family:var(--display);font-weight:900;color:var(--lac);letter-spacing:-.01em}
+    /* Bloc « comment se forme le prix » */
+    .mecanique{display:grid;gap:var(--e-4);grid-template-columns:1fr;margin:var(--e-6) auto 0;max-width:900px;text-align:left}
+    @media(min-width:760px){.mecanique{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .mecanique__c{background:color-mix(in srgb,var(--creme) 8%,transparent);border:1.5px solid color-mix(in srgb,var(--creme) 16%,transparent);border-radius:var(--r-ctrl);padding:var(--e-4)}
+    .mecanique__c b{display:block;font-family:var(--display);font-size:var(--t-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--terre-vif);margin-bottom:6px}
+    .mecanique__c p{font-size:var(--t-petit);line-height:1.5;color:var(--creme)}
+    /* Inclus dans toutes les formules */
+    .inclus{display:grid;gap:var(--e-4);grid-template-columns:1fr;margin-top:var(--e-7)}
+    @media(min-width:640px){.inclus{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:1100px){.inclus{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .inclus__c{background:var(--craie);border:2px solid var(--regle);border-radius:var(--r-carte-etroit);padding:var(--e-5);box-shadow:var(--ombre-douce);display:flex;flex-direction:column;gap:10px}
+    .inclus__i{width:52px;height:52px;flex:none;border-radius:var(--r-pilule);background:var(--terre-pale);color:var(--terre);display:inline-flex;align-items:center;justify-content:center}
+    .inclus__c h3{font-size:var(--t-lu);letter-spacing:-.02em}
+    .inclus__c p{font-size:var(--t-petit);color:var(--lac-2);line-height:1.5}
+    .inclus__c small{font-size:var(--t-micro);color:var(--gris);line-height:1.4}
+    /* Simulateur */
+    .simu{display:grid;gap:var(--e-6);margin-top:var(--e-7)}
+    @media(min-width:1000px){.simu{grid-template-columns:minmax(0,1fr) 400px;align-items:start}.simu__res{position:sticky;top:104px}}
+    .simu__form{display:grid;gap:var(--e-5)}
+    .simu__bloc{background:var(--craie);border:2px solid var(--regle);border-radius:var(--r-carte);padding:var(--e-6);box-shadow:var(--ombre-douce)}
+    @media(max-width:639px){.simu__bloc{padding:20px;border-radius:var(--r-carte-etroit)}}
+    .simu__bloc h3{font-size:var(--t-lead)}
+    .simu__bloc h3 small{font-family:var(--texte);font-weight:var(--g-corps);font-size:var(--t-petit);color:var(--gris);letter-spacing:0}
+    .simu__bloc>p{margin-top:6px;font-size:var(--t-petit);color:var(--gris);line-height:1.5}
+    .champ{margin-top:var(--e-5)}
+    .champ__l{display:block;font-family:var(--display);font-weight:900;font-size:var(--t-mini);letter-spacing:.1em;text-transform:uppercase;color:var(--lac-2);margin-bottom:var(--e-3)}
+    .champ__l small{display:block;font-family:var(--texte);font-weight:var(--g-corps);text-transform:none;letter-spacing:0;font-size:var(--t-mini);color:var(--gris);margin-top:3px;line-height:1.4}
+    .champ .choix{margin:0;max-width:none;grid-template-columns:1fr}
+    @media(min-width:520px){.champ .choix{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:900px){.champ .choix--3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    .champ .choix__opt{min-height:56px}
+    .seg{display:flex;flex-wrap:wrap;gap:8px}
+    .seg label{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:56px;height:48px;padding:0 var(--e-4);border-radius:var(--r-pilule);background:var(--craie);border:2px solid var(--regle);font-family:var(--display);font-weight:900;font-size:var(--t-petit);color:var(--lac);cursor:pointer;transition:border-color var(--mvt-bref) ease,background var(--mvt-bref) ease}
+    .seg label small{font-family:var(--texte);font-weight:var(--g-corps);font-size:var(--t-micro);color:var(--gris)}
+    .seg input{position:absolute;opacity:0;width:1px;height:1px}
+    .seg label:hover{border-color:var(--regle-forte)}
+    .seg label:has(input:checked){background:var(--lac);border-color:var(--lac);color:var(--creme)}
+    .seg label:has(input:checked) small{color:color-mix(in srgb,var(--creme) 70%,transparent)}
+    .seg label:has(input:focus-visible){outline:3px solid var(--lac);outline-offset:3px}
+    .select{position:relative;max-width:520px}
+    .select select{appearance:none;-webkit-appearance:none;width:100%;height:62px;padding:0 56px 0 var(--e-5);font-family:var(--texte);font-size:var(--t-lu);color:var(--lac);background:var(--creme);border:2px solid var(--regle-forte);border-radius:var(--r-pilule);cursor:pointer}
+    .select select:hover{border-color:var(--lac-2)}
+    .select select:focus-visible{outline:3px solid var(--lac);outline-offset:3px;border-color:var(--lac)}
+    .select svg{position:absolute;right:22px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--terre)}
+    .simu__res{display:grid;gap:var(--e-4)}
+    .simu__r{background:var(--lac);color:var(--creme);border-radius:var(--r-carte);padding:var(--e-6);box-shadow:var(--ombre-levee)}
+    @media(max-width:639px){.simu__r{padding:22px;border-radius:var(--r-carte-etroit)}}
+    .simu__r .sur{color:var(--sable);margin-bottom:12px}
+    .simu__niv{font-family:var(--display);font-weight:900;font-size:clamp(1.625rem,3vw,2.25rem);letter-spacing:-.04em;line-height:1.05;color:var(--creme);margin:0}
+    .simu__niv small{display:block;font-family:var(--texte);font-weight:var(--g-corps);font-size:var(--t-petit);letter-spacing:0;color:color-mix(in srgb,var(--creme) 72%,transparent);margin-top:8px;line-height:1.45}
+    .simu__prix{margin-top:var(--e-5)}
+    .simu__prix b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(2rem,3vw,2.5rem);letter-spacing:-.05em;line-height:1;color:var(--terre-vif);white-space:nowrap}
+    .simu__prix span{display:block;margin-top:6px;font-size:var(--t-mini);color:color-mix(in srgb,var(--creme) 72%,transparent);line-height:1.4}
+    .simu__eco{display:inline-flex;align-items:center;gap:8px;margin-top:var(--e-3);min-height:34px;padding:0 var(--e-4);border-radius:var(--r-pilule);background:color-mix(in srgb,var(--creme) 10%,transparent);font-size:var(--t-mini);color:var(--creme)}
+    .simu__eco b{font-family:var(--display);font-size:var(--t-petit);color:var(--creme)}
+    .simu__msg{margin-top:var(--e-4);padding:var(--e-4);border-radius:var(--r-ctrl);background:color-mix(in srgb,var(--creme) 8%,transparent);font-size:var(--t-petit);line-height:1.5;color:var(--creme)}
+    .simu__msg+.simu__msg{margin-top:var(--e-3)}
+    .simu__msg b{color:var(--terre-vif)}
+    .simu__msg--alerte{background:color-mix(in srgb,var(--terre-vif) 18%,transparent)}
+    .simu__list{list-style:none;margin:var(--e-4) 0 0;padding:0;display:grid;gap:8px;font-size:var(--t-petit);color:var(--creme)}
+    .simu__list li{display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+    .simu__list .tick{color:var(--terre-vif);margin-top:3px}
+    .simu__c{background:var(--craie);border:2px solid var(--regle);border-radius:var(--r-carte);padding:var(--e-5);box-shadow:var(--ombre-douce)}
+    @media(max-width:639px){.simu__c{padding:20px;border-radius:var(--r-carte-etroit)}}
+    .simu__c h3{font-size:var(--t-lu);margin-bottom:4px}
+    .simu__c>p{font-size:var(--t-mini);color:var(--gris);line-height:1.45}
+    .simu__f{margin-top:var(--e-4);display:grid;gap:var(--e-3)}
+    .simu__fc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px var(--e-4);align-items:center;padding:12px var(--e-4);border-radius:var(--r-ctrl);background:var(--creme);border:2px solid transparent;color:var(--lac)}
+    .simu__fc--on{border-color:var(--terre);background:var(--terre-pale)}
+    .simu__fc--mini{background:transparent;border-color:var(--regle);padding:10px var(--e-4)}
+    .simu__fc b{font-family:var(--display);font-weight:900;font-size:var(--t-lu);letter-spacing:-.02em}
+    .simu__fc b i{font-style:normal;font-family:var(--display);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--terre);margin-left:8px;vertical-align:middle}
+    .simu__fc .n{grid-column:2;grid-row:1/span 2;text-align:right;font-family:var(--display);font-weight:900;font-size:1.375rem;letter-spacing:-.04em;white-space:nowrap;line-height:1}
+    .simu__fc .n small,.simu__fc>small{display:block;font-size:var(--t-mini);color:var(--gris);line-height:1.4;font-family:var(--texte);font-weight:var(--g-corps);letter-spacing:0}
+    .simu__fc .n small{margin-top:4px}
+    .simu__hyp{margin-top:var(--e-4);font-size:var(--t-mini);color:var(--gris);line-height:1.5}
+    .simu__hyp+.simu__hyp{margin-top:8px}
+    .simu__hyp b{color:var(--lac)}
+    .simu__attente{font-size:var(--t-petit);color:color-mix(in srgb,var(--creme) 80%,transparent);line-height:1.5}
+    .simu__res .btn{width:100%;margin-top:var(--e-4)}
+    /* Demande de devis */
+    .devis{background:var(--sable);border-radius:var(--r-carte);padding:var(--e-7) var(--e-6);box-shadow:var(--ombre-douce);display:grid;gap:var(--e-6);overflow:hidden}
+    @media(min-width:900px){.devis{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:var(--e-8);gap:var(--e-8)}}
+    @media(max-width:639px){.devis{padding:var(--e-6) 20px;border-radius:var(--r-carte-etroit)}}
+    /* Bandeau photo intégré à la carte : toute la largeur, bord à bord, sans chevauchement */
+    .devis--photo{padding-top:0}
+    .devis__img{grid-column:1/-1;margin:0 calc(var(--e-6) * -1);aspect-ratio:40/9;overflow:hidden;background:var(--creme-2)}
+    .devis__img img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+    @media(min-width:900px){.devis__img{margin-inline:calc(var(--e-8) * -1)}}
+    @media(max-width:639px){.devis__img{margin-inline:-20px;aspect-ratio:2/1}}
+    .devis__t h2{max-width:16ch}
+    .devis__t .slab{color:color-mix(in srgb,var(--lac) 82%,transparent);margin-top:var(--e-4)}
+    .devis__t .sur{color:var(--terre-sable)}
+    .devis form{display:grid;gap:var(--e-4)}
+    .devis input[type=text],.devis input[type=email],.devis input[type=tel],.devis input[type=date]{width:100%;height:62px;padding:0 var(--e-5);font-family:var(--texte);font-size:var(--t-lu);color:var(--lac);background:var(--craie);border:2px solid var(--regle-forte);border-radius:var(--r-pilule);transition:border-color var(--mvt-bref) ease}
+    .devis input:hover{border-color:var(--lac-2)}
+    .devis input[type=date]{-webkit-appearance:none;appearance:none;font-variant-numeric:tabular-nums}
+    .devis input[type=date]::-webkit-calendar-picker-indicator{opacity:.55;cursor:pointer;margin-right:2px}
+    .devis input[type=date]::-webkit-datetime-edit{padding:0}
+    .devis input:focus-visible{outline:3px solid var(--lac);outline-offset:3px;border-color:var(--lac)}
+    .devis ::placeholder{color:var(--gris)}
+    .devis .champ{margin-top:0}
+    .devis .champ__l{color:var(--lac)}
+    .devis .choix__opt{background:var(--craie)}
+    .attest{display:flex;gap:var(--e-3);align-items:flex-start;padding:var(--e-4);background:var(--craie);border-radius:var(--r-ctrl);font-size:var(--t-mini);color:var(--lac-2);cursor:pointer;line-height:1.45}
+    .attest input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--terre)}
+    .devis__err:not(:empty){font-size:var(--t-mini);color:var(--terre-sable);background:var(--craie);padding:var(--e-3) var(--e-4);border-radius:var(--r-ctrl)}
+    .devis__ok:not(:empty){padding:var(--e-4);border-radius:0 var(--r-ctrl) var(--r-ctrl) 0;background:var(--craie);border-left:3px solid var(--terre);font-size:var(--t-petit);line-height:1.5}
+    .devis__ok mark,.simu__hyp mark,.note mark{background:#ffe68a;color:#4a3200;padding:0 4px;border-radius:3px}
+  </style>
+</head>
+<body data-regime="lamal">
+<div class="progres" aria-hidden="true"><i data-progres></i></div>
+<a class="evitement" href="#contenu">Aller au contenu</a>
+<header class="barre">
+  <div class="barre__i">
+    <a class="marque" href="index.html" aria-label="FLYCARE, retour à l’accueil">
+      <span class="marque__mot">FLYCARE</span>
+    </a>
+    <nav class="barre__nav" aria-label="Navigation principale">
+      <a href="#formules" aria-current="true">Formules</a>
+      <a href="index.html#regime">Suisse et France</a>
+      <a href="index.html#comment">Comment ça marche</a>
+      <a href="index.html#regime">LAMal ou CMU</a>
+      <a href="index.html#questions">Aide</a>
+    </nav>
+    <div class="barre__d">
+      <a class="btn btn--terre btn--sm" href="#formules">Choisir ma formule</a>
+      <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav class="menu" id="menu" data-ouvert="0" aria-label="Menu principal">
+  <div class="menu__h">
+    <span class="marque"><span class="marque__mot">FLYCARE</span></span>
+    <button class="fermer" type="button" aria-label="Fermer le menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <a class="lien" href="#formules" aria-current="true">Formules</a>
+  <a class="lien" href="index.html#regime">Suisse et France</a>
+  <a class="lien" href="index.html#comment">Comment ça marche</a>
+  <a class="lien" href="index.html#regime">LAMal ou CMU</a>
+  <a class="lien" href="index.html#questions">Aide</a>
+  <a class="btn btn--terre" href="#formules">Choisir ma formule</a>
+  <div class="menu__sec">
+    <a href="tarifs.html" aria-current="true">Tarifs et garanties</a>
+    <a href="guide-lamal-cmu.html">Guide LAMal ou CMU</a>
+    <a href="#mentions">Mentions légales</a>
+  </div>
+</nav>
+<main id="contenu">
+  <!-- ===== EN-TÊTE DE PAGE ===== -->
+  <div class="env" style="padding-bottom:24px">
+    <section class="hero hero--page">
+      <span class="sur pose">Formules et tarifs</span>
+      <h1 class="pose" style="transition-delay:.06s">Nos trois formules reposent <br>sur un seul contrat.</h1>
+      <p class="slab pose" style="transition-delay:.12s">Essentiel, Confort et Premium sont trois niveaux du contrat Alptis Santé Frontaliers Suisses, assuré par CNP Assurances. À côté de notre prix, nous affichons celui d’Alptis en souscription directe, poste par poste. Ce site est édité par l’équipe de Flytel.</p>
+      <p class="hero__prix pose" style="transition-delay:.16s">Dès <b data-des>29&nbsp;€</b> par mois<small>Le prix dépend de votre âge et de votre régime, et nous ne facturons aucuns frais de dossier.</small></p>
+      <div class="hero__cta pose" style="transition-delay:.2s">
+        <a class="btn btn--terre" href="#simulateur">Quel niveau me convient ?</a>
+        <a class="btn btn--contour" href="#garanties">Tableau des garanties</a>
+      </div>
+      <ul class="puces pose" style="transition-delay:.24s" aria-label="Ce qu’il faut savoir">
+        <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Le prix public d’Alptis reste toujours affiché</li>
+        <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Aucuns frais facturés par FLYCARE</li>
+        <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Sans questionnaire médical</li>
+        <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vous résiliez à tout moment après la première année</li>
+      </ul>
+    </section>
+
+
+  </div>
+  <div class="bande pose" style="margin-bottom:var(--e-8)">
+    <figure class="figure">
+      <img src="img/tarifs-lac.webp" srcset="img/tarifs-lac.webp 1280w, img/tarifs-lac@1920.webp 1920w"
+           sizes="(min-width:1700px) 1600px, 100vw" width="1920" height="823" loading="lazy" decoding="async"
+           alt="Vue aérienne de la rive française du lac Léman en fin d’après-midi, vignes en terrasses et montagnes au loin.">
+    </figure>
+  </div>
+
+  <!-- ===== FORMULES ===== -->
+  <section class="env section" id="formules" style="padding-top:40px">
+    <div class="formules__tete">
+      <div class="tete tete--serre" style="margin-bottom:0">
+        <span class="sur pose">Les formules</span>
+        <h2 class="pose" style="max-width:22ch;transition-delay:.06s">Choisissez le niveau <br>adapté à vos soins.</h2>
+      </div>
+      <div class="bascule pose" role="group" aria-label="Afficher les prix" style="transition-delay:.16s;margin-bottom:0">
+        <button class="bascule__b" type="button" data-periode="mois" aria-pressed="true">Par mois</button>
+        <button class="bascule__b" type="button" data-periode="an" aria-pressed="false">Par an</button>
+      </div>
+    </div>
+
+    <div class="collant">
+      <div class="reglage pose" style="transition-delay:.1s" id="reglage-prix">
+        <div class="reglage__b">
+          <label class="reglage__l" for="age-tarifs">Votre âge <output for="age-tarifs" data-age-out>30 ans</output></label>
+          <input class="reglage__r" type="range" id="age-tarifs" min="18" max="67" step="1" value="30">
+        </div>
+        <div class="reglage__b">
+          <span class="reglage__l" id="age-tarifs-regime">Votre régime</span>
+          <div class="bascule" role="group" aria-labelledby="age-tarifs-regime">
+            <button class="bascule__b" type="button" data-regime-btn="lamal" aria-pressed="true">LAMal</button>
+            <button class="bascule__b" type="button" data-regime-btn="cmu" aria-pressed="false">CMU</button>
+          </div>
+        </div>
+        <div class="reglage__b reglage__b--foyer">
+          <span class="reglage__l" id="age-tarifs-foyer">Votre foyer</span>
+          <div class="foyer" aria-labelledby="age-tarifs-foyer">
+            <div class="bascule" role="group" aria-label="Adultes">
+              <button class="bascule__b" type="button" data-foyer-adultes="1" aria-pressed="true">Seul</button>
+              <button class="bascule__b" type="button" data-foyer-adultes="2" aria-pressed="false">En couple</button>
+            </div>
+            <div class="compteur" role="group" aria-label="Enfants">
+              <button class="compteur__b" type="button" data-foyer-enfants="-1" aria-label="Un enfant de moins">−</button>
+              <span class="compteur__v"><b data-foyer-nb>0</b> <span data-foyer-mot>enfant</span></span>
+              <button class="compteur__b" type="button" data-foyer-enfants="+1" aria-label="Un enfant de plus">+</button>
+            </div>
+          </div>
+        </div>
+        <p class="reglage__prix" data-resume aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="trio" style="margin-top:40px">
+      <!-- Essentiel · Niveau 2 -->
+      <div class="carte pose carte--bas" id="essentiel" style="transition-delay:0s">
+        <div class="carte__t"><h3>Essentiel</h3></div>
+        <p class="carte__contrat">Alptis Santé Frontaliers Suisses · Niveau 2</p>
+        <div class="jauges" aria-label="Niveau de remboursement en France, sur 5 crans">
+          <div class="jauge"><span class="jauge__l">Soins courants</span><span class="jauge__v">150&nbsp;% BRSS</span><span class="jauge__c" aria-label="2 sur 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Dentaire</span><span class="jauge__v">Prothèses 150&nbsp;% · plafond 900&nbsp;€</span><span class="jauge__c" aria-label="2 sur 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Optique</span><span class="jauge__v">Verres simples 125&nbsp;€</span><span class="jauge__c" aria-label="2 sur 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Hospitalisation</span><span class="jauge__v">150&nbsp;% · chambre 30&nbsp;€/jour</span><span class="jauge__c" aria-label="2 sur 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+        </div>
+        <p class="carte__ch"><b>En Suisse :</b> <span data-lamal>quote-part et contribution journalière à 100&nbsp;%</span><span data-cmu>125&nbsp;% BRSS sur les soins urgents</span></p>
+        <div class="prixbloc">
+          <p class="prix">
+            <span class="prix__n" data-mois="37.70" data-an="452.40">37<i class="prix__v">,</i>70&nbsp;€</span>
+            <span class="prix__m"><span data-periode-libelle data-libelle-mois="par mois" data-libelle-an="par an">par mois</span></span>
+          </p>
+        </div>
+        <a class="btn carte__cta carte__cta--sec" href="#adherer" data-choix="essentiel">Choisir la formule Essentiel</a>
+      </div>
+      <!-- Confort · Niveau 3 · phare -->
+      <div class="carte pose carte--phare grain" id="confort" style="transition-delay:.06s">
+        <div class="carte__t"><h3>Confort</h3><span class="badge">La plus choisie</span></div>
+        <p class="carte__contrat">Alptis Santé Frontaliers Suisses · Niveau 3</p>
+        <div class="jauges" aria-label="Niveau de remboursement en France, sur 5 crans">
+          <div class="jauge"><span class="jauge__l">Soins courants</span><span class="jauge__v">200&nbsp;% BRSS</span><span class="jauge__c" aria-label="3 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Dentaire</span><span class="jauge__v">Prothèses 175&nbsp;% · plafond 1&nbsp;100&nbsp;€</span><span class="jauge__c" aria-label="3 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Optique</span><span class="jauge__v">Verres simples 225&nbsp;€</span><span class="jauge__c" aria-label="3 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Hospitalisation</span><span class="jauge__v">200&nbsp;% · chambre 50&nbsp;€/jour</span><span class="jauge__c" aria-label="3 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+        </div>
+        <p class="carte__ch"><b>En Suisse :</b> <span data-lamal>quote-part et contribution journalière à 100&nbsp;% · transport 50&nbsp;€/an</span><span data-cmu>150&nbsp;% BRSS + 20&nbsp;€ par acte</span></p>
+        <div class="prixbloc">
+          <p class="prix">
+            <span class="prix__n" data-mois="47.00" data-an="564.00">47<i class="prix__v">,</i>00&nbsp;€</span>
+            <span class="prix__m"><span data-periode-libelle data-libelle-mois="par mois" data-libelle-an="par an">par mois</span></span>
+          </p>
+        </div>
+        <a class="btn carte__cta btn--terre" href="#adherer" data-choix="confort">Choisir la formule Confort</a>
+      </div>
+      <!-- Premium · Niveau 4 -->
+      <div class="carte pose carte--haut grain" id="premium" style="transition-delay:.12s">
+        <div class="carte__t"><h3>Premium</h3></div>
+        <p class="carte__contrat">Alptis Santé Frontaliers Suisses · Niveau 4</p>
+        <div class="jauges" aria-label="Niveau de remboursement en France, sur 5 crans">
+          <div class="jauge"><span class="jauge__l">Soins courants</span><span class="jauge__v">250&nbsp;% BRSS</span><span class="jauge__c" aria-label="4 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Dentaire</span><span class="jauge__v">Prothèses 225&nbsp;% · plafond 1&nbsp;200&nbsp;€</span><span class="jauge__c" aria-label="4 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Optique</span><span class="jauge__v">Verres 325 / 450&nbsp;€</span><span class="jauge__c" aria-label="4 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+          <div class="jauge"><span class="jauge__l">Hospitalisation</span><span class="jauge__v">250&nbsp;% · chambre 70&nbsp;€/jour</span><span class="jauge__c" aria-label="4 sur 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        </div>
+        <p class="carte__ch"><b>En Suisse :</b> <span data-lamal>quote-part et contribution journalière à 100&nbsp;% · transport 100&nbsp;€/an</span><span data-cmu>200&nbsp;% BRSS + 30&nbsp;€ par acte</span></p>
+        <div class="prixbloc">
+          <p class="prix">
+            <span class="prix__n" data-mois="57.90" data-an="694.80">57<i class="prix__v">,</i>90&nbsp;€</span>
+            <span class="prix__m"><span data-periode-libelle data-libelle-mois="par mois" data-libelle-an="par an">par mois</span></span>
+          </p>
+        </div>
+        <a class="btn carte__cta carte__cta--sec" href="#adherer" data-choix="premium">Choisir la formule Premium</a>
+      </div>
+    </div>
+    <p class="carte__sans" style="margin-top:var(--e-5);text-align:center">Contrat annuel · <a href="#garanties">Tableau des garanties</a> · <a href="#documents">Notice et IPID</a> · <a href="#simulateur">Quel niveau me convient ?</a></p>
+    <p class="note" id="tarifs-note" style="margin-top:var(--e-4)">* Les tarifs 2026 sont indicatifs et s’entendent hors cotisation d’association (2 € par mois) et hors droit d’entrée (11 €), identiques dans tous les canaux. Le prix « directement chez Alptis » provient des devis publics 2026 établis en régime CMU, que nous ajustons à votre âge et à votre foyer. <a class="lien" href="#garanties">Voir le détail des garanties</a>.</p>
+  </section>
+
+  <section class="env air--bas" id="autres-niveaux">
+    <!-- Voir aussi : niveaux 1, 5 et 6 -->
+    <span class="sur" style="margin-top:56px">Voir aussi&nbsp;: niveaux 1, 5 et 6</span>
+    <div class="voir__g voir__g--ouvert" style="margin-top:0">
+      <div class="carte carte--mini" id="niveau-1">
+        <div class="carte__t"><h3>Niveau 1</h3></div>
+        <p class="carte__pour">Ce niveau couvre le ticket modérateur et le 100&nbsp;% Santé, rien de plus. Il convient à un affilié LAMal qui se soigne en Suisse et n’a pas de besoin en France. Il n’est pas ouvert en Alsace-Moselle.</p>
+        <div class="prixbloc">
+          <p class="prix">
+            <span class="prix__n" data-mois="28.00" data-an="336.00">28<i class="prix__v">,</i>00&nbsp;€</span>
+            <span class="prix__m"><span data-periode-libelle data-libelle-mois="par mois" data-libelle-an="par an">par mois</span></span>
+          </p>
+        </div>
+        <a class="btn btn--sm carte__cta carte__cta--sec" href="#adherer" data-choix="niveau-1">Choisir le niveau 1</a>
+      </div>
+      <div class="carte carte--mini" id="niveau-5">
+        <div class="carte__t"><h3>Niveau 5</h3></div>
+        <p class="carte__pour">Ce niveau répond à des besoins dentaires ou auditifs lourds : il porte les prothèses à 275&nbsp;%, avec un bonus de 100&nbsp;% en plus, l’implantologie à 600&nbsp;€ par an, les aides auditives à 250&nbsp;% et la chambre particulière à 100&nbsp;€ par jour.</p>
+        <div class="prixbloc">
+          <p class="prix">
+            <span class="prix__n" data-mois="69.50" data-an="834.00">69<i class="prix__v">,</i>50&nbsp;€</span>
+            <span class="prix__m"><span data-periode-libelle data-libelle-mois="par mois" data-libelle-an="par an">par mois</span></span>
+          </p>
+        </div>
+        <a class="btn btn--sm carte__cta carte__cta--sec" href="#adherer" data-choix="niveau-5">Choisir le niveau 5</a>
+      </div>
+      <div class="carte carte--mini" id="niveau-6">
+        <div class="carte__t"><h3>Niveau 6</h3></div>
+        <p class="carte__pour">C’est le niveau le plus élevé de la gamme : les honoraires d’hospitalisation y atteignent 400&nbsp;%, la chambre 120&nbsp;€ par jour, le plafond dentaire 2&nbsp;500&nbsp;€ dès la 3<sup>e</sup> année et l’implantologie 700&nbsp;€ par an.</p>
+        <div class="prixbloc"><p class="prix"><span class="prix__n">Sur devis</span><span class="prix__m">prix non coté sur le devis public relevé</span></p></div>
+        <a class="btn btn--sm carte__cta carte__cta--sec" href="#adherer" data-choix="niveau-6">Choisir le niveau 6</a>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--e-4)">Le détail de ces trois niveaux figure dans le tableau ci-dessous, ligne par ligne.</p>
+
+    <div class="famille pose">
+      <p class="famille__t">Un seul contrat couvre toute la famille, même lorsque les régimes diffèrent.<small>Prenons deux adultes de 33 ans et un enfant : en formule Confort, le foyer paie 122&nbsp;€ par mois (49 + 44 + 29). Pour connaître votre prix, passez par <a class="lien" href="#simulateur">le simulateur</a>.</small></p>
+      <div class="famille__r" aria-label="Réductions accordées par Alptis dans tous les canaux">
+        <span><b>−10&nbsp;%</b> couple</span>
+        <span><b>−50&nbsp;%</b> 3<sup>e</sup> enfant de moins de 20 ans</span>
+        <span><b>Réduit</b> Alsace-Moselle (dès le niveau 2)</span>
+      </div>
+    </div>
+    </section>
+
+  <!-- ===== COMMENT SE FORME LE PRIX ===== -->
+  <div class="env section" id="prix">
+    <section class="bloc bloc--lac bloc--etroit grain">
+      <span class="sur">Comment se forme le prix</span>
+      <h2>Le même contrat qu’en direct, <br>servi par une structure plus légère.</h2>
+      <p class="slab">Toute cotisation inclut une commission de distribution. FLYCARE n’a ni agence ni centre d’appel et demande à Alptis une commission plus basse. Si Alptis l’accepte, la cotisation baisse d’autant. Sinon, vous payez le prix public, jamais davantage, et FLYCARE ne facture aucuns frais.</p>
+      <ul class="liste2 liste2--sombre" style="margin-top:var(--e-6)">
+        <li><b>Le contrat</b><span>Alptis Santé Frontaliers Suisses, assuré par CNP Assurances. Vous avez les mêmes garanties, les mêmes remboursements et le même espace adhérent qu’en souscription directe.</span></li>
+        <li><b>La contrepartie</b><span>Le prix d’Alptis en souscription directe reste affiché sous chaque formule, et nous vous indiquons le taux de commission avant la signature.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ===== TABLEAU DES GARANTIES ===== -->
+  <section class="env section" id="garanties">
+    <div class="tete">
+      <span class="sur pose">Tableau des garanties</span>
+      <h2 class="pose" style="max-width:24ch;transition-delay:.06s">Ce que rembourse <br>chaque formule, poste par poste.</h2>
+      <p class="slab pose" style="transition-delay:.12s">Un premier tableau réunit les six niveaux, puis le détail des trois formules FLYCARE est mis en regard de ce que couvre votre régime seul. Les pourcentages comprennent le remboursement du régime de base, et les montants en euros s’y ajoutent. Ces garanties sont extraites du descriptif des prestations de la notice Alptis SF_Suisses (04/2025).</p>
+    </div>
+    <fieldset class="choix pose" style="border:0;margin:0 0 var(--e-6);max-width:640px">
+      <legend class="sr">Indiquez votre régime d’assurance maladie : il commande la colonne «&nbsp;votre régime seul&nbsp;» et les lignes «&nbsp;soins en Suisse&nbsp;»</legend>
+      <label class="choix__opt"><input type="radio" name="regime" value="lamal" checked><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je suis à la LAMal</span><span class="choix__d">Vous cotisez à l’assurance maladie suisse, avec une franchise de 300&nbsp;CHF, et le formulaire S1 vous donne une carte Vitale</span></span></label>
+      <label class="choix__opt"><input type="radio" name="regime" value="cmu"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je suis à la CMU</span><span class="choix__d">Vous cotisez à la Sécurité sociale française auprès de l’Urssaf frontaliers (ex-CNTFS) et vous avez une carte Vitale</span></span></label>
+    </fieldset>
+    <!-- Les six niveaux -->
+    <h3 id="six-niveaux" style="margin-bottom:var(--e-4)">Les six niveaux du contrat</h3>
+    <div class="tab tab--six pose">
+      <div class="tab__defile">
+        <table>
+          <caption class="sr">Les six niveaux du contrat Alptis Santé Frontaliers Suisses, avec le tarif que vise FLYCARE, le prix public d’Alptis et les principales garanties</caption>
+          <thead>
+            <tr>
+              <th scope="col">Niveau</th>
+              <th scope="col">Prix FLYCARE<small>2026, adulte seul de 30 ans</small></th>
+              <th scope="col">Prix public Alptis<small>devis public 2026, 30 ans, CMU</small></th>
+              <th scope="col">Soins courants<small>honoraires OPTAM / non OPTAM</small></th>
+              <th scope="col">Hospitalisation<small>honoraires OPTAM · chambre</small></th>
+              <th scope="col">Optique<small>verres simples / complexes</small></th>
+              <th scope="col">Dentaire<small>prothèses · plafond des 1<sup>re</sup> et 2<sup>e</sup> années</small></th>
+              <th scope="col">Médecines compl.<small>par séance, quatre séances par an</small></th>
+              <th scope="col">Soins en Suisse<small><span data-regime-libelle data-libelle-lamal="affilié LAMal" data-libelle-cmu="affilié CMU">affilié LAMal</span></small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Niveau 1<i>Voir aussi</i></td>
+              <td data-l="Prix FLYCARE"><span data-mois="29" data-an="348" data-entier>29&nbsp;€</span></td>
+              <td data-l="Prix public Alptis"><span data-mois="32.03" data-an="384.36">32,03&nbsp;€</span></td>
+              <td data-l="Soins courants">125&nbsp;% / 100&nbsp;%</td>
+              <td data-l="Hospitalisation">125&nbsp;% · —</td>
+              <td data-l="Optique">TM / TM</td>
+              <td data-l="Dentaire">100&nbsp;% · sans plafond</td>
+              <td data-l="Médecines compl." class="non">—</td>
+              <td data-l="Soins en Suisse"><span data-lamal>QP + CJ 100&nbsp;%</span><span data-cmu>100&nbsp;% BRSS</span></td>
+            </tr>
+            <tr>
+              <td>Niveau 2<i>FLYCARE Essentiel</i></td>
+              <td data-l="Prix FLYCARE"><span data-mois="39" data-an="468" data-entier>39&nbsp;€</span></td>
+              <td data-l="Prix public Alptis"><span data-mois="43.11" data-an="517.32">43,11&nbsp;€</span></td>
+              <td data-l="Soins courants">150&nbsp;% / 130&nbsp;%</td>
+              <td data-l="Hospitalisation">150&nbsp;% · 30&nbsp;€/j</td>
+              <td data-l="Optique">125 / 200&nbsp;€</td>
+              <td data-l="Dentaire">150&nbsp;% · 900&nbsp;€</td>
+              <td data-l="Médecines compl.">30&nbsp;€</td>
+              <td data-l="Soins en Suisse"><span data-lamal>QP + CJ 100&nbsp;%</span><span data-cmu>125&nbsp;% BRSS</span></td>
+            </tr>
+            <tr class="phare">
+              <td>Niveau 3<i>FLYCARE Confort · la plus choisie</i></td>
+              <td data-l="Prix FLYCARE"><span data-mois="49" data-an="588" data-entier>49&nbsp;€</span></td>
+              <td data-l="Prix public Alptis"><span data-mois="53.80" data-an="645.60">53,80&nbsp;€</span></td>
+              <td data-l="Soins courants">200&nbsp;% / 170&nbsp;%</td>
+              <td data-l="Hospitalisation">200&nbsp;% · 50&nbsp;€/j</td>
+              <td data-l="Optique">225 / 325&nbsp;€</td>
+              <td data-l="Dentaire">175&nbsp;% · 1&nbsp;100&nbsp;€</td>
+              <td data-l="Médecines compl.">40&nbsp;€</td>
+              <td data-l="Soins en Suisse"><span data-lamal>QP + CJ 100&nbsp;% · transport 50&nbsp;€/an</span><span data-cmu>150&nbsp;% + 20&nbsp;€/acte</span></td>
+            </tr>
+            <tr>
+              <td>Niveau 4<i>FLYCARE Premium</i></td>
+              <td data-l="Prix FLYCARE"><span data-mois="59" data-an="708" data-entier>59&nbsp;€</span></td>
+              <td data-l="Prix public Alptis"><span data-mois="66.31" data-an="795.72">66,31&nbsp;€</span></td>
+              <td data-l="Soins courants">250&nbsp;% / 200&nbsp;%</td>
+              <td data-l="Hospitalisation">250&nbsp;% · 70&nbsp;€/j</td>
+              <td data-l="Optique">325 / 450&nbsp;€</td>
+              <td data-l="Dentaire">225&nbsp;% · 1&nbsp;200&nbsp;€</td>
+              <td data-l="Médecines compl.">50&nbsp;€</td>
+              <td data-l="Soins en Suisse"><span data-lamal>QP + CJ 100&nbsp;% · transport 100&nbsp;€/an</span><span data-cmu>200&nbsp;% + 30&nbsp;€/acte</span></td>
+            </tr>
+            <tr>
+              <td>Niveau 5<i>Voir aussi</i></td>
+              <td data-l="Prix FLYCARE"><span data-mois="69" data-an="828" data-entier>69&nbsp;€</span></td>
+              <td data-l="Prix public Alptis"><span data-mois="79.53" data-an="954.36">79,53&nbsp;€</span></td>
+              <td data-l="Soins courants">300&nbsp;% / 200&nbsp;%</td>
+              <td data-l="Hospitalisation">300&nbsp;% · 100&nbsp;€/j</td>
+              <td data-l="Optique">420 / 550&nbsp;€</td>
+              <td data-l="Dentaire">275&nbsp;% · 1&nbsp;300&nbsp;€</td>
+              <td data-l="Médecines compl.">50&nbsp;€</td>
+              <td data-l="Soins en Suisse"><span data-lamal>QP + CJ 100&nbsp;% · transport 150&nbsp;€/an</span><span data-cmu>250&nbsp;% + 40&nbsp;€/acte</span></td>
+            </tr>
+            <tr>
+              <td>Niveau 6<i>Voir aussi</i></td>
+              <td data-l="Prix FLYCARE">Sur devis</td>
+              <td data-l="Prix public Alptis">Non coté</td>
+              <td data-l="Soins courants">350&nbsp;% / 200&nbsp;%</td>
+              <td data-l="Hospitalisation">400&nbsp;% · 120&nbsp;€/j</td>
+              <td data-l="Optique">420 / 600&nbsp;€</td>
+              <td data-l="Dentaire">325&nbsp;% · 1&nbsp;600&nbsp;€</td>
+              <td data-l="Médecines compl.">60&nbsp;€</td>
+              <td data-l="Soins en Suisse"><span data-lamal>QP + CJ 100&nbsp;% · transport 200&nbsp;€/an</span><span data-cmu>300&nbsp;% + 50&nbsp;€/acte</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="legende"><span><b>TM</b> ticket modérateur</span><span><b>QP</b> quote-part LAMal (10&nbsp;%, plafonnée à 700&nbsp;CHF par adulte et 350&nbsp;CHF par enfant)</span><span><b>CJ</b> contribution journalière hospitalière (15&nbsp;CHF/jour)</span><span><b>BRSS</b> base de remboursement de la Sécurité sociale</span><span><b>OPTAM</b> praticiens à dépassements maîtrisés</span></div>
+    <p class="note" style="margin-top:var(--e-3)">Ces prix s’entendent hors cotisation d’association (2&nbsp;€ par mois) et hors droit d’entrée (11&nbsp;€). Le devis public a été relevé pour un adulte seul de 30 ans en régime CMU, les 5 et 6 septembre 2026, et nous n’avons pas encore relevé la grille établie en régime LAMal. Le bonus fidélité dentaire s’applique après deux ans d’adhésion : il ajoute 50&nbsp;% BRSS aux niveaux 2 à 4 et 100&nbsp;% aux niveaux 5 et 6, et tout changement de niveau remet le compteur à zéro.</p>
+    <!-- Poste par poste -->
+    <span id="comparatif" hidden></span>
+    <details class="voir depli" id="detail-garanties">
+      <summary class="depli__s"><span>Voir le détail poste par poste des trois formules</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <p class="note" style="margin:var(--e-4) 0 0">Le tableau compte cinquante-six lignes : pour chaque poste, il donne ce que couvre votre régime seul, puis Essentiel, Confort et Premium. Les garanties proviennent du descriptif des prestations de la notice.</p>
+      <div class="tab tab--postes">
+      <div class="tab__defile">
+        <table>
+          <caption class="sr">Comparaison, poste par poste, de ce que couvre votre régime de base seul et de ce que remboursent les formules Essentiel, Confort et Premium</caption>
+          <thead>
+            <tr>
+              <th scope="col">Poste</th>
+              <th scope="col"><b>Votre régime seul</b><small><span data-regime-libelle data-libelle-lamal="LAMal (Suisse) + carte Vitale via S1 (France)" data-libelle-cmu="CPAM (France) + CEAM / S2 (Suisse)">LAMal (Suisse) + carte Vitale via S1 (France)</span></small></th>
+              <th scope="col"><b>Essentiel</b><small>Alptis Niveau 2</small></th>
+              <th scope="col" class="phare"><b>Confort</b><small>Alptis Niveau 3 · la plus choisie</small></th>
+              <th scope="col"><b>Premium</b><small>Alptis Niveau 4</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="prixLigne">
+              <td>Prix FLYCARE<small>adulte seul de 30 ans, tarif 2026, hors cotisation d’association et droit d’entrée</small></td>
+              <td data-l="Votre régime seul" class="non">—</td>
+              <td data-l="Essentiel"><span data-mois="39" data-an="468" data-entier>39&nbsp;€</span></td>
+              <td data-l="Confort" class="phare"><span data-mois="49" data-an="588" data-entier>49&nbsp;€</span></td>
+              <td data-l="Premium"><span data-mois="59" data-an="708" data-entier>59&nbsp;€</span></td>
+            </tr>
+            <tr class="prixLigne">
+              <td>Prix public Alptis<small>devis public 2026, même profil (CMU)</small></td>
+              <td data-l="Votre régime seul" class="non">—</td>
+              <td data-l="Essentiel"><span data-mois="43.11" data-an="517.32">43,11&nbsp;€</span></td>
+              <td data-l="Confort" class="phare"><span data-mois="53.80" data-an="645.60">53,80&nbsp;€</span></td>
+              <td data-l="Premium"><span data-mois="66.31" data-an="795.72">66,31&nbsp;€</span></td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Hospitalisation en France</td></tr>
+            <tr>
+              <td>Frais de séjour, secteur conventionné</td>
+              <td data-l="Votre régime seul">80&nbsp;% de la base<small>100&nbsp;% pour les actes lourds, dans l’un comme dans l’autre régime</small></td>
+              <td data-l="Essentiel">Frais réels</td>
+              <td data-l="Confort" class="phare">Frais réels</td>
+              <td data-l="Premium">Frais réels</td>
+            </tr>
+            <tr>
+              <td>Frais de séjour, secteur non conventionné</td>
+              <td data-l="Votre régime seul">80&nbsp;% d’une base réduite</td>
+              <td data-l="Essentiel">150&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">200&nbsp;% BRSS</td>
+              <td data-l="Premium">250&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Forfait journalier hospitalier<small>23&nbsp;€ par jour depuis le 1<sup>er</sup> mars 2026</small></td>
+              <td data-l="Votre régime seul" class="non">Non couvert</td>
+              <td data-l="Essentiel">Frais réels</td>
+              <td data-l="Confort" class="phare">Frais réels</td>
+              <td data-l="Premium">Frais réels</td>
+            </tr>
+            <tr>
+              <td>Honoraires chirurgiens et anesthésistes, praticiens OPTAM</td>
+              <td data-l="Votre régime seul">80&nbsp;% de la base<small>100&nbsp;% pour les actes lourds, moins 32&nbsp;€ de participation forfaitaire (depuis le 1<sup>er</sup> avril 2026), prise en charge par le contrat</small></td>
+              <td data-l="Essentiel">150&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">200&nbsp;% BRSS</td>
+              <td data-l="Premium">250&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Honoraires, praticiens non OPTAM (secteur 2 libre)</td>
+              <td data-l="Votre régime seul">80&nbsp;% de la base<small>les dépassements ne sont jamais remboursés par le régime</small></td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">150&nbsp;% BRSS</td>
+              <td data-l="Premium">200&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Chambre particulière<small>hors psychiatrie et soins de réadaptation</small></td>
+              <td data-l="Votre régime seul" class="non">Non couverte</td>
+              <td data-l="Essentiel">30&nbsp;€/jour</td>
+              <td data-l="Confort" class="phare">50&nbsp;€/jour</td>
+              <td data-l="Premium">70&nbsp;€/jour</td>
+            </tr>
+            <tr>
+              <td>Forfait naissance ou adoption</td>
+              <td data-l="Votre régime seul" class="non">—</td>
+              <td data-l="Essentiel">100&nbsp;€</td>
+              <td data-l="Confort" class="phare">150&nbsp;€</td>
+              <td data-l="Premium">200&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Forfait patient urgences<small>passage aux urgences sans hospitalisation</small></td>
+              <td data-l="Votre régime seul" class="non">Non couvert</td>
+              <td data-l="Essentiel">Frais réels</td>
+              <td data-l="Confort" class="phare">Frais réels</td>
+              <td data-l="Premium">Frais réels</td>
+            </tr>
+            <tr>
+              <td>Renfort Hospitalisation (option)<small>le délai d’attente est de 3 mois, porté à 6 mois si l’option est ajoutée plus tard ; la chambre en réadaptation est couverte 40&nbsp;€ par jour, le lit accompagnant 30&nbsp;€ et le forfait confort 10&nbsp;€, dans la limite de 30 jours par an</small></td>
+              <td data-l="Votre régime seul" class="non">—</td>
+              <td data-l="Essentiel" class="non">Non disponible</td>
+              <td data-l="Confort" class="phare">+50&nbsp;% BRSS · chambre +40&nbsp;€/jour</td>
+              <td data-l="Premium">+50&nbsp;% BRSS · chambre +40&nbsp;€/jour</td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Soins courants en France</td></tr>
+            <tr>
+              <td>Consultations, actes techniques, imagerie — praticiens OPTAM</td>
+              <td data-l="Votre régime seul">70&nbsp;% de la base<small>moins 2&nbsp;€ de participation forfaitaire ; pour un spécialiste à 53&nbsp;€, il reste ainsi 26&nbsp;€</small></td>
+              <td data-l="Essentiel">150&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">200&nbsp;% BRSS</td>
+              <td data-l="Premium">250&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Consultations, actes techniques — praticiens non OPTAM</td>
+              <td data-l="Votre régime seul">70&nbsp;% de la base</td>
+              <td data-l="Essentiel">130&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">170&nbsp;% BRSS</td>
+              <td data-l="Premium">200&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Auxiliaires médicaux (kiné, infirmier…), analyses, matériel médical</td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base<small>règle générale de l’Assurance maladie</small></td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">150&nbsp;% BRSS</td>
+              <td data-l="Premium">200&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Médicaments remboursables</td>
+              <td data-l="Votre régime seul">65, 30 ou 15&nbsp;%<small>selon le service médical rendu</small></td>
+              <td data-l="Essentiel">100&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">100&nbsp;% BRSS</td>
+              <td data-l="Premium">100&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Transport sanitaire</td>
+              <td data-l="Votre régime seul">65&nbsp;% de la base</td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">150&nbsp;% BRSS</td>
+              <td data-l="Premium">200&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Médicaments non remboursés, automédication, contraception, sevrage tabagique<small>par an</small></td>
+              <td data-l="Votre régime seul" class="non">Non remboursés</td>
+              <td data-l="Essentiel">15&nbsp;€</td>
+              <td data-l="Confort" class="phare">20&nbsp;€</td>
+              <td data-l="Premium">30&nbsp;€</td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Optique — un équipement tous les deux ans, un an pour les moins de 16 ans</td></tr>
+            <tr>
+              <td>Équipement 100&nbsp;% Santé (classe A)</td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base</td>
+              <td data-l="Essentiel">Frais réels<small>reste à charge zéro</small></td>
+              <td data-l="Confort" class="phare">Frais réels<small>reste à charge zéro</small></td>
+              <td data-l="Premium">Frais réels<small>reste à charge zéro</small></td>
+            </tr>
+            <tr>
+              <td>Verres simples, classe B<small>monture comprise, dans la limite de 100&nbsp;€ ; ce forfait ne s’utilise qu’en France</small></td>
+              <td data-l="Votre régime seul">≈ 0&nbsp;€<small>60&nbsp;% d’une base de 0,05&nbsp;€ par verre</small></td>
+              <td data-l="Essentiel">125&nbsp;€</td>
+              <td data-l="Confort" class="phare">225&nbsp;€</td>
+              <td data-l="Premium">325&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Verres complexes ou progressifs, classe B</td>
+              <td data-l="Votre régime seul">≈ 0&nbsp;€</td>
+              <td data-l="Essentiel">200&nbsp;€</td>
+              <td data-l="Confort" class="phare">325&nbsp;€</td>
+              <td data-l="Premium">450&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Verres très complexes, classe B<small>progressifs de forte correction (sphère au-delà de ±8)</small></td>
+              <td data-l="Votre régime seul">≈ 0&nbsp;€</td>
+              <td data-l="Essentiel">200&nbsp;€</td>
+              <td data-l="Confort" class="phare">325&nbsp;€</td>
+              <td data-l="Premium">475&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Lentilles, remboursées ou non<small>par an</small></td>
+              <td data-l="Votre régime seul" class="non">Non remboursées (cas général)</td>
+              <td data-l="Essentiel">100&nbsp;€</td>
+              <td data-l="Confort" class="phare">125&nbsp;€</td>
+              <td data-l="Premium">150&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Chirurgie réfractive<small>par œil et par an</small></td>
+              <td data-l="Votre régime seul" class="non">Non remboursée</td>
+              <td data-l="Essentiel">250&nbsp;€</td>
+              <td data-l="Confort" class="phare">300&nbsp;€</td>
+              <td data-l="Premium">400&nbsp;€</td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Dentaire</td></tr>
+            <tr>
+              <td>Soins et prothèses du panier 100&nbsp;% Santé</td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base</td>
+              <td data-l="Essentiel">Frais réels<small>reste à charge zéro</small></td>
+              <td data-l="Confort" class="phare">Frais réels<small>reste à charge zéro</small></td>
+              <td data-l="Premium">Frais réels<small>reste à charge zéro</small></td>
+            </tr>
+            <tr>
+              <td>Soins dentaires (inlays, onlays, scellements)</td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base</td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">150&nbsp;% BRSS</td>
+              <td data-l="Premium">200&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Prothèses, inlay-core, orthodontie remboursée<small>par exemple une couronne céramo-métallique à 562&nbsp;€, sur une base de 120&nbsp;€</small></td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base<small>72&nbsp;€ sur la couronne de l’exemple ; pour l’orthodontie des moins de 16 ans, le régime rembourse 100&nbsp;% d’une base de 193,50&nbsp;€ par semestre</small></td>
+              <td data-l="Essentiel">150&nbsp;% BRSS<small>108&nbsp;€ sur l’exemple</small></td>
+              <td data-l="Confort" class="phare">175&nbsp;% BRSS<small>138&nbsp;€ sur l’exemple</small></td>
+              <td data-l="Premium">225&nbsp;% BRSS<small>198&nbsp;€ sur l’exemple</small></td>
+            </tr>
+            <tr>
+              <td>Bonus fidélité après deux ans d’adhésion<small>il porte sur les soins et les prothèses, et il est remis à zéro à chaque changement de niveau</small></td>
+              <td data-l="Votre régime seul" class="non">—</td>
+              <td data-l="Essentiel">+50&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">+50&nbsp;% BRSS</td>
+              <td data-l="Premium">+50&nbsp;% BRSS</td>
+            </tr>
+            <tr>
+              <td>Orthodontie non remboursée<small>par an, six semestres maximum</small></td>
+              <td data-l="Votre régime seul" class="non">Non remboursée</td>
+              <td data-l="Essentiel" class="non">—</td>
+              <td data-l="Confort" class="phare non">—</td>
+              <td data-l="Premium">100&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Implantologie et parodontologie non remboursées<small>par an</small></td>
+              <td data-l="Votre régime seul" class="non">Non remboursées</td>
+              <td data-l="Essentiel">300&nbsp;€</td>
+              <td data-l="Confort" class="phare">400&nbsp;€</td>
+              <td data-l="Premium">500&nbsp;€</td>
+            </tr>
+            <tr>
+              <td>Plafond annuel dentaire hors soins<small>pour les années 1 et 2, puis dès la 3<sup>e</sup> année ; le 100&nbsp;% Santé reste toujours pris aux frais réels</small></td>
+              <td data-l="Votre régime seul" class="non">—</td>
+              <td data-l="Essentiel">900 / 1&nbsp;350&nbsp;€</td>
+              <td data-l="Confort" class="phare">1&nbsp;100 / 1&nbsp;650&nbsp;€</td>
+              <td data-l="Premium">1&nbsp;200 / 1&nbsp;950&nbsp;€</td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Aides auditives — un appareil par oreille tous les quatre ans</td></tr>
+            <tr>
+              <td>Classe I (100&nbsp;% Santé)</td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base</td>
+              <td data-l="Essentiel">Frais réels</td>
+              <td data-l="Confort" class="phare">Frais réels</td>
+              <td data-l="Premium">Frais réels</td>
+            </tr>
+            <tr>
+              <td>Classe II<small>plafond de 1&nbsp;700&nbsp;€ par aide, régime compris</small></td>
+              <td data-l="Votre régime seul">60&nbsp;% de la base<small>240&nbsp;€ sur une base de 400&nbsp;€</small></td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">150&nbsp;% BRSS</td>
+              <td data-l="Premium">200&nbsp;% BRSS</td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Médecines complémentaires et prévention — en France ou en Suisse</td></tr>
+            <tr>
+              <td>Ostéopathe, chiropracteur, psychologue, diététicien, sophrologue…<small>17 disciplines, 4 séances par an au total</small></td>
+              <td data-l="Votre régime seul" class="non">Non remboursées<small>hors «&nbsp;Mon soutien psy&nbsp;», pris à 100&nbsp;% BRSS à tous les niveaux</small></td>
+              <td data-l="Essentiel">30&nbsp;€/séance</td>
+              <td data-l="Confort" class="phare">40&nbsp;€/séance</td>
+              <td data-l="Premium">50&nbsp;€/séance</td>
+            </tr>
+            <tr>
+              <td>Cures thermales&nbsp;: transport et hébergement<small>par année civile</small></td>
+              <td data-l="Votre régime seul" class="non">Sous conditions de ressources</td>
+              <td data-l="Essentiel">100&nbsp;€</td>
+              <td data-l="Confort" class="phare">150&nbsp;€</td>
+              <td data-l="Premium">200&nbsp;€</td>
+            </tr>
+            <!-- Soins en Suisse · variante LAMal -->
+            <tr class="groupe" data-lamal><td colspan="5">Soins en Suisse — affilié LAMal, division commune</td></tr>
+            <tr data-lamal>
+              <td>Franchise annuelle ordinaire<small>300&nbsp;CHF par adulte, pas de franchise pour les enfants</small></td>
+              <td data-l="Votre régime seul" class="non">À votre charge</td>
+              <td data-l="Essentiel" class="non">Jamais couverte</td>
+              <td data-l="Confort" class="phare non">Jamais couverte</td>
+              <td data-l="Premium" class="non">Jamais couverte</td>
+            </tr>
+            <tr data-lamal>
+              <td>Quote-part<small>10&nbsp;% au-delà de la franchise, plafonnée à 700&nbsp;CHF par adulte et 350&nbsp;CHF par enfant et par an</small></td>
+              <td data-l="Votre régime seul" class="non">À votre charge</td>
+              <td data-l="Essentiel" class="oui">100&nbsp;%</td>
+              <td data-l="Confort" class="phare oui">100&nbsp;%</td>
+              <td data-l="Premium" class="oui">100&nbsp;%</td>
+            </tr>
+            <tr data-lamal>
+              <td>Contribution journalière hospitalière<small>15&nbsp;CHF par jour dès 25 ans</small></td>
+              <td data-l="Votre régime seul" class="non">À votre charge</td>
+              <td data-l="Essentiel" class="oui">100&nbsp;%</td>
+              <td data-l="Confort" class="phare oui">100&nbsp;%</td>
+              <td data-l="Premium" class="oui">100&nbsp;%</td>
+            </tr>
+            <tr data-lamal>
+              <td>Transport non couvert par la LAMal<small>forfait par an</small></td>
+              <td data-l="Votre régime seul" class="non">À votre charge</td>
+              <td data-l="Essentiel" class="non">—</td>
+              <td data-l="Confort" class="phare">50&nbsp;€</td>
+              <td data-l="Premium">100&nbsp;€</td>
+            </tr>
+            <tr data-lamal>
+              <td>Séjour en division privée ou semi-privée</td>
+              <td data-l="Votre régime seul" class="non">Non couvert par la LAMal</td>
+              <td data-l="Essentiel" class="non">Non couvert</td>
+              <td data-l="Confort" class="phare non">Non couvert</td>
+              <td data-l="Premium" class="non">Non couvert</td>
+            </tr>
+            <tr data-lamal>
+              <td>Dentaire, lunettes, pharmacie non LAMal achetés en Suisse</td>
+              <td data-l="Votre régime seul" class="non">Non couverts<small>la LAMal couvre les lunettes des enfants à hauteur de 180&nbsp;CHF par an</small></td>
+              <td data-l="Essentiel" class="non">Non couverts</td>
+              <td data-l="Confort" class="phare non">Non couverts</td>
+              <td data-l="Premium" class="non">Non couverts</td>
+            </tr>
+            <tr data-lamal>
+              <td>Soins en France<small>carte Vitale grâce au formulaire S1</small></td>
+              <td data-l="Votre régime seul">Taux du régime général<small>régime local d’Alsace-Moselle (90 / 100&nbsp;%) pour les résidents du 57, 67 et 68</small></td>
+              <td data-l="Essentiel" class="oui">Lignes ci-dessus</td>
+              <td data-l="Confort" class="phare oui">Lignes ci-dessus</td>
+              <td data-l="Premium" class="oui">Lignes ci-dessus</td>
+            </tr>
+            <!-- Soins en Suisse · variante CMU -->
+            <tr class="groupe" data-cmu><td colspan="5">Soins en Suisse — affilié CMU (Sécurité sociale française)</td></tr>
+            <tr data-cmu>
+              <td>Soins et hospitalisation inopinés<small>avec la carte européenne (CEAM)</small></td>
+              <td data-l="Votre régime seul">CPAM sur les tarifs suisses<small>vous avancez les frais, en division commune</small></td>
+              <td data-l="Essentiel" class="oui">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare oui">150&nbsp;% BRSS</td>
+              <td data-l="Premium" class="oui">200&nbsp;% BRSS</td>
+            </tr>
+            <tr data-cmu>
+              <td>Soins ambulatoires non urgents «&nbsp;en marge du travail&nbsp;»</td>
+              <td data-l="Votre régime seul">CPAM sur la base française<small>selon la décision du Centre national des soins à l’étranger ; une consultation à 250&nbsp;CHF est ainsi remboursée environ 20&nbsp;€</small></td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare oui">150&nbsp;% BRSS + 20&nbsp;€/acte</td>
+              <td data-l="Premium" class="oui">200&nbsp;% BRSS + 30&nbsp;€/acte</td>
+            </tr>
+            <tr data-cmu>
+              <td>Participation suisse à l’entraide<small>92&nbsp;CHF par période de 30 jours (33&nbsp;CHF pour un enfant), auxquels s’ajoutent 15&nbsp;CHF par jour d’hôpital à partir de 25 ans</small></td>
+              <td data-l="Votre régime seul" class="non">À votre charge</td>
+              <td data-l="Essentiel" class="non">Non remboursée</td>
+              <td data-l="Confort" class="phare non">Non remboursée</td>
+              <td data-l="Premium" class="non">Non remboursée</td>
+            </tr>
+            <tr data-cmu>
+              <td>Soins programmés avec hospitalisation</td>
+              <td data-l="Votre régime seul">Accord préalable S2<small>sans formulaire S2, la CPAM ne rembourse rien</small></td>
+              <td data-l="Essentiel">Complément si la CPAM prend en charge</td>
+              <td data-l="Confort" class="phare">Complément si la CPAM prend en charge</td>
+              <td data-l="Premium">Complément si la CPAM prend en charge</td>
+            </tr>
+            <tr data-cmu>
+              <td>Consultation de confort en Suisse, hors urgence et hors marge du travail</td>
+              <td data-l="Votre régime seul">Base française (BRSS)<small>«&nbsp;3 à 5 fois inférieure&nbsp;» aux tarifs suisses</small></td>
+              <td data-l="Essentiel">125&nbsp;% BRSS</td>
+              <td data-l="Confort" class="phare">150&nbsp;% BRSS + 20&nbsp;€/acte</td>
+              <td data-l="Premium">200&nbsp;% BRSS + 30&nbsp;€/acte</td>
+            </tr>
+            <tr class="groupe"><td colspan="5">Hors France et Suisse — soins inopinés lors de séjours de moins de trois mois</td></tr>
+            <tr>
+              <td>Soins et hospitalisation inopinés à l’étranger</td>
+              <td data-l="Votre régime seul"><span data-lamal>Selon la LAMal<small>quote-part et contribution journalière à votre charge</small></span><span data-cmu>CPAM<small>avec la CEAM en Europe, sinon sur la base française</small></span></td>
+              <td data-l="Essentiel"><span data-lamal>QP + CJ 100&nbsp;%</span><span data-cmu>125&nbsp;% BRSS</span></td>
+              <td data-l="Confort" class="phare"><span data-lamal>QP + CJ 100&nbsp;%</span><span data-cmu>150&nbsp;% BRSS</span></td>
+              <td data-l="Premium"><span data-lamal>QP + CJ 100&nbsp;%</span><span data-cmu>200&nbsp;% BRSS</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      <p class="note" style="margin-top:var(--e-4)">La colonne «&nbsp;votre régime seul&nbsp;» reprend les règles générales de l’Assurance maladie française (taux de remboursement de droit commun, hors affection de longue durée) et de la LAMal (participation aux coûts au 1<sup>er</sup> janvier 2025, notice Alptis) ; elle est donnée à titre indicatif. Les garanties sont extraites du descriptif des prestations de la notice d’information Alptis SF_Suisses (04/2025)&#8239;; en cas d’écart, la notice fait foi. Les exemples chiffrés proviennent du document UNOCAM Alptis du 10/07/2025. Un montant que nous ne pouvons pas certifier est indiqué «&nbsp;selon niveau, voir notice&nbsp;». En Suisse, il n’existe ni tiers payant ni prise en charge hospitalière : vous avancez les frais et Alptis vous rembourse en euros, au taux BCE du jour du paiement.</p>
+    </details>
+    
+  </section>
+  <!-- ===== INCLUS DANS TOUTES LES FORMULES ===== -->
+  <section class="env section" id="inclus">
+    <div class="tete">
+      <span class="sur pose">Dans toutes les formules</span>
+      <h2 class="pose" style="max-width:24ch;transition-delay:.06s">Ce qui est inclus, <br>du niveau 1 au niveau 6.</h2>
+      <p class="slab pose" style="transition-delay:.12s">Ces services du contrat Alptis sont identiques quels que soient le niveau et le canal de distribution. Ils sont décrits dans la brochure Alptis Santé Frontaliers Suisses (07/2025) et dans la notice d’information.</p>
+    </div>
+    <ul class="liste2 pose">
+        <li><b>Téléconsultation 24&nbsp;h/24 et 7&nbsp;j/7</b><span>Elle est illimitée et sans frais, assurée par Mondial Assistance. Elle sert surtout lorsque votre cabinet habituel est fermé, d’un côté de la frontière comme de l’autre.</span></li>
+        <li><b>Assistance santé à domicile</b><span>Elle finance jusqu’à 500&nbsp;€ TTC par an d’aide à domicile, de garde d’enfants ou de transport d’un proche, en cas d’hospitalisation ou d’immobilisation.</span></li>
+        <li><b>Protection juridique santé</b><span>Des juristes vous accompagnent, à hauteur de 30&nbsp;000&nbsp;€ par litige en France et de 100&nbsp;500&nbsp;CHF en Suisse, sans franchise. Elle est assurée par CFDP Assurances.</span></li>
+        <li><b>Tiers payant et télétransmission</b><span>Vous n’avancez rien en France, chez le pharmacien, chez le médecin ou à l’hôpital, et les décomptes de la CPAM parviennent seuls à Alptis.</span></li>
+        <li><b>100&nbsp;% Santé, reste à charge zéro</b><span>Les lunettes de classe A, les prothèses du panier 100&nbsp;% Santé et les aides auditives de classe I sont prises en charge aux frais réels, dans les deux régimes.</span></li>
+        <li><b>Quote-part LAMal à 100&nbsp;%</b><span>Du niveau 1 au niveau 6, le contrat rembourse jusqu’à 700&nbsp;CHF par adulte et 15&nbsp;CHF par jour d’hôpital. La franchise de 300&nbsp;CHF, elle, reste à votre charge.</span></li>
+        <li><b>Soins urgents partout dans le monde</b><span>Lors d’un séjour de moins de trois mois hors de France et de Suisse, le contrat complète, selon votre niveau, les soins que votre régime prend en charge.</span></li>
+        <li><b>Exonération de cotisations</b><span>En cas de décès accidentel de l’adhérent ou de son conjoint, les cotisations de la famille sont prises en charge pendant deux ans.</span></li>
+        <li><b>Sans questionnaire médical</b><span>Le contrat est réservé aux salariés frontaliers qui résident en France, jusqu’à 67 ans, et il n’impose ni formalité médicale ni délai d’attente.</span></li>
+    </ul>
+  </section>
+  <!-- ===== SIMULATEUR ===== -->
+  <section class="env section" id="simulateur">
+    <div class="tete">
+      <span class="sur pose">Quel niveau me convient ?</span>
+      <h2 class="pose" style="max-width:22ch;transition-delay:.06s">Votre prix, selon votre foyer <br>et selon vos soins.</h2>
+      <p class="slab pose" style="transition-delay:.12s">Nous calculons le prix de chaque formule pour votre foyer et nous vous indiquons le niveau que nous conseillons. Il peut être plus bas que celui qu’un autre distributeur vous proposait, et nous pouvons même vous recommander de ne prendre aucune complémentaire. Ce calcul reste une estimation, car le tarif affiché à la signature fait foi.</p>
+    </div>
+    <div class="simu">
+      <form class="simu__form" id="simu-form" novalidate autocomplete="off">
+        <div class="simu__bloc">
+          <h3>1 · Votre situation <small>— elle détermine le prix</small></h3>
+          <p>Nous reprenons l’âge, le régime et la composition du foyer que vous avez réglés en haut de page, et vous pouvez <a class="lien" href="#formules">les modifier</a>. Rien n’est envoyé : tout le calcul se fait dans votre navigateur.</p>
+          <input type="hidden" name="age" value="30">
+          <input type="hidden" name="regime" value="lamal">
+          <input type="hidden" name="adultes" value="1">
+          <input type="hidden" name="enfants" value="0">
+
+          <div class="champ">
+            <label class="champ__l" for="dept">Département de résidence<small>Depuis 2025, le département n’est plus un facteur de prix&#8239;; seul compte un rattachement à une CPAM d’Alsace-Moselle (57, 67, 68).</small></label>
+            <div class="select">
+              <select id="dept" name="dept">
+                <option value="74" selected>74 · Haute-Savoie</option>
+                <option value="01">01 · Ain</option>
+                <option value="25">25 · Doubs</option>
+                <option value="39">39 · Jura</option>
+                <option value="68">68 · Haut-Rhin (Alsace-Moselle)</option>
+                <option value="67">67 · Bas-Rhin (Alsace-Moselle)</option>
+                <option value="57">57 · Moselle (Alsace-Moselle)</option>
+                <option value="90">90 · Territoire de Belfort</option>
+                <option value="73">73 · Savoie</option>
+                <option value="38">38 · Isère</option>
+                <option value="autre">Autre département (France métropolitaine, hors Corse)</option>
+              </select>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+          <input type="hidden" name="fract" value="mois">
+          <input type="hidden" name="flytel" value="non">
+        </div>
+
+        <div class="simu__bloc">
+          <h3>2 · Vos soins <small>— facultatif, pour établir le niveau conseillé</small></h3>
+          <p>Nous vous posons cinq questions ; si vous répondez «&nbsp;je ne sais pas&nbsp;», nous remontons d’un niveau, par prudence. Comme ces réponses touchent à votre santé, elles restent dans votre navigateur et ne nous sont pas transmises.</p>
+          <div class="champ">
+            <span class="champ__l" id="l-lieu">Où vous soignez-vous le plus souvent&#8239;?</span>
+            <div class="choix choix--pastille" role="radiogroup" aria-labelledby="l-lieu">
+              <label class="choix__opt"><input type="radio" name="lieu" value="ch"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">En Suisse</span></span></label>
+              <label class="choix__opt"><input type="radio" name="lieu" value="fr"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">En France</span></span></label>
+              <label class="choix__opt"><input type="radio" name="lieu" value="deux"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Des deux côtés</span></span></label>
+              <label class="choix__opt"><input type="radio" name="lieu" value="nsp"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je ne sais pas</span></span></label>
+            </div>
+          </div>
+          <div class="champ">
+            <span class="champ__l" id="l-optique">Correction visuelle</span>
+            <div class="choix choix--pastille" role="radiogroup" aria-labelledby="l-optique">
+              <label class="choix__opt"><input type="radio" name="optique" value="aucune"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Aucune</span></span></label>
+              <label class="choix__opt"><input type="radio" name="optique" value="simple"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Lunettes simples ou lentilles</span></span></label>
+              <label class="choix__opt"><input type="radio" name="optique" value="complexe"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Verres complexes ou progressifs</span></span></label>
+              <label class="choix__opt"><input type="radio" name="optique" value="nsp"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je ne sais pas</span></span></label>
+            </div>
+          </div>
+          <div class="champ">
+            <span class="champ__l" id="l-dentaire">Dentaire</span>
+            <div class="choix choix--pastille" role="radiogroup" aria-labelledby="l-dentaire">
+              <label class="choix__opt"><input type="radio" name="dentaire" value="rien"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Rien de prévu</span></span></label>
+              <label class="choix__opt"><input type="radio" name="dentaire" value="courant"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Soins courants</span></span></label>
+              <label class="choix__opt"><input type="radio" name="dentaire" value="prothese"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Une prothèse ou un implant d’ici 3 ans</span></span></label>
+              <label class="choix__opt"><input type="radio" name="dentaire" value="plusieurs"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Plusieurs prothèses dans l’année</span></span></label>
+              <label class="choix__opt"><input type="radio" name="dentaire" value="implants"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Plusieurs implants dans l’année</span></span></label>
+              <label class="choix__opt"><input type="radio" name="dentaire" value="nsp"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je ne sais pas</span></span></label>
+            </div>
+          </div>
+          <div class="champ">
+            <span class="champ__l" id="l-hospi">Hospitalisation en France<small>Vos praticiens habituels sont-ils en secteur 2 (Annemasse, Annecy, Genève côté français)&#8239;?</small></span>
+            <div class="choix choix--pastille" role="radiogroup" aria-labelledby="l-hospi">
+              <label class="choix__opt"><input type="radio" name="hospi" value="non"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Rien de particulier</span></span></label>
+              <label class="choix__opt"><input type="radio" name="hospi" value="chambre"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">La chambre particulière compte</span></span></label>
+              <label class="choix__opt"><input type="radio" name="hospi" value="secteur2"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Praticiens en secteur 2, chirurgie non OPTAM probable</span></span></label>
+              <label class="choix__opt"><input type="radio" name="hospi" value="programmee"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Hospitalisation programmée</span></span></label>
+              <label class="choix__opt"><input type="radio" name="hospi" value="nsp"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je ne sais pas</span></span></label>
+            </div>
+          </div>
+          <div class="champ">
+            <span class="champ__l" id="l-bienetre">Bien-être et audition</span>
+            <div class="choix choix--pastille" role="radiogroup" aria-labelledby="l-bienetre">
+              <label class="choix__opt"><input type="radio" name="bienetre" value="non"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Rien de particulier</span></span></label>
+              <label class="choix__opt"><input type="radio" name="bienetre" value="osteo"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Ostéopathe, psychologue…</span></span></label>
+              <label class="choix__opt"><input type="radio" name="bienetre" value="audio"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Aides auditives</span></span></label>
+              <label class="choix__opt"><input type="radio" name="bienetre" value="nsp"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Je ne sais pas</span></span></label>
+            </div>
+          </div>
+          <div class="champ" id="champ-ortho" hidden>
+            <span class="champ__l" id="l-ortho">Orthodontie des enfants</span>
+            <div class="choix choix--pastille" role="radiogroup" aria-labelledby="l-ortho">
+              <label class="choix__opt"><input type="radio" name="ortho" value="non" checked><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Aucun</span></span></label>
+              <label class="choix__opt"><input type="radio" name="ortho" value="un"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Un enfant</span></span></label>
+              <label class="choix__opt"><input type="radio" name="ortho" value="deux"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Deux enfants ou plus</span></span></label>
+            </div>
+          </div>
+          <div class="champ">
+            <label class="champ__l" for="propose">Quel niveau un autre distributeur vous propose-t-il ?<small>Cette question est facultative : elle sert seulement à vous montrer, dans votre résultat, l’écart avec le niveau que nous conseillons.</small></label>
+            <div class="select">
+              <select id="propose" name="propose">
+                <option value="" selected>Aucune proposition en main</option>
+                <option value="1">Niveau 1</option>
+                <option value="2">Niveau 2</option>
+                <option value="3">Niveau 3</option>
+                <option value="4">Niveau 4</option>
+                <option value="5">Niveau 5</option>
+                <option value="6">Niveau 6</option>
+              </select>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="simu__res" id="simu-res" aria-live="polite">
+        <div class="simu__r grain">
+          <span class="sur">Votre résultat</span>
+          <p class="simu__attente">Le simulateur ne fonctionne qu’avec JavaScript activé. Sans lui, vous trouverez les prix pour un adulte seul dans les cartes ci-dessus, et pour un foyer, <a class="lien" href="#adherer" style="color:var(--terre-vif)">passez par l’adhésion en ligne</a>.</p>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:var(--e-5)">Le niveau conseillé résulte d’une lecture automatique de notre table de décision, établie à partir du tableau des garanties Alptis 2025. Un conseiller le relit avant toute signature, et vous recevez un conseil écrit et motivé. Le niveau supérieur reste toujours sélectionnable. Nous ne vous conseillons ni sur le choix entre la LAMal et la CMU, ni sur celui de votre caisse LAMal, même si ce dernier pèse souvent plus lourd que le niveau de complémentaire : <a class="lien" href="guide-lamal-cmu.html">le guide vous donne les repères</a>.</p>
+  </section>
+  <!-- ===== DOCUMENTS ===== -->
+  <section class="env section" id="documents">
+    <div class="tete">
+      <span class="sur pose">Documents</span>
+      <h2 class="pose" style="max-width:22ch;transition-delay:.06s">Tout est écrit <br>avant la signature.</h2>
+      <p class="slab pose" style="transition-delay:.12s">Vous trouverez ici les documents précontractuels du contrat et de FLYCARE. La notice ci-dessous est la version en vigueur du contrat (réf. SF_Suisses, avec les notices d’assistance et de protection juridique)&#8239;; l’IPID et les exemples de remboursement sont ceux publiés en ligne par Alptis et ses distributeurs.</p>
+    </div>
+    <div class="docs pose">
+      <a class="docs__a" href="https://www.radiance.fr/sites/default/files/2025-09/IPID%20Mutuelle%20Sant%C3%A9%20Frontaliers.pdf" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>IPID · Santé Frontaliers Suisses (04/2025)</a>
+      <a class="docs__a" href="docs/notice-sante-frontaliers-suisses.pdf"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Notice d’information, tableau des garanties, assistance et protection juridique (52 p.)</a>
+      <a class="docs__a" href="https://www.alptis.org/app/uploads/2025/08/Exemple-UNOCAM_SFR.pdf" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19V11M10 19V5M15 19v-6M20 19v-9"/></svg>Exemples de remboursement UNOCAM (10/07/2025)</a>
+      <a class="docs__a" href="#mentions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c1.4-3.8 4.3-5.7 7.5-5.7s6.1 1.9 7.5 5.7"/></svg>Document d’entrée en relation FLYCARE <mark style="background:#ffe68a;color:#4a3200;padding:0 4px;border-radius:3px;margin-left:6px">[à rédiger]</mark></a>
+      <a class="docs__a" href="#mentions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l8 3v6c0 4.6-3.4 8.2-8 10.5C7.4 19.7 4 16.1 4 11.5v-6z"/></svg>Statuts et cotisation de l’association Alptis Frontaliers <mark style="background:#ffe68a;color:#4a3200;padding:0 4px;border-radius:3px;margin-left:6px">[à demander à Alptis]</mark></a>
+    </div>
+    <p class="note" style="margin-top:var(--e-5)">Avant toute adhésion, vous recevez&nbsp;: le document d’entrée en relation de FLYCARE (statut, ORIAS, mode de rémunération et taux de commission), le recueil de vos besoins et notre conseil écrit, l’IPID, la notice d’information, les statuts de l’association et le bulletin d’adhésion. Ils vous sont présentés en ligne avant la signature, puis envoyés par courrier électronique. Vous disposez ensuite d’un délai de renonciation de 14 jours.</p>
+  </section>
+  <!-- ===== ADHÉRER EN LIGNE ===== -->
+  <section class="env section" id="adherer">
+    <span id="rappel" hidden></span><span id="devis" hidden></span>
+    <div class="devis devis--photo pose">
+      <figure class="devis__img">
+        <img src="img/mobile-montagne.webp" srcset="img/mobile-montagne.webp 1100w, img/mobile-montagne@1600.webp 1600w"
+             sizes="(min-width:900px) 1100px, 100vw" width="1600" height="450" loading="lazy" decoding="async"
+             alt="Un téléphone posé sur une rambarde de bois, face à une vallée alpine dans la lumière du matin.">
+      </figure>
+      <div class="devis__t">
+        <span class="sur">Adhérer</span>
+        <h2>Adhérez en ligne, <br>en cinq minutes.</h2>
+        <p class="slab">Vous remplissez cinq écrans, sans aucun document à fournir avant de signer, sans rendez-vous et sans questionnaire médical.</p>
+        <ol class="atouts" style="margin-top:var(--e-5)">
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>1 · Y avez-vous droit ?</b> Nous vérifions en trente secondes que vous êtes salarié frontalier, où vous résidez, de quel régime vous relevez et qui compose votre foyer.</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>2 · Ce qui compte pour vous.</b> Vous répondez à cinq questions fermées sur le niveau souhaité, et aucune ne porte sur votre santé.</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>3 · Votre formule et votre prix.</b> Vous recevez notre conseil écrit et motivé, avec le prix détaillé ligne par ligne.</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>4 · Vos informations.</b> Vous indiquez votre identité, votre adresse, votre numéro de sécurité sociale et vos coordonnées bancaires.</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>5 · Vérifiez et signez.</b> Vous téléchargez tous les documents, puis vous signez électroniquement.</span></li>
+        </ol>
+        <p class="note" style="margin-top:var(--e-5)">Vous n’avez qu’une pièce à fournir, et c’est <b>après</b> la signature : un justificatif de votre statut de frontalier, c’est-à-dire une attestation de votre employeur, un contrat de travail, une fiche de paie ou un permis G, photographié depuis votre téléphone. <b>Aucune carte Vitale à envoyer</b> : votre numéro de sécurité sociale suffit. L’attestation de droits ne servira qu’à activer la télétransmission, plus tard, et elle restera sans effet sur votre couverture.</p>
+      </div>
+      <form id="adhesion-form" novalidate>
+        <div class="champ">
+          <label class="champ__l" for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" autocomplete="given-name" placeholder="Votre prénom" required>
+        </div>
+        <div class="champ">
+          <label class="champ__l" for="email">Adresse électronique</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
+        </div>
+        <div class="champ">
+          <label class="champ__l" for="naissance">Date de naissance<small>Elle détermine votre cotisation.</small></label>
+          <input type="date" id="naissance" name="naissance" autocomplete="bday" min="1958-01-01" max="2008-12-31">
+        </div>
+        <div class="champ">
+          <span class="champ__l" id="l-formule-adh">Votre formule</span>
+          <div class="choix" role="radiogroup" aria-labelledby="l-formule-adh">
+            <label class="choix__opt"><input type="radio" name="formule" value="essentiel"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Essentiel</span></span></label>
+            <label class="choix__opt"><input type="radio" name="formule" value="confort" checked><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Confort</span></span></label>
+            <label class="choix__opt"><input type="radio" name="formule" value="premium"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">Premium</span></span></label>
+          </div>
+        </div>
+        <div class="champ">
+          <span class="champ__l" id="l-regime-adh">Votre régime</span>
+          <div class="choix" role="radiogroup" aria-labelledby="l-regime-adh">
+            <label class="choix__opt"><input type="radio" name="regime" value="lamal" checked><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">LAMal</span></span></label>
+            <label class="choix__opt"><input type="radio" name="regime" value="cmu"><span class="choix__pt" aria-hidden="true"></span><span><span class="choix__nom">CMU</span></span></label>
+          </div>
+        </div>
+        <label class="attest"><input type="checkbox" name="consent" value="1"><span>J’accepte que FLYCARE utilise ces informations pour préparer mon adhésion. Voir notre politique de confidentialité <mark style="background:#ffe68a;color:#4a3200;padding:0 4px;border-radius:3px">[à rédiger avec le DPO]</mark>.</span></label>
+        <p class="devis__err" id="adhesion-err" role="alert"></p>
+        <button class="btn btn--terre btn--bloc" type="submit">Commencer mon adhésion</button>
+        <p class="devis__ok" id="adhesion-ok" aria-live="polite"></p>
+        <p class="note">Aucune donnée de santé n’est demandée à aucun moment&#8239;: le contrat est solidaire, il n’y a ni questionnaire ni sélection médicale. Avant de signer, vous téléchargez le document d’entrée en relation, l’IPID, la notice complète, le tableau des garanties et notre conseil écrit. Vous disposez d’un délai de renonciation de 14 jours, que vous pouvez exercer en ligne.</p>
+      </form>
+    </div>
+  </section>
+  <!-- ===== TROIS PRÉCISIONS SUR LES PRIX ===== -->
+  <section class="env section" id="questions-prix">
+    <span class="sur pose">Questions</span>
+    <h2 class="bdc pose" style="transition-delay:.06s">Ce qui s’ajoute au prix affiché, <br>et pourquoi il bougera.</h2>
+    <div class="faq">
+      <div class="q" data-ouvert="1">
+        <button type="button" aria-expanded="true">Que s’ajoute-t-il au prix affiché&#8239;?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="r"><div>
+          <p>Deux montants s’ajoutent au prix affiché, identiques chez tous les distributeurs du contrat : la cotisation d’adhésion à l’association Alptis Frontaliers, de 2&nbsp;€ par mois et par dossier (le montant publié vaut pour le régime Sécurité sociale, celui du régime LAMal n’étant pas publié), et un droit d’entrée de 11&nbsp;€, versé une seule fois à l’adhésion. Il n’y a rien d’autre : FLYCARE ne facture ni honoraires ni frais de dossier, et le paiement mensuel n’entraîne aucun surcoût visible sur le devis relevé.</p>
+          <p>La cotisation évolue ensuite chaque 1<sup>er</sup> janvier avec l’âge (+3&nbsp;% par an de 20 à 30 ans, +2&nbsp;% de 31 à 59 ans, +3&nbsp;% à partir de 60 ans) et selon la revalorisation générale du contrat.</p>
+        </div></div>
+      </div>
+      <div class="q" data-ouvert="0">
+        <button type="button" aria-expanded="false">Pourquoi parlons-nous d’un tarif «&nbsp;visé&nbsp;» et non d’un tarif ferme ?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="r"><div>
+          <p>Parce que la baisse dépend d’Alptis. Le tarif que nous visons suppose qu’Alptis répercute dans son tarificateur la commission réduite que nous demandons, soit 5&nbsp;% au lieu d’une commission incorporée estimée à 17&nbsp;%. Nous le vérifierons par deux devis établis sur un profil identique, dès l’ouverture de notre code courtier. Si Alptis refuse, c’est le prix public d’Alptis qui s’applique, et il est déjà affiché à côté de chaque tarif visé.</p>
+          <p>Nous ne «&nbsp;compenserons&nbsp;» pas cet écart par une remise, un remboursement différé ou un mois offert que nous financerions nous-mêmes proportionnellement à votre cotisation. Un geste de bienvenue forfaitaire, sous la forme du remboursement du droit d’entrée, est à l’étude, sous réserve de la convention conclue avec Alptis et d’un avis juridique.</p>
+        </div></div>
+      </div>
+      <div class="q" data-ouvert="0">
+        <button type="button" aria-expanded="false">Le prix est-il le même pour un affilié LAMal et un affilié CMU&#8239;?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="r"><div>
+          <p>Pas forcément. La notice indique que la cotisation dépend du régime (Sécurité sociale ou LAMal). Les prix de cette page ont été relevés en régime CMU&#8239;; pour un affilié LAMal, le tarif établi en régime LAMal fait foi. C’est la première chose que vérifie le parcours d’adhésion.</p>
+          <p>D’un régime à l’autre, les garanties en France restent identiques ; seules changent celles qui jouent en Suisse : quote-part et contribution journalière pour la LAMal, complément de la CPAM pour la CMU.</p>
+          <a class="faq__lire" href="guide-lamal-cmu.html">Le guide LAMal ou CMU<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        </div></div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== CHUTE ===== -->
+  <div class="env" style="padding-bottom:40px">
+    <section class="chute grain">
+      <svg class="chute__ciel" viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 392h1200" stroke="#F6F1E7" stroke-opacity=".22" stroke-width="2" stroke-dasharray="14 12"/><path d="M600 372v40" stroke="#F6F1E7" stroke-opacity=".3" stroke-width="2"/><path d="M120 330C380 230 700 150 1100 90" stroke="#E8733F" stroke-opacity=".5" stroke-width="2" stroke-dasharray="6 10" fill="none"/><path d="M1060 70l64-18-22 46-16-15z" fill="#E8733F" fill-opacity=".85"/></svg>
+      <div class="chute__t">
+        <h2>Choisissez le bon niveau, <br>sans frais supplémentaires.</h2>
+        <p class="slab">Vous êtes couvert dès 29&nbsp;€ par mois, vous adhérez en ligne sans questionnaire médical, et vous pouvez résilier à tout moment après la première année.</p>
+        <a class="btn btn--terre" href="#adherer">Adhérer en ligne</a>
+        <p class="note">Les tarifs 2026 sont indicatifs et en cours de validation auprès d’Alptis ; le tarif affiché à la signature fait foi.</p>
+      </div>
+    </section>
+  </div>
+</main>
+<!-- ===== PIED ===== -->
+<footer class="pied grain">
+  <div class="env">
+    <div class="pied__g">
+      <div>
+        <a class="marque" href="index.html" aria-label="FLYCARE, retour à l’accueil"><span class="marque__mot">FLYCARE</span></a>
+        <p class="pied__slogan">L’assurance qui survole la frontière</p>
+        <p class="pied__base">La complémentaire santé des frontaliers franco-suisses, éditée par l’équipe de Flytel.<small>FLYCARE est une marque de FLYCARE SAS <mark>[RCS à compléter]</mark> — courtier en assurance <mark>[N° ORIAS à compléter]</mark>.</small></p>
+      </div>
+      <div>
+        <span class="sur">Offre</span>
+        <a href="index.html#formules">Les formules</a>
+        <a href="tarifs.html">Tarifs et garanties</a>
+        <a href="tarifs.html#simulateur">Quel niveau choisir</a>
+        <a href="guide-lamal-cmu.html">LAMal ou CMU</a>
+      </div>
+      <div>
+        <span class="sur">Aide</span>
+        <a href="index.html#comment">Comment ça marche</a>
+        <a href="index.html#questions">Questions fréquentes</a>
+        <a href="index.html#questions">Résilier mon ancienne complémentaire santé</a>
+        <a href="#reclamations">Contact et réclamations</a>
+      </div>
+      <div>
+        <span class="sur">FLYCARE</span>
+        <a href="index.html#regime">Suisse et France</a>
+        <a href="https://flytel.fr" rel="noopener">Flytel, l’opérateur mobile</a>
+        <a href="#mentions">Mentions légales</a>
+        <a href="#mentions">Confidentialité</a>
+      </div>
+    </div>
+    <div class="pied__traine">
+      <div class="pied__fam">
+        <button type="button" class="pied__famBtn" aria-expanded="false"><span class="pied__tt">Guides</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="pied__famPli"><p><span class="pied__tt pied__tt--nappe">Guides</span><a href="guide-lamal-cmu.html">LAMal ou CMU&#8239;?</a><a href="#">Formulaire S1 et carte Vitale</a><a href="#">CEAM et formulaire S2</a><a href="#">Franchise et quote-part LAMal</a><a href="#">Hospitalisation en Suisse</a><a href="#">Optique et dentaire transfrontaliers</a><a href="#">Résilier son ancienne mutuelle</a><a href="#">Le bonus fidélité dentaire</a></p></div>
+      </div>
+      <div class="pied__fam">
+        <button type="button" class="pied__famBtn" aria-expanded="false"><span class="pied__tt">Les zones</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="pied__famPli"><p><span class="pied__tt pied__tt--nappe">Les zones</span><a href="index.html#zones">Annemasse</a><a href="index.html#zones">Ferney-Voltaire</a><a href="index.html#zones">Divonne-les-Bains</a><a href="index.html#zones">Thonon-les-Bains</a><a href="index.html#zones">Saint-Julien-en-Genevois</a><a href="index.html#zones">Saint-Louis</a><a href="index.html#zones">Morteau</a><a href="index.html#zones">Pontarlier</a><a href="index.html#zones">Les Rousses</a><a href="index.html#zones">Delle</a><a href="index.html#zones">Chamonix</a><a href="index.html#zones">Saint-Gingolph</a></p></div>
+      </div>
+      <div class="pied__fam">
+        <button type="button" class="pied__famBtn" aria-expanded="false"><span class="pied__tt">Formules</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="pied__famPli"><p><span class="pied__tt pied__tt--nappe">Formules</span><a href="tarifs.html#essentiel">Essentiel · Niveau 2</a><a href="tarifs.html#confort">Confort · Niveau 3</a><a href="tarifs.html#premium">Premium · Niveau 4</a><a href="tarifs.html#niveau-1">Niveau 1</a><a href="tarifs.html#niveau-5">Niveau 5</a><a href="tarifs.html#niveau-6">Niveau 6</a><a href="tarifs.html#garanties">Tableau des garanties</a></p></div>
+      </div>
+    </div>
+    <div class="pied__legal" id="mentions">
+      <p><strong>FLYCARE SAS, courtier en assurance (COA) — immatriculation ORIAS en cours</strong> <mark>[N° ORIAS à compléter]</mark>, vérifiable sur orias.fr, sous le contrôle de l’ACPR (4 place de Budapest, CS 92459, 75436 Paris Cedex 09). <mark>[RCS à compléter]</mark>, au capital de <mark>[capital à compléter]</mark> — siège social&nbsp;: <mark>[adresse à compléter]</mark>. Directeur de la publication&nbsp;: <mark>[à compléter]</mark>. Hébergeur&nbsp;: <mark>[nom, adresse et téléphone de l’hébergeur à compléter]</mark>.</p>
+      <p>Contrat collectif à adhésion facultative Santé Frontaliers Suisses n° A799F/A800G souscrit par l’association Alptis Frontaliers auprès de CNP Assurances (assureur), conçu, distribué et géré par Alptis Assurances (courtier grossiste, SAS, RCS Lyon 335 244 489, ORIAS n° 07 005 850 — à vérifier sur orias.fr avant mise en ligne). FLYCARE est rémunéré par une commission incluse dans la cotisation, versée par Alptis Assurances <mark>[taux à déclarer dans le document d’entrée en relation]</mark>. FLYCARE ne propose pas d’analyse impartiale du marché, puisque nous distribuons les contrats d’Alptis. Flytel, opérateur mobile, met en relation ses abonnés avec FLYCARE et ne vend aucune assurance.</p>
+      <p>La cotisation d’adhésion à l’association Alptis Frontaliers s’élève à 2&nbsp;€ par mois et par dossier, et le droit d’entrée à 11&nbsp;€, versé une seule fois. Les tarifs 2026 sont indicatifs et s’entendent hors cotisation d’association et hors droit d’entrée ; ils dépendent de votre âge, de votre régime (LAMal ou CMU), de votre CPAM de rattachement et de la composition de votre foyer. Un devis personnalisé vous est remis avant toute adhésion et fait foi. Le contrat est annuel, et vous pouvez le résilier à tout moment après la première année (préavis d’un mois) ou au 31 décembre (préavis de deux mois). Le délai de renonciation est de 14 jours.</p>
+      <p id="reclamations"><strong>Contact et réclamations&nbsp;:</strong> <mark>[adresse électronique à compléter]</mark> ou par courrier à <mark>[adresse postale à compléter]</mark>. Si le désaccord persiste, vous pouvez saisir gratuitement La Médiation de l’Assurance, TSA 50110, 75441 Paris Cedex 09 (adresse à vérifier sur mediation-assurance.org au moment de la mise en ligne), ou en ligne sur <a href="https://www.mediation-assurance.org" rel="noopener">mediation-assurance.org</a>.</p>
+      <p>Les documents précontractuels (document d’entrée en relation, IPID, notice d’information, tableau des garanties) vous sont remis avant toute adhésion et restent disponibles sur la page <a href="tarifs.html#documents">Tarifs et garanties</a>. Vos données de santé sont traitées avec votre consentement explicite, pour le seul recueil de vos besoins ; notre politique de confidentialité est <mark>[à rédiger avec le DPO]</mark>.</p>
+    </div>
+    <div class="pied__b">
+      <span>© 2026 FLYCARE SAS — <mark style="background:#ffe68a;color:#4a3200;padding:0 4px;border-radius:3px">[dépôt de marque à compléter]</mark></span>
+      <span class="pied__profils"><a href="https://flytel.fr" rel="noopener">flytel.fr</a><a href="#mentions">Mentions légales</a></span>
+    </div>
+  </div>
+</footer>
+<div class="collante"><span class="collante__p">Dès <span data-des>29&nbsp;€</span><small>Prix ronds 2026, avec le prix public d’Alptis toujours affiché à côté</small></span><a class="btn btn--terre btn--sm" href="#formules">Choisir ma formule</a></div>
+</body>
+</html>
