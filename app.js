@@ -1,4 +1,4 @@
-/* FLYCARE — comportements de la page (vanilla, sans dépendance)
+/* ALPICARE — comportements de la page (vanilla, sans dépendance)
    1. Apparition .pose        5. Bascule prix mensuel / annuel   6b. Prix ronds selon l'âge et le régime
    2. Menu plein écran        6. Sélecteur de régime LAMal / CMU
    3. FAQ accordéon           7. Curseur du « passage » Annemasse ↔ Genève
@@ -112,13 +112,13 @@
       el.textContent = an ? el.getAttribute('data-libelle-an') : el.getAttribute('data-libelle-mois');
     });
     $$('.bascule__b[data-periode]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-periode') === periode ? 'true' : 'false'); });
-    try { localStorage.setItem('flycare-periode', periode); } catch (e) { /* stockage indisponible */ }
+    try { localStorage.setItem('alpicare-periode', periode); } catch (e) { /* stockage indisponible */ }
   }
   var boutonsPeriode = $$('.bascule__b[data-periode]');
   if (boutonsPeriode.length) {
     boutonsPeriode.forEach(function (b) { b.addEventListener('click', function () { appliquerPeriode(b.getAttribute('data-periode')); }); });
     var pMem = null;
-    try { pMem = localStorage.getItem('flycare-periode'); } catch (e) { /* ignore */ }
+    try { pMem = localStorage.getItem('alpicare-periode'); } catch (e) { /* ignore */ }
     if (pMem === 'an') appliquerPeriode('an');
   }
   /* Économie par an calculée à partir des deux prix mensuels (jamais en dur dans le HTML) */
@@ -155,18 +155,18 @@
     $$('[data-cmu]').forEach(function (el) { el.hidden = r !== 'cmu'; });
     $$('input[name="regime"]').forEach(function (i) { i.checked = i.value === r; });
     $$('[data-regime-libelle]').forEach(function (el) { el.textContent = r === 'lamal' ? el.getAttribute('data-libelle-lamal') : el.getAttribute('data-libelle-cmu'); });
-    try { localStorage.setItem('flycare-regime', r); } catch (e) { /* ignore */ }
+    try { localStorage.setItem('alpicare-regime', r); } catch (e) { /* ignore */ }
   }
   var radiosRegime = $$('input[name="regime"]');
   var rMem = null;
-  try { rMem = localStorage.getItem('flycare-regime'); } catch (e) { /* ignore */ }
+  try { rMem = localStorage.getItem('alpicare-regime'); } catch (e) { /* ignore */ }
   appliquerRegime(rMem || (body.getAttribute('data-regime') || 'lamal'));
   radiosRegime.forEach(function (i) { i.addEventListener('change', function () { if (i.checked) appliquerRegime(i.value); }); });
 
   /* ---------- 6b. Prix ronds selon l'âge et le régime ---------- */
   /* Principe : le prix public Alptis dépend de l'âge (courbe contractuelle : +3 %/an de 20 à 30 ans,
-     +2 %/an de 31 à 59, +3 %/an dès 60) et du régime. FLYCARE affiche un prix rond (…9 €) : le plus
-     petit prix en 9 qui laisse à FLYCARE une commission d'au moins C_MIN, la commission incorporée
+     +2 %/an de 31 à 59, +3 %/an dès 60) et du régime. ALPICARE affiche un prix rond (…9 €) : le plus
+     petit prix en 9 qui laisse à ALPICARE une commission d'au moins C_MIN, la commission incorporée
      dans le prix public étant estimée à C_PUB. Tout est [estimation] tant qu'Alptis n'a pas confirmé
      que le tarificateur répercute le taux de commission choisi. Référence : devis Cmonassurance du
      05/09/2026 (adulte seul, régime CMU), dont l'âge est calé à 30 ans par un second devis relevé le
@@ -183,7 +183,7 @@
     var a = Math.min(67, Math.max(18, Math.round(age) || TARIF.ageRef));
     return cumulAge(Math.max(20, a)) / cumulAge(TARIF.ageRef);
   }
-  /* Échelle des prix FLYCARE : un prix affiché se termine par 9, à défaut par 5, à défaut par 0.
+  /* Échelle des prix ALPICARE : un prix affiché se termine par 9, à défaut par 5, à défaut par 0.
      On cherche le plus petit barreau compris entre le net (ce que gardent Alptis et CNP) et le prix public
      Alptis, qu'on ne dépasse jamais. Sur 250 profils (âges 18-67 × niveaux 1-5), 227 tombent sur un 9,
      19 sur un 5, 3 sur un 0, et un seul (21 ans, niveau 1) n'a aucun barreau disponible : on prend alors
@@ -206,7 +206,7 @@
     var pub = base * facteurAge(age) * (TARIF.regime[regime] || 1);
     return prixRond(pub);
   }
-  window.FLYCARE_TARIF = { TARIF: TARIF, facteurAge: facteurAge, prixRond: prixRond, prixNiveau: prixNiveau };
+  window.ALPICARE_TARIF = { TARIF: TARIF, facteurAge: facteurAge, prixRond: prixRond, prixNiveau: prixNiveau };
 
   var NIV_PAR_CIBLE = { '28.00': 1, '37.70': 2, '47.00': 3, '57.90': 4, '69.50': 5 };
   var cartesPrix = $$('.carte').filter(function (c) {
@@ -219,11 +219,11 @@
     return true;
   });
   var ageCourant = TARIF.ageRef;
-  try { var aMem = parseInt(localStorage.getItem('flycare-age'), 10); if (aMem >= 18 && aMem <= 67) ageCourant = aMem; } catch (e) { /* ignore */ }
+  try { var aMem = parseInt(localStorage.getItem('alpicare-age'), 10); if (aMem >= 18 && aMem <= 67) ageCourant = aMem; } catch (e) { /* ignore */ }
   /* Foyer : conjoint = 90 % du prix adulte, enfant = 60 %, 30 % dès le 3e enfant, chacun arrondi à l'euro (même règle que le simulateur) */
   var foyer = { adultes: 1, enfants: 0 };
-  try { var fMem = JSON.parse(localStorage.getItem('flycare-foyer') || 'null'); if (fMem && (fMem.adultes === 1 || fMem.adultes === 2)) foyer = { adultes: fMem.adultes, enfants: Math.max(0, Math.min(4, parseInt(fMem.enfants, 10) || 0)) }; } catch (e) { /* ignore */ }
-  function sauverFoyer() { try { localStorage.setItem('flycare-foyer', JSON.stringify(foyer)); } catch (e) { /* ignore */ } }
+  try { var fMem = JSON.parse(localStorage.getItem('alpicare-foyer') || 'null'); if (fMem && (fMem.adultes === 1 || fMem.adultes === 2)) foyer = { adultes: fMem.adultes, enfants: Math.max(0, Math.min(4, parseInt(fMem.enfants, 10) || 0)) }; } catch (e) { /* ignore */ }
+  function sauverFoyer() { try { localStorage.setItem('alpicare-foyer', JSON.stringify(foyer)); } catch (e) { /* ignore */ } }
   /* Coefficient contractuel du foyer : conjoint 90 % (réduction couple de 10 %),
      enfant 60 %, 30 % à partir du 3e enfant de moins de 20 ans. */
   function coefFoyer() {
@@ -258,7 +258,7 @@
       pn.setAttribute('data-mois', pf.total); pn.setAttribute('data-an', pf.total * 12);
       if (pb) { pb.setAttribute('data-mois', pubFoyer.toFixed(2)); pb.setAttribute('data-an', (pubFoyer * 12).toFixed(2)); }
       if (eco) { eco.setAttribute('data-fly', pf.total); eco.setAttribute('data-pub', pubFoyer.toFixed(2)); }
-      if (com) com.textContent = 'Commission FLYCARE incluse : ' + p.com + ' % (estimation)';
+      if (com) com.textContent = 'Commission ALPICARE incluse : ' + p.com + ' % (estimation)';
       var lf = $('.prix__foyer', c);
       if (!lf && pm) { lf = document.createElement('span'); lf.className = 'prix__foyer'; pm.parentNode.insertBefore(lf, pm.nextSibling); }
       if (lf) { var t = libelleFoyer(); lf.textContent = t; lf.hidden = (t === ''); }
@@ -303,7 +303,7 @@
   $$('.reglage__r').forEach(function (r) {
     r.addEventListener('input', function () {
       ageCourant = parseInt(r.value, 10) || TARIF.ageRef;
-      try { localStorage.setItem('flycare-age', String(ageCourant)); } catch (e) { /* ignore */ }
+      try { localStorage.setItem('alpicare-age', String(ageCourant)); } catch (e) { /* ignore */ }
       rendrePrix();
     });
   });

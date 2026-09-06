@@ -1,5 +1,5 @@
 /* =====================================================================
-   FLYCARE — design system (sœur de Flytel)
+   ALPICARE — design system (sœur de Flytel)
    ---------------------------------------------------------------------
    Feuille unique, sans build. Vanilla CSS. Mono-thème clair (crème).
    Polices chargées via Google Fonts dans le <head> de chaque page :
@@ -60,7 +60,7 @@
      .sens > .sens__p       carte deux colonnes (Soins en Suisse / Soins en France)
      [data-lamal] / [data-cmu]   éléments affichés selon le régime choisi
 
-   Pourquoi FLYCARE
+   Pourquoi ALPICARE
      .pile > .pile__c     cartes empilées 01-04 (--i:index) ; .pile__c--lac/--terre/--sable/--craie
      .pile__t · .pile__num · .pile__lire · .pile__v · .mini__g
      .duel                visuel deux prix (pile 01) ; .niveaux (pile 02) ; .telScene .tel (mockup iPhone, pile 04)
@@ -425,7 +425,7 @@ body[data-menu="1"]{overflow:hidden}
 [hidden]{display:none!important}
 html:not(.js) [data-cmu]{display:none!important}
 
-/* ---------- 10. Pile 01-04 (Pourquoi FLYCARE) ---------- */
+/* ---------- 10. Pile 01-04 (Pourquoi ALPICARE) ---------- */
 .pile{margin-top:44px}
 .pile__c{border-radius:var(--r-carte);box-shadow:var(--ombre-levee);overflow:hidden;margin-bottom:var(--e-5);display:grid;grid-template-columns:1fr}
 .pile__t{padding:var(--e-6) var(--e-5) var(--e-6)}
@@ -768,7 +768,7 @@ tr.phare td{background:var(--terre-pale)}
 .assistant__note{margin:0;padding:0 16px 12px;font-size:var(--t-micro);color:var(--gris);line-height:1.4;background:var(--craie)}
 @media(max-width:899px){.assistant__btn{bottom:88px;right:14px;height:50px;padding:0 16px 0 14px}.assistant__btn span{display:none}.assistant__btn{width:50px;padding:0;justify-content:center}.assistant{right:10px;left:10px;bottom:10px;width:auto;max-height:calc(100vh - 20px)}body.assistant-ouvert .collante{display:none}}
 
-/* Section « Demandez à Flycare » (accueil) */
+/* Section « Demandez à Alpicare » (accueil) */
 .demande{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--e-7);align-items:center;padding:var(--e-8);background:var(--lac);color:var(--creme);border-radius:var(--r-carte);box-shadow:var(--ombre-levee)}
 .demande .sur{color:var(--sable)}
 .demande h2{color:var(--creme);text-transform:none;letter-spacing:-.03em;font-size:clamp(2rem,3.6vw,3rem)}

@@ -1,4 +1,4 @@
-/* FLYCARE — page « Formules et tarifs » (tarifs.html)
+/* ALPICARE — page « Formules et tarifs » (tarifs.html)
    1. Simulateur « Quel niveau me convient ? » : prix par formule pour le foyer et niveau conseillé
    2. Formulaire « Adhérer en ligne » : envoi du dossier au serveur (POST /api/adhesion) ; parcours entièrement numérique, aucun conseiller
    3. Ouverture d'un accordéon FAQ visé par l'ancre de l'URL
@@ -8,10 +8,10 @@
    RÈGLES DE PRIX (strategy/FINAL.md § 3.2, 3.3 et 10) :
    - tarif adulte = devis public Cmonassurance du 05/09/2026 (adulte seul de 30 ans, régime CMU, hors
      cotisation d'association et droit d'entrée), âge calé sur le devis du 06/09/2026 (32 ans + 1 enfant, CMU) ;
-   - tarif cible FLYCARE = prix public × r, avec r = (1 − c_pub) / (1 − c_fly), c_pub = 17 % [estimation,
+   - tarif cible ALPICARE = prix public × r, avec r = (1 − c_pub) / (1 − c_fly), c_pub = 17 % [estimation,
      fourchette 15-20 %], c_fly = 5 % → r ≈ 0,8737, soit −12,6 % ; pour l'adulte seul, on reprend
      les valeurs arrondies de la grille finale (28,0 / 37,7 / 47,0 / 57,9 / 69,5 €) ;
-   - conjoint : −10 % sur sa cotisation (réduction « couple » Alptis, lecture FLYCARE) ;
+   - conjoint : −10 % sur sa cotisation (réduction « couple » Alptis, lecture ALPICARE) ;
    - enfant : 60 % du tarif adulte (vérifié sur le devis du 06/09/2026, écart < 1 %) ;
      −50 % dès le 3e enfant de moins de 20 ans (réduction Alptis) ;
    - cotisation d'association 2 €/mois par dossier et droit d'entrée 11 € affichés à part ;
@@ -72,10 +72,10 @@
     return c;
   }
   var CTX = { age: 30, regime: 'lamal' };
-  var T = window.FLYCARE_TARIF;   /* moteur de prix ronds partagé (app.js) */
+  var T = window.ALPICARE_TARIF;   /* moteur de prix ronds partagé (app.js) */
   function prix(niv, a, e) {
     /* Le prix public du foyer applique les réductions contractuelles (conjoint 90 %, enfant 60 %,
-       3e enfant 30 %), puis il est arrondi UNE SEULE FOIS sur l'échelle FLYCARE : le total affiché
+       3e enfant 30 %), puis il est arrondi UNE SEULE FOIS sur l'échelle ALPICARE : le total affiché
        se termine donc par 9, à défaut 5, à défaut 0, sans jamais dépasser le prix public. */
     var g = GRILLE[niv];
     if (!g || !g.pub) return null;
@@ -88,7 +88,7 @@
   }
   function prix_niveau(niv) {
     var f = { adultes: 1, enfants: 0 };
-    try { var m = JSON.parse(localStorage.getItem('flycare-foyer') || 'null'); if (m) f = m; } catch (e) { /* ignore */ }
+    try { var m = JSON.parse(localStorage.getItem('alpicare-foyer') || 'null'); if (m) f = m; } catch (e) { /* ignore */ }
     var p = prix(niv, f.adultes, f.enfants);
     return p ? p.fly : null;
   }
@@ -192,7 +192,7 @@
       }
 
       var g = GRILLE[c.niv], p = prix(c.niv, v.adultes, v.enfants);
-      var titre = g.formule ? 'FLYCARE ' + g.formule + ' <small style="display:inline;color:inherit">· Alptis ' + g.nom + '</small>' : 'Alptis ' + g.nom + ' <small style="display:inline;color:inherit">· « voir aussi »</small>';
+      var titre = g.formule ? 'ALPICARE ' + g.formule + ' <small style="display:inline;color:inherit">· Alptis ' + g.nom + '</small>' : 'Alptis ' + g.nom + ' <small style="display:inline;color:inherit">· « voir aussi »</small>';
       h += '<p class="simu__niv">Niveau conseillé : ' + titre + '<small>' + foyer + ' · ' + (v.regime === 'lamal' ? 'affilié LAMal' : 'affilié CMU') + (v.alsace ? ' · Alsace-Moselle' : '') + '</small></p>';
       h += '<div class="simu__prix"><b>' + montant(p.fly, v) + '</b><span>' + unite(v) + ', tarif 2026</span></div>';
       h += '<span class="simu__eco">Économie attendue <b>≈ ' + p.ecoAn + ' € par an</b></span>';
@@ -222,7 +222,7 @@
       if (dessus <= 6) {
         var pd = prix(dessus, v.adultes, v.enfants), gd = GRILLE[dessus];
         var ajoute = AJOUTE[dessus] + (AJOUTE_CH[v.regime][dessus] ? ', ' + AJOUTE_CH[v.regime][dessus] : '');
-        h += '<div class="simu__msg"><b>Le niveau supérieur reste toujours visible.</b> Il s’agit de ' + (gd.formule ? 'FLYCARE ' + gd.formule + ' (' + gd.nom + ')' : gd.nom) + (pd ? ', soit ' + (v.fract === 'an' ? eur(Math.round((pd.fly - p.fly) * 12), 0) + ' de plus par an' : eur(arrondi(pd.fly - p.fly, 2)) + ' de plus par mois') + ' au tarif FLYCARE (' + montant(pd.fly, v) + ' ' + unite(v) + ')' : ', proposé sur devis, car il n’est pas coté sur le devis public') + '. Il ajoute : ' + ajoute + '.</div>';
+        h += '<div class="simu__msg"><b>Le niveau supérieur reste toujours visible.</b> Il s’agit de ' + (gd.formule ? 'ALPICARE ' + gd.formule + ' (' + gd.nom + ')' : gd.nom) + (pd ? ', soit ' + (v.fract === 'an' ? eur(Math.round((pd.fly - p.fly) * 12), 0) + ' de plus par an' : eur(arrondi(pd.fly - p.fly, 2)) + ' de plus par mois') + ' au tarif ALPICARE (' + montant(pd.fly, v) + ' ' + unite(v) + ')' : ', proposé sur devis, car il n’est pas coté sur le devis public') + '. Il ajoute : ' + ajoute + '.</div>';
       }
       h += '<a class="btn btn--creme" href="#adherer" data-choix="' + (g.formule ? g.formule.toLowerCase() : 'niveau-' + c.niv) + '">' + (g.formule ? 'Adhérer en formule ' + g.formule : 'Adhérer au ' + g.nom.toLowerCase()) + '</a></div>';
       return h;
@@ -247,7 +247,7 @@
       h += '</div>';
 
       /* Hypothèses et réserves, toujours affichées */
-      h += '<p class="simu__hyp"><b>Voici comment ce prix est obtenu.</b> Le contrat, l’assureur et la gestion sont exactement les mêmes qu’en direct. Notre commission est de ' + (function () { var q = c ? prix(c.niv, v.adultes, v.enfants) : prix(3, v.adultes, v.enfants); return q && q.com !== undefined ? q.com : '3 à 10'; })() + ' % au lieu des ' + Math.round(C_PUB * 100) + ' % estimés dans le prix public, et le total est arrondi à un prix rond. Si Alptis ne répercute pas ce taux, vous payez le prix public et FLYCARE ne facture aucuns frais. Nous nous appuyons sur les devis publics d’Alptis des 5 et 6 septembre 2026, ajustés à ' + CTX.age + ' ans.</p>';
+      h += '<p class="simu__hyp"><b>Voici comment ce prix est obtenu.</b> Le contrat, l’assureur et la gestion sont exactement les mêmes qu’en direct. Notre commission est de ' + (function () { var q = c ? prix(c.niv, v.adultes, v.enfants) : prix(3, v.adultes, v.enfants); return q && q.com !== undefined ? q.com : '3 à 10'; })() + ' % au lieu des ' + Math.round(C_PUB * 100) + ' % estimés dans le prix public, et le total est arrondi à un prix rond. Si Alptis ne répercute pas ce taux, vous payez le prix public et ALPICARE ne facture aucuns frais. Nous nous appuyons sur les devis publics d’Alptis des 5 et 6 septembre 2026, ajustés à ' + CTX.age + ' ans.</p>';
       if (v.adultes === 2 || v.enfants > 0) {
         h += '<p class="simu__hyp"><b>Voici comment le prix du foyer est calculé.</b> Les réductions prévues au contrat Alptis s’appliquent d’abord au prix public : 10 % de moins pour le conjoint, 60 % du prix adulte pour un enfant — proportion vérifiée sur le devis public du 6 septembre 2026, à moins de 1 % près — et 50 % de moins dès le 3<sup>e</sup> enfant de moins de 20 ans. Le total est ensuite arrondi une seule fois sur notre échelle : il se termine par 9, à défaut par 5.';
         var cle3 = v.adultes + '-' + Math.min(v.enfants, 1) + '-3';
@@ -334,8 +334,8 @@
       var fSel = adh.querySelector('input[name="formule"]:checked');
       var formule = adh.getAttribute('data-niveau') || (fSel ? fSel.value : '');
       var foyer = '', age = CTX.age, prix = '';
-      try { var fm = JSON.parse(localStorage.getItem('flycare-foyer') || 'null'); if (fm) foyer = (fm.adultes === 2 ? '2 adultes' : '1 adulte') + (fm.enfants ? ' + ' + fm.enfants + ' enfant' + (fm.enfants > 1 ? 's' : '') : ''); } catch (err) { /* ignore */ }
-      try { var am = parseInt(localStorage.getItem('flycare-age'), 10); if (am >= 18 && am <= 67) age = am; } catch (err) { /* ignore */ }
+      try { var fm = JSON.parse(localStorage.getItem('alpicare-foyer') || 'null'); if (fm) foyer = (fm.adultes === 2 ? '2 adultes' : '1 adulte') + (fm.enfants ? ' + ' + fm.enfants + ' enfant' + (fm.enfants > 1 ? 's' : '') : ''); } catch (err) { /* ignore */ }
+      try { var am = parseInt(localStorage.getItem('alpicare-age'), 10); if (am >= 18 && am <= 67) age = am; } catch (err) { /* ignore */ }
       if (naissance) { var an = parseInt(naissance.slice(0, 4), 10); if (an > 1900) age = new Date().getFullYear() - an; }
       var niv = { essentiel: 2, confort: 3, premium: 4, 'niveau-1': 1, 'niveau-5': 5 }[formule];
       if (niv) { CTX.age = age; var p = prix_niveau(niv); if (p) prix = p + ' € par mois'; }
