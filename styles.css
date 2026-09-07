@@ -503,3 +503,747 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .carte__a .btn{width:100%;margin-top:var(--e3)}
 .carte__plus{font-size:13px;color:var(--terre);text-decoration:underline;text-underline-offset:3px}
 .carte--phare .carte__plus{color:var(--terre-vif)}
+
+/* =====================================================================
+   Briques ajoutées le 7 septembre 2026 : parcours d’adhésion,
+   plateforme d’administration, assistant.
+   ===================================================================== */
+
+/* Un élément masqué l’est vraiment, quelle que soit sa mise en page. */
+[hidden]{display:none!important}
+
+
+/* =====================================================================
+   Parcours d'adhésion (adherer.html) — trois écrans successifs.
+   Rien de neuf en couleur ni en typographie : craie sur crème, filets
+   fins, terre pour l'accent, Literata réservé aux chapôs. Les écrans
+   se suivent quand le script ne s'exécute pas, et se remplacent quand
+   il s'exécute.
+   ===================================================================== */
+
+/* ---------- Barre d'avancement des trois écrans ---------- */
+.parcours{margin-top:var(--e4)}
+.parcours ol{list-style:none;counter-reset:p;display:grid;gap:var(--e2)}
+@media(min-width:760px){.parcours ol{grid-template-columns:repeat(3,1fr);gap:var(--e3)}}
+.parcours li{counter-increment:p;display:flex;align-items:baseline;gap:var(--e2);padding-top:var(--e2);
+  border-top:2px solid var(--regle);font-size:14px;line-height:1.35;color:var(--gris);
+  transition:color .3s var(--sortie),border-color .3s var(--sortie)}
+.parcours li::before{content:counter(p,decimal-leading-zero);font-family:var(--display);font-size:12px;
+  letter-spacing:.08em;color:var(--gris)}
+.parcours li[data-etat=fait]{border-top-color:var(--terre);color:var(--lac)}
+.parcours li[data-etat=fait]::before{color:var(--terre)}
+.parcours li[aria-current=step]{border-top-color:var(--terre);color:var(--lac);font-weight:600}
+.parcours li[aria-current=step]::before{color:var(--terre)}
+.parcours .note{margin-top:var(--e2)}
+
+/* ---------- Un écran du parcours ---------- */
+.ecran{padding:var(--e5) 0}
+/* Sans script, les trois écrans se lisent à la suite : il leur faut un filet de séparation. */
+.ecran+.ecran{border-top:1px solid var(--regle)}
+.js .ecran+.ecran{border-top:0}
+.ecran>h2{max-width:20ch}
+.ecran>h2:focus{outline:none}
+.ecran>h2:focus-visible{outline:2px solid var(--terre);outline-offset:6px}
+
+/* ---------- Groupe de champs ---------- */
+.bloc{border:0;margin-top:var(--e6)}
+.bloc__t{display:block;padding:0;font-family:var(--texte);font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--terre)}
+.bloc__d{margin-top:var(--e2);font-size:14px;line-height:1.6;color:var(--gris);max-width:64ch}
+.champ__q{margin-top:var(--e4);font-size:15px;font-weight:600;color:var(--lac)}
+
+/* ---------- Champs de saisie ---------- */
+.champs{display:grid;gap:var(--e3);margin-top:var(--e3)}
+@media(min-width:720px){
+  .champs--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .champs--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .champ--court{max-width:180px}
+}
+.champ{display:grid;gap:6px;min-width:0;align-content:start}
+.champ .champ__l{margin-bottom:0}
+.champ__f{font-family:var(--texte);font-size:11px;font-weight:400;letter-spacing:.14em;color:var(--gris)}
+.saisie{width:100%;min-height:52px;padding:0 var(--e3);border:1px solid var(--regle);border-radius:12px;
+  background:var(--craie);color:var(--lac);font-family:var(--texte);font-size:16px;
+  transition:border-color .25s var(--sortie),box-shadow .25s var(--sortie)}
+.saisie:hover{border-color:color-mix(in srgb,var(--lac) 30%,var(--regle))}
+.saisie:focus{outline:none;border-color:var(--terre);box-shadow:0 0 0 3px rgba(176,69,32,.16)}
+.saisie::placeholder{color:color-mix(in srgb,var(--gris) 55%,transparent)}
+select.saisie{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:var(--e4);
+  background-image:linear-gradient(45deg,transparent 50%,var(--terre) 50%),
+    linear-gradient(135deg,var(--terre) 50%,transparent 50%);
+  background-position:calc(100% - 22px) 23px,calc(100% - 16px) 23px;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+.saisie--chiffres{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.saisie--signature{font-family:var(--edito);font-style:italic;font-size:19px}
+.saisie[aria-invalid=true]{border-color:var(--terre);background:color-mix(in srgb,var(--terre) 5%,var(--craie))}
+.aide{font-size:13px;line-height:1.45;color:var(--gris)}
+.erreur{font-size:13px;line-height:1.45;color:var(--terre);font-weight:500}
+.erreur:empty{display:none}
+
+/* Les groupes de boutons radio signalent eux aussi qu'il leur manque une réponse. */
+.choix[data-invalide],.pastilles[data-invalide],.trio[data-invalide]{outline:1px dashed var(--terre);
+  outline-offset:10px;border-radius:6px}
+.choix label:focus-within{border-color:var(--terre);box-shadow:0 0 0 3px rgba(176,69,32,.16)}
+.pastille:focus-within{outline:2px solid var(--terre);outline-offset:2px}
+
+/* ---------- Une question à choix multiple dans le recueil des besoins ---------- */
+.besoin{margin-top:var(--e5)}
+.besoin:first-of-type{margin-top:var(--e4)}
+.besoin .pastilles{margin-top:var(--e2)}
+.besoin .aide{margin-top:4px}
+.besoin .erreur{margin-top:var(--e2)}
+
+/* ---------- Le conseil motivé, remis avant le choix ---------- */
+.conseil{margin-top:var(--e5);padding:var(--e4) var(--e5);background:var(--craie);
+  border-left:3px solid var(--terre);border-radius:var(--rayon);box-shadow:var(--ombre)}
+.conseil__t{display:block;font-family:var(--texte);font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--terre)}
+.conseil__p{margin-top:var(--e2);font-family:var(--edito);font-size:clamp(1.05rem,1.5vw,1.25rem);
+  line-height:1.55;max-width:60ch}
+.conseil__l{list-style:none;margin-top:var(--e3)}
+.conseil__l li{padding:var(--e2) 0;border-top:1px solid var(--regle);font-size:14px;line-height:1.55;
+  color:var(--gris)}
+.conseil__n{margin-top:var(--e3)}
+
+/* ---------- Carte de formule qui se choisit ---------- */
+.carte--choix{cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--regle)}
+.carte--choix input{position:absolute;opacity:0;width:1px;height:1px}
+.carte--choix:focus-within{outline:2px solid var(--terre);outline-offset:4px}
+.carte--choix[data-choisie=oui],.carte--choix:has(input:checked){box-shadow:inset 0 0 0 2px var(--terre),var(--ombre)}
+.carte--choix .prix{margin-top:var(--e4)}
+.carte__etat{display:flex;align-items:center;gap:10px;margin-top:var(--e3);padding-top:var(--e3);
+  border-top:1px solid var(--regle);font-size:14px;font-weight:600;color:var(--gris)}
+.carte__coche{width:20px;height:20px;flex:none;border-radius:50%;border:1.5px solid var(--regle);
+  position:relative;transition:border-color .25s var(--sortie)}
+.carte--choix[data-choisie=oui] .carte__etat,.carte--choix:has(input:checked) .carte__etat{color:var(--terre)}
+.carte--choix[data-choisie=oui] .carte__coche,.carte--choix:has(input:checked) .carte__coche{border-color:var(--terre)}
+.carte--choix[data-choisie=oui] .carte__coche::after,.carte--choix:has(input:checked) .carte__coche::after{
+  content:"";position:absolute;inset:3px;border-radius:50%;background:var(--terre)}
+.carte__b[data-conseille=oui]{color:var(--terre)}
+
+/* ---------- Récapitulatif ---------- */
+.recap{display:grid;gap:0;margin-top:var(--e3)}
+.recap div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--e3);align-items:baseline;
+  padding:var(--e3) 0;border-top:1px solid var(--regle)}
+.recap div:first-child{border-top:0}
+.recap dt{font-size:13px;color:var(--gris)}
+.recap dd{font-size:15px;font-weight:600;text-align:right}
+
+/* ---------- Cases à cocher engageantes : reconnaissances, consentements, signature ---------- */
+.accord{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--e3);align-items:start;
+  margin-top:var(--e3);padding:var(--e3) 0;border-top:1px solid var(--regle);cursor:pointer;
+  font-size:14px;line-height:1.55}
+.accord input{width:20px;height:20px;margin-top:2px;accent-color:var(--terre);cursor:pointer}
+.accord input:focus-visible{outline:2px solid var(--terre);outline-offset:3px}
+.accord b{font-weight:600}
+.accord small{display:block;margin-top:4px;font-size:13px;line-height:1.55;color:var(--gris)}
+.accord input[aria-invalid=true]{outline:2px solid var(--terre);outline-offset:3px}
+
+/* ---------- Résumé des points qui restent à compléter ---------- */
+.erreurs{margin-top:var(--e4);padding:var(--e3) var(--e4);border-radius:12px;font-size:14px;
+  background:color-mix(in srgb,var(--terre) 7%,var(--craie));
+  border:1px solid color-mix(in srgb,var(--terre) 28%,var(--craie))}
+.erreurs b{color:var(--terre)}
+.erreurs ul{margin:var(--e2) 0 0;padding-left:var(--e3)}
+.erreurs li{margin-top:4px;line-height:1.5}
+.erreurs a{color:var(--terre);text-underline-offset:3px}
+
+/* ---------- Ligne d'actions au pied d'un écran ---------- */
+.pilote{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e2);margin-top:var(--e5);
+  padding-top:var(--e4);border-top:1px solid var(--regle)}
+@media(min-width:600px){.pilote .btn--bleu,.pilote [type=submit]{margin-left:auto}}
+.pilote--clair{border-top-color:rgba(246,241,231,.2)}
+
+/* ---------- Annonces destinées aux lecteurs d'écran, visibles pour tous ---------- */
+.annonce{margin-top:var(--e3);font-size:14px;line-height:1.5;color:var(--terre)}
+.annonce:empty{display:none}
+
+/* ---------- Panneau sombre resserré : arrêt du parcours, ou confirmation ---------- */
+.panneau--serre{margin-top:var(--e5);padding:var(--e5)}
+@media(min-width:900px){.panneau--serre{padding:var(--e6)}}
+.panneau--serre h2:focus{outline:none}
+.panneau--serre h2:focus-visible{outline:2px solid var(--terre-vif);outline-offset:6px}
+.panneau--serre .liste{margin-top:var(--e5)}
+.btn--sur-lac{color:var(--creme);box-shadow:inset 0 0 0 1.5px rgba(246,241,231,.4)}
+.btn--sur-lac:hover{background:var(--creme);color:var(--lac);box-shadow:none}
+
+/* ---------- Un lien qui est en réalité un bouton ---------- */
+.lien--bouton{border:0;padding:0;background:transparent;font:inherit;cursor:pointer}
+
+/* ---------- Repli sans script : les trois écrans se lisent d'affilée ---------- */
+/* La barre n'indique alors plus d'étape en cours, puisqu'il n'y en a pas. */
+html:not(.js) .parcours [data-compte-ecrans]{display:none}
+html:not(.js) .parcours li{border-top-color:var(--terre);color:var(--lac)}
+html:not(.js) .parcours li::before{color:var(--terre)}
+
+/* ---------- Plateforme de gestion (site/admin.html) ---------- */
+/* Page interne : même papier, même encre, mêmes composants que le site public.
+   Rien ici n'est visible d'un visiteur ; la page ne figure dans aucune navigation. */
+[hidden]{display:none !important}
+
+.adm__barre{background:rgba(246,241,231,.94);backdrop-filter:blur(14px)}
+.adm__titre{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gris)}
+.adm__barre .btn{margin-left:var(--e3)}
+
+/* La porte */
+.adm__porte{display:grid;place-items:center;min-height:100vh;padding:120px 0 var(--e6)}
+.adm__carte{width:100%;max-width:520px;display:grid;justify-items:start;gap:var(--e2);
+  padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
+.adm__carte h1{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-top:var(--e2)}
+.adm__carte .lead{font-size:1rem;max-width:none;margin:var(--e2) 0 var(--e3)}
+.adm__carte .btn{width:100%;margin-top:var(--e2)}
+.adm code,.adm__carte code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;
+  background:var(--sable);padding:1px 6px;border-radius:6px}
+
+/* Champs de saisie */
+.adm__l{display:block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gris);margin-bottom:var(--e1)}
+.adm__ob{font-style:normal;color:var(--terre);margin-left:4px}
+.adm__saisie{width:100%;min-height:46px;padding:0 var(--e3);border-radius:12px;border:1px solid var(--regle);
+  background:var(--craie);color:var(--lac);font-family:var(--texte);font-size:15px}
+.adm__saisie:focus-visible{outline:2px solid var(--terre);outline-offset:2px;border-color:var(--terre)}
+select.adm__saisie{appearance:none;-webkit-appearance:none;padding-right:var(--e4);
+  background-image:linear-gradient(45deg,transparent 50%,var(--terre) 50%),linear-gradient(135deg,var(--terre) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 21px,calc(100% - 14px) 21px;background-size:6px 6px;background-repeat:no-repeat}
+.adm__saisie--court{max-width:230px}
+.adm__aide{display:block;margin-top:6px;font-size:12px;line-height:1.5;color:var(--gris)}
+
+/* Onglets */
+.adm__onglets{display:grid;gap:var(--e1);margin:var(--e4) 0 var(--e2);padding:var(--e2) 0;
+  border-top:1px solid var(--regle);border-bottom:1px solid var(--regle)}
+@media(min-width:760px){.adm__onglets{grid-template-columns:repeat(3,1fr)}}
+.adm__onglet{text-align:left;border:0;background:transparent;padding:var(--e3);border-radius:12px;cursor:pointer;
+  font-family:var(--texte);transition:background .25s var(--sortie)}
+.adm__onglet b{display:block;font-family:var(--display);font-size:14px;letter-spacing:-.01em;color:var(--lac)}
+.adm__onglet small{display:block;margin-top:4px;font-size:12.5px;color:var(--gris)}
+.adm__onglet:hover{background:var(--sable)}
+.adm__onglet[aria-selected=true]{background:var(--lac)}
+.adm__onglet[aria-selected=true] b{color:var(--creme)}
+.adm__onglet[aria-selected=true] small{color:rgba(246,241,231,.7)}
+.adm__panneau{padding-bottom:var(--e6)}
+.adm__panneau:focus{outline:none}
+.adm__tete{padding:120px 0 var(--e3)}
+.adm__tete h1{max-width:16ch}
+
+/* Barres d'outils et tableaux */
+.adm__outils{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--e3);
+  margin-top:var(--e5)}
+.adm__outils h2{font-size:clamp(1.4rem,2.4vw,1.95rem)}
+.adm__outils h3{margin-top:var(--e1)}
+.adm__outils .note{margin-top:var(--e2);max-width:70ch}
+.adm__actions{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--e2)}
+.adm__actions--large{margin-top:var(--e3)}
+.adm__tableau{margin-top:var(--e3)}
+.adm__tableau table{min-width:640px;font-size:13.5px}
+.adm__tableau th,.adm__tableau td{padding:var(--e2) var(--e3)}
+.adm__ligne{cursor:pointer}
+.adm__ligne:hover{background:color-mix(in srgb,var(--sable) 45%,var(--craie))}
+.adm__ligne:focus-visible{outline:2px solid var(--terre);outline-offset:-2px}
+.adm__vide{margin-top:var(--e3);padding:var(--e5);text-align:center;background:var(--craie);border-radius:var(--rayon);
+  font-family:var(--edito);color:var(--gris)}
+
+/* Pastille d'état d'un dossier */
+.adm__etat{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:999px;
+  background:var(--sable);font-size:12px;font-weight:600;white-space:nowrap}
+.adm__etat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gris)}
+.adm__etat[data-etat=a_relire]::before,.adm__etat[data-etat=pieces_attendues]::before{background:var(--terre)}
+.adm__etat[data-etat=valide]{background:var(--lac);color:var(--creme)}
+.adm__etat[data-etat=valide]::before{background:var(--terre-vif)}
+.adm__etat[data-etat=refuse],.adm__etat[data-etat=clos]{color:var(--gris);box-shadow:inset 0 0 0 1px var(--regle);background:transparent}
+
+/* Détail d'un dossier */
+.adm__detail{margin-top:var(--e3);padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
+.adm__champs{display:grid;margin-top:var(--e3)}
+@media(min-width:640px){.adm__champs{grid-template-columns:auto minmax(0,1fr);column-gap:var(--e4)}}
+.adm__champs dt{padding:var(--e2) 0;border-top:1px solid var(--regle);font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+.adm__champs dd{padding:var(--e2) 0;font-size:15px;word-break:break-word}
+@media(min-width:640px){.adm__champs dd{border-top:1px solid var(--regle)}}
+.adm__suivi{display:grid;gap:var(--e3);align-items:end;margin-top:var(--e4);padding-top:var(--e4);
+  border-top:1px solid var(--regle)}
+@media(min-width:820px){.adm__suivi{grid-template-columns:1fr 1.7fr auto}}
+
+/* Dépôt et lecture d'une pièce */
+.adm__lecture{display:grid;gap:var(--e4);margin-top:var(--e3);align-items:start}
+@media(min-width:960px){.adm__lecture{grid-template-columns:1.1fr .9fr;gap:var(--e5)}}
+.adm__depot{display:grid;place-items:center;gap:6px;text-align:center;padding:var(--e5) var(--e4);
+  border:1.5px dashed var(--regle);border-radius:var(--rayon);background:var(--craie);cursor:pointer;
+  transition:border-color .25s var(--sortie),background .25s var(--sortie)}
+.adm__depot:hover,.adm__depot--vise{border-color:var(--terre);background:var(--sable)}
+.adm__depot b{font-size:15px;font-weight:600;word-break:break-word}
+.adm__depot small{font-size:13px;color:var(--gris)}
+.adm__apercu{margin-top:var(--e3);padding:var(--e2);background:var(--sable);border-radius:12px}
+.adm__apercu img{max-height:320px;width:auto;margin:0 auto;border-radius:8px}
+.adm__encart{margin:0}
+.adm__encart--large{margin-top:var(--e3);max-width:none}
+
+/* Relecture et formulaire du flux */
+.adm__relecture{margin-top:var(--e4);padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
+.adm__relecture .adm__outils{margin-top:0}
+.adm__grille{display:grid;gap:var(--e3);margin-top:var(--e4)}
+@media(min-width:700px){.adm__grille{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1100px){.adm__grille{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.adm__champ{min-width:0}
+.adm__champ__h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--e2)}
+
+/* Confiance de la lecture, champ par champ */
+.adm__conf{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+  padding:3px 8px;border-radius:999px;background:var(--sable);color:var(--gris)}
+.adm__conf--haute{background:rgba(18,48,71,.09);color:var(--lac)}
+.adm__conf--moyenne{background:rgba(176,69,32,.12);color:var(--terre)}
+.adm__conf--basse{background:rgba(176,69,32,.22);color:var(--terre)}
+.adm__conf--absente{background:transparent;color:var(--gris);box-shadow:inset 0 0 0 1px var(--regle)}
+
+/* Messages */
+.adm__msg{margin-top:var(--e3);font-size:13.5px;line-height:1.6;color:var(--gris)}
+.adm__msg--ok{color:var(--lac)}
+.adm__msg--erreur{color:var(--terre)}
+.adm__msg--info{color:var(--gris)}
+.adm__liste-msg{list-style:none;display:grid;margin-top:var(--e3)}
+.adm__liste-msg li{position:relative;padding:var(--e2) 0 var(--e2) var(--e3);border-top:1px solid var(--regle);
+  font-size:14px;line-height:1.55;color:var(--gris)}
+.adm__liste-msg li::before{content:"";position:absolute;left:0;top:calc(var(--e2) + 6px);width:8px;height:8px;
+  border-radius:50%;background:var(--gris)}
+.adm__liste-msg .adm__msg--erreur::before{background:var(--terre)}
+.adm__liste-msg .adm__msg--ok::before{background:var(--lac)}
+.adm__controle{margin-top:var(--e4);padding-top:var(--e4);border-top:1px solid var(--regle)}
+.adm__controle .adm__l{margin-top:var(--e4)}
+
+/* Sorties techniques et export */
+.adm__sortie{margin-top:var(--e2);padding:var(--e3);border-radius:12px;background:var(--lac);color:var(--creme);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.7;
+  white-space:pre;overflow-x:auto}
+.adm__sortie--haute{max-height:420px;overflow-y:auto}
+.adm__export{margin-top:var(--e3);padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
+.adm__export .adm__outils{margin-top:0}
+.adm__repli{margin-top:var(--e5)}
+.adm__pied{margin-top:var(--e6)}
+
+/* =====================================================================
+   Assistant de questions et réponses : la section « Posez votre question »
+   de l’accueil, le bouton flottant et le panneau de conversation.
+   Même vocabulaire que le reste : craie sur crème, encre du lac, terre
+   pour l’accent, filets fins, rien qui bouge si on a demandé moins
+   d’animation.
+   ===================================================================== */
+
+/* ---------- Section « Posez votre question » (dans un .panneau) ---------- */
+/* Le panneau respire moins sur un téléphone : ses 96 px de marge y laisseraient
+   des boutons de questions trop étroits. */
+.panneau--questions{padding:var(--e5) var(--e4)}
+@media(min-width:640px){.panneau--questions{padding:var(--e6)}}
+@media(min-width:900px){.panneau--questions{padding:var(--e7)}}
+.questions__g{display:grid;gap:var(--e2);margin-top:var(--e5)}
+@media(min-width:760px){.questions__g{grid-template-columns:1fr 1fr}}
+.questions__q{display:flex;align-items:center;justify-content:space-between;gap:var(--e3);width:100%;
+  padding:var(--e3);border:0;border-radius:12px;background:rgba(246,241,231,.08);color:var(--creme);
+  font-family:var(--texte);font-size:15px;line-height:1.4;text-align:left;cursor:pointer;
+  transition:background .3s var(--sortie),transform .3s var(--sortie)}
+.questions__q:hover{background:rgba(246,241,231,.16);transform:translateY(-2px)}
+.questions__q::after{content:"";width:9px;height:9px;flex:none;border-top:1.5px solid var(--terre-vif);
+  border-right:1.5px solid var(--terre-vif);transform:rotate(45deg)}
+.questions__a{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e3);margin-top:var(--e5)}
+.questions__n{margin-top:var(--e4);font-size:12.5px;line-height:1.6;color:rgba(246,241,231,.6);max-width:70ch}
+.panneau .lien{color:var(--terre-vif)}
+html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
+.js .questions__sans{display:none}
+
+/* ---------- Bouton flottant ---------- */
+.assistant__btn{position:fixed;right:var(--marge);bottom:calc(var(--e3) + env(safe-area-inset-bottom,0px));
+  z-index:60;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 var(--e3);
+  border:0;border-radius:999px;background:var(--lac);color:var(--creme);font-family:var(--texte);
+  font-size:15px;font-weight:600;cursor:pointer;box-shadow:var(--ombre-haute);
+  transition:transform .3s var(--sortie),background .3s var(--sortie)}
+.assistant__btn:hover{transform:translateY(-2px);background:var(--terre)}
+.assistant__btn[aria-expanded=true]{background:var(--terre)}
+@media(max-width:899px){.assistant__btn{bottom:calc(76px + env(safe-area-inset-bottom,0px))}}
+@media(max-width:400px){.assistant__btn span{display:none}
+  .assistant__btn{padding:0;width:52px;justify-content:center}}
+
+/* ---------- Panneau de conversation ---------- */
+.assistant{position:fixed;inset:0;z-index:65;display:flex;flex-direction:column;overflow:hidden;
+  background:var(--craie);color:var(--lac);font-family:var(--texte);box-shadow:var(--ombre-haute)}
+@media(min-width:641px){
+  .assistant{inset:auto var(--marge) calc(var(--e3) + 64px) auto;width:400px;
+    max-width:calc(100vw - 2 * var(--marge));height:min(620px,calc(100vh - 170px));border-radius:var(--rayon)}
+}
+.assistant[hidden],.assistant__sugg[hidden],.assistant__eff[hidden]{display:none}
+@media(max-width:640px){body.assistant-ouvert{overflow:hidden}}
+
+.assistant__h{display:flex;align-items:flex-start;gap:var(--e2);padding:var(--e3);
+  background:var(--lac);color:var(--creme)}
+.assistant__t b{display:block;font-family:var(--display);font-size:15px;letter-spacing:-.015em}
+.assistant__t small{display:block;margin-top:3px;font-size:11.5px;line-height:1.45;color:rgba(246,241,231,.62)}
+.assistant__eff{margin-left:auto;padding:0;border:0;background:transparent;color:rgba(246,241,231,.68);
+  font-family:var(--texte);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.assistant__eff:hover{color:var(--terre-vif)}
+.assistant__fermer{flex:none;width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:50%;
+  background:rgba(246,241,231,.12);color:var(--creme);cursor:pointer;transition:background .25s var(--sortie)}
+.assistant__fermer:hover{background:var(--terre-vif);color:var(--lac)}
+
+.assistant__fil{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--e2);
+  padding:var(--e3);background:var(--creme)}
+.assistant__fil:focus-visible{outline:2px solid var(--terre);outline-offset:-2px}
+
+.assistant__m{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.55}
+.assistant__m p+p{margin-top:8px}
+.assistant__m ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+.assistant__m b{font-weight:700}
+.assistant__m--lui{align-self:flex-start;background:var(--craie);border-radius:14px 14px 14px 4px;box-shadow:var(--ombre)}
+.assistant__m--vous{align-self:flex-end;background:var(--lac);color:var(--creme);border-radius:14px 14px 4px 14px}
+.assistant__m--accueil{max-width:100%;padding:2px 2px var(--e1);background:none;box-shadow:none;
+  font-family:var(--edito);font-size:14.5px;line-height:1.6;color:var(--gris)}
+.assistant__m--info{max-width:100%;background:color-mix(in srgb,var(--terre) 9%,var(--craie));
+  border-left:2px solid var(--terre);border-radius:4px 14px 14px 4px;box-shadow:none;font-size:14px;color:var(--lac)}
+
+.assistant__m--attente{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;color:var(--gris)}
+.assistant__pts{display:inline-flex;gap:4px}
+.assistant__pts i{width:5px;height:5px;border-radius:50%;background:var(--terre);
+  animation:assistant-pts 1.2s var(--sortie) infinite}
+.assistant__pts i:nth-child(2){animation-delay:.16s}
+.assistant__pts i:nth-child(3){animation-delay:.32s}
+@keyframes assistant-pts{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.assistant__journal{width:100%;margin:0;padding:0;list-style:none;display:grid;gap:2px}
+.assistant__journal li{position:relative;padding-left:16px;font-size:12px;line-height:1.5;color:var(--gris)}
+.assistant__journal li::before{content:"✓";position:absolute;left:0;color:var(--terre)}
+.assistant__curseur{display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;
+  background:var(--terre);animation:assistant-curseur 1s steps(2,end) infinite}
+@keyframes assistant-curseur{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+.assistant__sugg{display:flex;flex-wrap:wrap;gap:var(--e1);padding:0 var(--e3) var(--e2);background:var(--creme)}
+.assistant__chip{padding:9px 14px;border:0;border-radius:999px;
+  background:color-mix(in srgb,var(--sable) 55%,var(--craie));color:var(--lac);
+  font-family:var(--texte);font-size:13px;line-height:1.3;text-align:left;cursor:pointer;
+  transition:background .25s var(--sortie),color .25s var(--sortie)}
+.assistant__chip:hover{background:var(--lac);color:var(--creme)}
+
+.assistant__form{display:flex;align-items:flex-end;gap:var(--e1);padding:var(--e2) var(--e3);
+  border-top:1px solid var(--regle);background:var(--craie)}
+.assistant__form textarea{flex:1;min-width:0;min-height:44px;max-height:132px;padding:11px 14px;
+  border:1px solid var(--regle);border-radius:18px;background:var(--creme);color:var(--lac);
+  font-family:var(--texte);font-size:14.5px;line-height:1.45;resize:none}
+.assistant__form textarea:focus{outline:none;border-color:var(--terre)}
+.assistant__envoyer{flex:none;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:50%;
+  background:var(--terre);color:var(--creme);cursor:pointer;transition:background .25s var(--sortie)}
+.assistant__envoyer:hover{background:var(--lac)}
+.assistant__envoyer:disabled{opacity:.4;cursor:not-allowed}
+.assistant__note{padding:0 var(--e3) var(--e3);background:var(--craie);font-size:11.5px;line-height:1.5;color:var(--gris)}
+
+.assistant__btn:focus-visible,.assistant__chip:focus-visible,.assistant__eff:focus-visible,
+.assistant__fermer:focus-visible,.assistant__envoyer:focus-visible,.questions__q:focus-visible{
+  outline:2px solid var(--terre-vif);outline-offset:3px}
+
+@media(prefers-reduced-motion:reduce){
+  .assistant__pts i,.assistant__curseur{animation:none}
+  .assistant__btn:hover,.questions__q:hover{transform:none}
+}
+
+/* ---------- Repris du <style> en ligne de parcours d’adhésion ---------- */
+/* =====================================================================
+   Le parcours d’adhésion — les composants propres à cette page.
+   Ils n’existent pas encore dans styles.css : la feuille commune n’a
+   jamais été ouverte en écriture pour cette brique, et sans eux la page
+   s’affichait sans mise en forme. Ils sont donc posés ici, bâtis
+   uniquement sur les jetons de la feuille commune, et ils ont vocation
+   à la rejoindre telle quelle dès qu’on pourra la modifier.
+   ===================================================================== */
+
+/* La feuille commune ne pose pas cette règle, et plusieurs blocs ci-dessous
+   déclarent un display : sans elle, la liste des raisons du conseil garderait
+   sa marge alors qu’elle est cachée. admin.html en porte la même copie ; les
+   deux disparaissent le jour où la règle rejoint la tête de styles.css. */
+[hidden]{display:none!important}
+
+/* ---------- Le fil des trois écrans ---------- */
+.parcours{margin-top:var(--e5)}
+.parcours ol{list-style:none;counter-reset:e;display:grid;gap:var(--e2)}
+@media(min-width:760px){.parcours ol{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--e3)}}
+.parcours li{counter-increment:e;display:flex;align-items:baseline;gap:var(--e2);
+  padding-top:var(--e2);border-top:2px solid var(--regle);font-size:14px;color:var(--gris)}
+.parcours li::before{content:counter(e,decimal-leading-zero);font-family:var(--display);
+  font-size:12px;letter-spacing:.08em}
+.parcours li[data-etat=fait]{border-top-color:var(--lac);color:var(--lac)}
+.parcours li[aria-current=step]{border-top-color:var(--terre);color:var(--lac);font-weight:600}
+.parcours li[aria-current=step]::before{color:var(--terre)}
+.parcours .note{margin-top:var(--e2)}
+
+/* ---------- Un écran ---------- */
+.ecran{margin-top:var(--e5);padding-bottom:var(--e6)}
+
+/* ---------- Le résumé de ce qui manque ---------- */
+.erreurs{margin-top:var(--e4);padding:var(--e4);border-radius:var(--rayon);
+  background:var(--craie);box-shadow:inset 0 0 0 1.5px var(--terre)}
+.erreurs>b{display:block;font-size:15px;font-weight:700;color:var(--terre)}
+.erreurs ul{list-style:none;margin-top:var(--e2);display:grid;gap:6px}
+.erreurs a{font-size:14px;color:var(--terre);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- Un bloc de questions ---------- */
+.bloc{border:0;min-width:0;min-inline-size:0;margin-top:var(--e5);padding:var(--e4);
+  background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
+@media(min-width:760px){.bloc{padding:var(--e5)}}
+.bloc__t{padding:0;font-family:var(--texte);font-size:11px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--terre)}
+.bloc__d{margin-top:var(--e2);font-size:14px;line-height:1.6;color:var(--gris);max-width:64ch}
+.bloc .choix{margin-top:var(--e3)}
+.bloc .trio{margin-top:var(--e4)}
+.champ__q{margin-top:var(--e4);font-size:15px;font-weight:600}
+
+/* ---------- Les champs de saisie ---------- */
+.champs{display:grid;gap:var(--e3);margin-top:var(--e3)}
+.champs>*{min-width:0}
+@media(min-width:760px){
+  .champs--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .champs--3{grid-template-columns:minmax(0,.72fr) minmax(0,1fr) minmax(0,1fr)}
+}
+.champ{display:flex;flex-direction:column;min-width:0}
+.champ--court{max-width:240px}
+/* L’étiquette s’appelle .champ__e et non .champ__l : styles.css réserve déjà .champ__l
+   au réglage de prix de l’accueil, où le b intérieur s’affiche en Archivo Black. Recopier
+   ce bloc à la fin de la feuille commune sous l’ancien nom aurait défiguré ce réglage. */
+.champ__e{display:block;margin-bottom:8px;font-size:13px;font-weight:600}
+.champ__e b{font-weight:400;color:var(--gris)}
+.champ__f{margin-left:6px;font-size:12px;font-weight:400;color:var(--gris)}
+.saisie{width:100%;min-height:48px;padding:0 var(--e3);border-radius:999px;
+  border:1px solid var(--regle);background:var(--craie);color:var(--lac);
+  font-family:var(--texte);font-size:15px;line-height:normal}
+select.saisie{cursor:pointer}
+.saisie::placeholder{color:var(--gris);opacity:.75}
+.saisie:focus{outline:2px solid var(--terre);outline-offset:2px;border-color:var(--terre)}
+.saisie[aria-invalid=true]{border-color:var(--terre);
+  background:color-mix(in srgb,var(--terre) 6%,var(--craie))}
+.saisie--chiffres{font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.saisie--signature{font-family:var(--edito);font-size:18px}
+.aide{display:block;margin-top:6px;font-size:12.5px;line-height:1.5;color:var(--gris)}
+.erreur{display:block;font-size:12.5px;line-height:1.5;font-weight:600;color:var(--terre)}
+.erreur:not(:empty){margin-top:6px}
+.choix[data-invalide],.pastilles[data-invalide],.trio[data-invalide]{
+  outline:1.5px solid var(--terre);outline-offset:8px;border-radius:var(--rayon)}
+
+/* ---------- Une question du recueil des besoins ---------- */
+.besoin{margin-top:var(--e4)}
+.besoin>.champ__q{margin-top:0}
+.besoin .pastilles{margin-top:var(--e3)}
+.besoin>.aide{margin-top:4px}
+
+/* ---------- Le conseil motivé ---------- */
+.conseil{margin-top:var(--e5);padding:var(--e4);border-radius:var(--rayon);
+  background:var(--lac);color:var(--creme)}
+@media(min-width:760px){.conseil{padding:var(--e5)}}
+.conseil__t{display:block;font-size:11px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--terre-vif)}
+.conseil__p{margin-top:var(--e3);font-family:var(--edito);
+  font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.6;max-width:60ch}
+.conseil__l{list-style:none;margin-top:var(--e4);display:grid;gap:0}
+.conseil__l li{padding:var(--e3) 0;font-size:14px;line-height:1.6;
+  color:color-mix(in srgb,var(--creme) 86%,transparent);
+  border-top:1px solid color-mix(in srgb,var(--creme) 20%,transparent)}
+.conseil__n{margin-top:var(--e3);color:color-mix(in srgb,var(--creme) 62%,transparent)}
+
+/* ---------- Les trois formules, en choix ---------- */
+.carte--choix{cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--regle);
+  transition:box-shadow .25s var(--sortie),transform .4s var(--sortie)}
+.carte--choix input{position:absolute;opacity:0;width:1px;height:1px}
+.carte--choix:has(input:checked),.carte--choix[data-choisie=oui]{box-shadow:inset 0 0 0 2px var(--terre)}
+.carte--choix:focus-within{outline:2px solid var(--terre);outline-offset:3px}
+.carte__etat{display:flex;align-items:center;gap:10px;margin-top:var(--e3);
+  font-size:14px;font-weight:600;color:var(--terre)}
+.carte__coche{position:relative;flex:none;width:20px;height:20px;border-radius:50%;
+  border:1.5px solid var(--regle)}
+.carte--choix:has(input:checked) .carte__coche,
+.carte--choix[data-choisie=oui] .carte__coche{border-color:var(--terre)}
+.carte--choix:has(input:checked) .carte__coche::after,
+.carte--choix[data-choisie=oui] .carte__coche::after{content:"";position:absolute;inset:4px;
+  border-radius:50%;background:var(--terre)}
+
+/* ---------- Une case à cocher et son explication ---------- */
+.accord{display:flex;align-items:flex-start;gap:var(--e3);margin-top:var(--e4);padding:var(--e3);
+  border-radius:var(--rayon);cursor:pointer;
+  background:color-mix(in srgb,var(--sable) 40%,var(--craie))}
+.accord input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--terre);cursor:pointer}
+.accord b{display:block;font-size:14.5px;font-weight:600;line-height:1.5}
+.accord small{display:block;margin-top:6px;font-size:13px;line-height:1.6;color:var(--gris)}
+.accord:has(input:checked){background:color-mix(in srgb,var(--terre) 8%,var(--craie))}
+
+/* ---------- Le récapitulatif ---------- */
+.recap{display:grid;gap:0;margin-top:var(--e3)}
+.recap>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--e3);
+  align-items:baseline;padding:var(--e3) 0;border-top:1px solid var(--regle)}
+.recap>div:first-child{border-top:0}
+.recap dt{font-size:14px;color:var(--gris)}
+.recap dd{font-size:15px;font-weight:600;text-align:right}
+
+/* ---------- Les boutons au pied d’un écran ---------- */
+.pilote{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e5)}
+.pilote .btn{flex:1 1 260px}
+.pilote--clair{margin-top:var(--e5)}
+.btn--sur-lac{background:transparent;color:var(--creme);
+  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--creme) 34%,transparent)}
+.btn--sur-lac:hover{background:var(--creme);color:var(--lac);box-shadow:none}
+
+/* ---------- Les annonces et le panneau resserré ---------- */
+.annonce{margin-top:var(--e3);font-size:14px;font-weight:600;color:var(--terre)}
+.annonce:empty{margin:0}
+.lien--bouton{padding:0;border:0;background:transparent;font:inherit;cursor:pointer}
+.panneau--serre{margin:var(--e5) 0 var(--e6);padding:var(--e5) var(--e4)}
+@media(min-width:900px){.panneau--serre{padding:var(--e6)}}
+
+/* ---------- Repris du <style> en ligne de plateforme d’administration ---------- */
+/* =====================================================================
+   Habillage du poste de gestion. Ce bloc n'emploie que les jetons de
+   site/styles.css : aucune couleur, aucune police et aucune mesure ne sont
+   écrites en dur. Il vit ici plutôt que dans la feuille commune parce que
+   la page est interne et qu'elle est la seule à s'en servir ; le jour où
+   ces composants serviront ailleurs, il se recopie tel quel à la fin de
+   site/styles.css, sans rien changer.
+   ===================================================================== */
+
+/* Un seul ajout au jeu de jetons : une pile monospace du système, sans rien à
+   télécharger. Les chemins de fichiers et surtout l'export à colonnes fixes ne se
+   lisent pas dans une police à chasse variable. */
+:root{--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+
+/* La feuille commune ne pose pas cette règle, et plusieurs blocs ci-dessous
+   déclarent un display : sans elle, l'attribut hidden ne cacherait rien. */
+[hidden]{display:none!important}
+
+/* ---------- barre et cadre général ---------- */
+/* La barre du site est fixe et les pages publiques lui réservent 130 px en tête.
+   Ici elle est collante : le poste de gestion défile beaucoup, et rien ne doit
+   passer sous elle. */
+.adm__barre{position:sticky;top:0;left:auto;right:auto}
+.adm__titre{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.adm__barre .btn{margin-left:auto}
+.adm{padding-bottom:var(--e6)}
+.adm__tete{padding:var(--e5) 0 var(--e4)}
+
+/* ---------- la porte ---------- */
+.adm__porte{display:flex;justify-content:center;padding:var(--e6) var(--marge) var(--e7)}
+.adm__carte{width:100%;max-width:520px;background:var(--craie);border-radius:var(--rayon);
+  padding:var(--e5);box-shadow:var(--ombre);display:grid;gap:var(--e2)}
+.adm__carte h1{font-size:clamp(1.9rem,4vw,2.6rem);margin-top:var(--e2)}
+.adm__carte .lead{font-size:15px;max-width:none;margin:var(--e2) 0 var(--e3)}
+.adm__carte code{font-family:var(--mono);font-size:.88em;
+  background:var(--sable);border-radius:6px;padding:1px 5px}
+.adm__carte .btn{margin-top:var(--e2);width:100%}
+.adm__carte .note{margin-top:var(--e2)}
+
+/* ---------- champs de saisie ---------- */
+.adm__l{display:block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gris);margin-bottom:var(--e1)}
+.adm__saisie{width:100%;min-height:48px;padding:0 var(--e2);background:var(--craie);color:var(--lac);
+  border:1.5px solid var(--regle);border-radius:10px;font-family:var(--texte);font-size:15px;
+  transition:border-color .25s var(--sortie)}
+select.adm__saisie{padding-right:var(--e3)}
+.adm__saisie:focus{outline:none;border-color:var(--terre)}
+.adm__saisie--court{max-width:230px}
+.adm__aide{display:block;margin-top:6px;font-size:12px;line-height:1.5;color:var(--gris)}
+.adm__ob{font-style:normal;color:var(--terre);margin-left:4px}
+
+/* ---------- messages ---------- */
+.adm__msg{margin-top:var(--e2);padding:var(--e2);border-radius:10px;font-size:14px;line-height:1.55;
+  background:var(--sable);color:var(--gris)}
+.adm__msg--erreur{background:color-mix(in srgb,var(--terre) 10%,var(--craie));color:var(--terre)}
+.adm__msg--ok{background:color-mix(in srgb,var(--lac) 8%,var(--craie));color:var(--lac)}
+.adm__msg--info{background:var(--sable);color:var(--lac)}
+
+/* ---------- les trois onglets ---------- */
+.adm__onglets{display:grid;gap:var(--e1);margin-top:var(--e4);
+  border-top:1px solid var(--regle);border-bottom:1px solid var(--regle);padding:var(--e2) 0}
+@media(min-width:760px){.adm__onglets{grid-template-columns:repeat(3,1fr);gap:var(--e2)}}
+.adm__onglet{text-align:left;padding:var(--e2) var(--e3);border:0;border-radius:12px;cursor:pointer;
+  background:transparent;color:var(--gris);font-family:var(--texte);
+  transition:background .25s var(--sortie),color .25s var(--sortie)}
+.adm__onglet b{display:block;font-size:15px;font-weight:700;color:var(--lac)}
+.adm__onglet small{display:block;margin-top:2px;font-size:12px}
+.adm__onglet:hover{background:var(--sable)}
+.adm__onglet[aria-selected=true]{background:var(--lac)}
+.adm__onglet[aria-selected=true] b{color:var(--creme)}
+.adm__onglet[aria-selected=true] small{color:var(--terre-vif)}
+.adm__onglet:focus-visible{outline:2px solid var(--terre);outline-offset:2px}
+
+/* ---------- panneaux et barres d'outils ---------- */
+.adm__panneau{padding-top:var(--e5)}
+.adm__panneau:focus{outline:none}
+.adm__outils{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:var(--e3);margin-top:var(--e5)}
+.adm__panneau>.adm__outils:first-child{margin-top:0}
+.adm__outils .note{margin-top:var(--e1);max-width:62ch}
+.adm__actions{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--e2)}
+.adm__actions--large{margin-top:var(--e3);width:100%}
+.adm__actions--large>div{flex:1 1 220px}
+
+/* ---------- tableaux ---------- */
+.adm__tableau{margin-top:var(--e3)}
+.adm__vide{margin-top:var(--e3);padding:var(--e4);background:var(--craie);border-radius:var(--rayon);
+  font-size:14px;color:var(--gris)}
+.adm__lien{border:0;background:transparent;padding:0;font:inherit;color:inherit;text-align:left;
+  cursor:pointer;text-decoration:underline;text-decoration-color:var(--regle);text-underline-offset:3px}
+.adm__lien:hover{color:var(--terre)}
+.adm__ligne{cursor:pointer}
+.adm__ligne:hover{background:color-mix(in srgb,var(--sable) 34%,var(--craie))}
+.adm__etat{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;
+  white-space:nowrap;background:var(--sable);color:var(--gris)}
+.adm__etat[data-etat=a_relire],.adm__etat[data-etat=pieces_attendues]{
+  background:color-mix(in srgb,var(--terre) 14%,var(--craie));color:var(--terre)}
+.adm__etat[data-etat=valide]{background:var(--lac);color:var(--creme)}
+.adm__etat[data-etat=refuse]{background:var(--terre);color:var(--creme)}
+
+/* ---------- le détail d'un dossier ---------- */
+.adm__detail{margin-top:var(--e4);padding:var(--e4);background:var(--craie);border-radius:var(--rayon);
+  box-shadow:var(--ombre)}
+.adm__champs{display:grid;gap:0;margin-top:var(--e3)}
+@media(min-width:700px){.adm__champs{grid-template-columns:auto 1fr}}
+.adm__champs dt{padding:var(--e2) 0;border-top:1px solid var(--regle);font-size:12px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.adm__champs dd{padding:var(--e2) 0;border-top:1px solid var(--regle);font-size:15px}
+@media(max-width:699px){.adm__champs dd{padding-top:0;border-top:0}}
+@media(min-width:700px){.adm__champs dd{padding-left:var(--e4)}}
+.adm__suivi{display:grid;gap:var(--e3);margin-top:var(--e4);align-items:end}
+@media(min-width:820px){.adm__suivi{grid-template-columns:230px 1fr auto}}
+
+/* ---------- le dépôt d'une pièce ---------- */
+.adm__lecture{display:grid;gap:var(--e4);margin-top:var(--e4);align-items:start}
+@media(min-width:940px){.adm__lecture{grid-template-columns:1.25fr 1fr;gap:var(--e5)}}
+.adm__depot{display:block;padding:var(--e5) var(--e4);text-align:center;cursor:pointer;
+  background:var(--craie);border:1.5px dashed var(--regle);border-radius:var(--rayon);
+  transition:border-color .25s var(--sortie),background .25s var(--sortie)}
+.adm__depot:hover,.adm__depot--vise{border-color:var(--terre);background:color-mix(in srgb,var(--sable) 45%,var(--craie))}
+.adm__depot b{display:block;font-size:15px;font-weight:600}
+.adm__depot small{display:block;margin-top:6px;font-size:13px;color:var(--gris)}
+.adm__depot:focus-within{border-color:var(--terre)}
+.adm__apercu{margin-top:var(--e3);padding:var(--e2);background:var(--craie);border-radius:var(--rayon);
+  border:1px solid var(--regle)}
+.adm__apercu img{max-height:320px;width:auto;margin:0 auto;border-radius:8px}
+.adm__encart{margin:0}
+.adm__encart--large{margin-top:var(--e4)}
+
+/* ---------- la relecture, champ par champ ---------- */
+.adm__relecture{margin-top:var(--e5);padding:var(--e4);background:var(--craie);border-radius:var(--rayon);
+  box-shadow:var(--ombre)}
+.adm__grille{display:grid;gap:var(--e3);margin-top:var(--e4)}
+@media(min-width:680px){.adm__grille{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1080px){.adm__grille{grid-template-columns:repeat(3,1fr)}}
+.adm__champ__h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--e1)}
+.adm__champ__h .adm__l{margin-bottom:6px}
+.adm__conf{flex:none;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;
+  background:var(--sable);color:var(--gris)}
+.adm__conf--haute{background:color-mix(in srgb,var(--lac) 10%,var(--craie));color:var(--lac)}
+.adm__conf--moyenne{background:color-mix(in srgb,var(--terre) 14%,var(--craie));color:var(--terre)}
+.adm__conf--basse{background:var(--terre);color:var(--creme)}
+.adm__atteste{display:flex;gap:var(--e2);align-items:flex-start;margin-top:var(--e4);
+  padding:var(--e3);background:var(--sable);border-radius:12px;font-size:14px;line-height:1.55;cursor:pointer}
+.adm__atteste input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--terre);cursor:pointer}
+
+/* ---------- le contrôle et l'export ---------- */
+.adm__controle{margin-top:var(--e4);padding-top:var(--e3);border-top:1px solid var(--regle)}
+.adm__liste-msg{list-style:none;display:grid;gap:var(--e1);margin-top:var(--e2)}
+.adm__liste-msg li{padding:var(--e2);border-radius:10px;font-size:14px;line-height:1.55;
+  background:var(--sable);color:var(--gris)}
+.adm__sortie{margin-top:var(--e2);padding:var(--e3);overflow-x:auto;background:var(--lac);color:var(--creme);
+  border-radius:12px;font-family:var(--mono);font-size:12px;
+  line-height:1.7;white-space:pre;-webkit-overflow-scrolling:touch}
+.adm__sortie--haute{max-height:min(60vh,460px);overflow-y:auto}
+.adm__export{margin-top:var(--e4);padding:var(--e4);background:var(--craie);border-radius:var(--rayon);
+  box-shadow:var(--ombre)}
+.adm__repli{margin-top:var(--e5)}
+.adm__pied{margin-top:0}

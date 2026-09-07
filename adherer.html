@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adhérer · ALPICARE</title>
+<meta name="description" content="Votre adhésion à ALPICARE en trois écrans : votre situation, votre formule, votre signature. Aucune pièce à joindre avant la signature, et votre prix s’affiche à chaque étape.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6F1E7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23123047%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2711%27 fill=%27%23E8733F%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="styles.css">
+<script src="tarif.js" defer></script>
+<script src="app.js" defer></script>
+<script src="adhesion.js" defer></script>
+</head>
+<body>
+
+<div class="progres" aria-hidden="true"><i data-progres></i></div>
+
+<header class="barre" data-barre>
+  <div class="barre__i">
+    <a class="marque" href="index.html">ALPICARE</a>
+    <nav aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="couverture.html">Ce qui est couvert</a>
+      <a href="guide-lamal-cmu.html">LAMal ou CMU</a>
+    </nav>
+    <a class="btn btn--sm" href="adherer.html" aria-current="page">Adhérer</a>
+  </div>
+</header>
+
+<main>
+<p class="note env" style="padding-top:110px;max-width:76ch">Aperçu statique : le parcours se remplit et se calcule normalement, mais l’envoi final a besoin du serveur d’ALPICARE et n’aboutira pas ici.</p>
+
+  <section class="tete env">
+    <p class="slogan pose">L’assurance qui survole la frontière</p>
+    <h1 class="pose">Votre adhésion,<br><span class="bleu">en trois écrans.</span></h1>
+    <p class="lead pose">Votre situation, votre formule, votre signature. Vous n’avez aucune pièce à joindre avant de signer : votre justificatif de statut de frontalier ne vous sera demandé qu’ensuite.</p>
+  </section>
+
+  <nav class="parcours env" aria-label="Votre progression dans l’adhésion">
+    <ol>
+      <li data-etape="1" aria-current="step"><span>Votre situation</span></li>
+      <li data-etape="2"><span>Votre formule</span></li>
+      <li data-etape="3"><span>Vos informations et votre signature</span></li>
+    </ol>
+    <p class="note" data-compte-ecrans>Écran 1 sur 3.</p>
+  </nav>
+
+  <noscript>
+    <div class="env">
+      <div class="encart" style="margin-top:var(--e4)">
+        <b>Le script de cette page ne s’exécute pas.</b>
+        <p>Les trois écrans s’affichent alors les uns à la suite des autres, et vous pouvez lire l’ensemble des questions et des documents. En revanche, ni le calcul du prix, ni la vérification de vos réponses, ni la signature ne fonctionnent sans script. Pour adhérer, activez le script de cette page, ou écrivez-nous et nous reprendrons le dossier avec vous.</p>
+      </div>
+    </div>
+  </noscript>
+
+  <p class="env annonce" id="annonce" role="status" aria-live="polite"></p>
+
+  <form class="env" id="adhesion" novalidate>
+
+    <!-- =============================================================
+         ÉCRAN 1 — VOTRE SITUATION
+         ============================================================= -->
+    <section class="ecran" id="ecran-1" data-ecran="1" aria-labelledby="t-ecran-1">
+      <span class="sur">Écran 1 sur 3</span>
+      <h2 id="t-ecran-1" tabindex="-1" style="margin-top:var(--e3)">Votre situation</h2>
+      <p class="lead" style="margin-top:var(--e3)">Six questions fermées suffisent à savoir si ce contrat vous est ouvert et à calculer votre cotisation. Aucune ne porte sur votre santé.</p>
+
+      <div class="erreurs" id="erreurs-1" role="alert" hidden>
+        <b>Il reste quelque chose à compléter.</b>
+        <ul></ul>
+      </div>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre travail et votre résidence</legend>
+        <p class="bloc__d">Le contrat est réservé aux salariés qui travaillent en Suisse et qui habitent en France.</p>
+
+        <p class="champ__q" id="q-travail">Travaillez-vous en Suisse comme salarié ?</p>
+        <div class="choix" role="radiogroup" aria-labelledby="q-travail" aria-describedby="e-travail">
+          <label><input type="radio" name="travail" value="oui"><span class="choix__pt" aria-hidden="true"></span><span><b>Oui, je suis salarié en Suisse</b><small>Vous travaillez pour un employeur suisse, à temps plein ou à temps partiel.</small></span></label>
+          <label><input type="radio" name="travail" value="non"><span class="choix__pt" aria-hidden="true"></span><span><b>Non</b><small>Indépendant, retraité, sans activité, ou salarié d’un employeur français.</small></span></label>
+        </div>
+        <span class="erreur" id="e-travail" aria-live="polite"></span>
+
+        <p class="champ__q" id="q-residence" style="margin-top:var(--e4)">Résidez-vous en France ?</p>
+        <div class="choix" role="radiogroup" aria-labelledby="q-residence" aria-describedby="e-residence">
+          <label><input type="radio" name="residence" value="oui"><span class="choix__pt" aria-hidden="true"></span><span><b>Oui, ma résidence principale est en France</b><small>C’est l’adresse de votre foyer fiscal.</small></span></label>
+          <label><input type="radio" name="residence" value="non"><span class="choix__pt" aria-hidden="true"></span><span><b>Non, je réside en Suisse</b><small>Vous êtes alors résident suisse et non frontalier.</small></span></label>
+        </div>
+        <span class="erreur" id="e-residence" aria-live="polite"></span>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre date de naissance</legend>
+        <p class="bloc__d">Elle sert à calculer votre cotisation. Le contrat s’ouvre à 18 ans et se souscrit jusqu’à 67 ans.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <label class="champ__e" for="naissance">Date de naissance <b data-age-lu></b></label>
+            <input class="saisie" type="date" id="naissance" name="naissance" autocomplete="bday" min="1940-01-01" aria-describedby="e-naissance">
+            <span class="erreur" id="e-naissance" aria-live="polite"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre régime d’assurance maladie</legend>
+        <p class="bloc__d">Comme frontalier, vous relevez soit de la LAMal suisse, soit de la Sécurité sociale française si vous avez exercé le droit d’option. <a class="lien" href="guide-lamal-cmu.html">Le guide explique la différence</a>.</p>
+        <div class="choix" role="radiogroup" aria-label="Votre régime" aria-describedby="e-regime">
+          <label><input type="radio" name="regime" value="lamal"><span class="choix__pt" aria-hidden="true"></span><span><b>LAMal suisse</b><small>Vous êtes assuré auprès d’une caisse maladie suisse et vous payez une franchise et une quote-part.</small></span></label>
+          <label><input type="radio" name="regime" value="cmu"><span class="choix__pt" aria-hidden="true"></span><span><b>Sécurité sociale française</b><small>Vous avez exercé le droit d’option et vous cotisez en France sur vos revenus.</small></span></label>
+        </div>
+        <span class="erreur" id="e-regime" aria-live="polite"></span>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre foyer</legend>
+        <p class="bloc__d">Le second adulte bénéficie d’une réduction de 10 %, et vos enfants d’une réduction de 50 % à partir du troisième.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <span class="champ__e" id="l-adultes">Adultes à couvrir</span>
+            <div class="pastilles" role="radiogroup" aria-labelledby="l-adultes" aria-describedby="e-adultes">
+              <label class="pastille"><input type="radio" name="adultes" value="1"> Un adulte</label>
+              <label class="pastille"><input type="radio" name="adultes" value="2"> Deux adultes</label>
+            </div>
+            <span class="erreur" id="e-adultes" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="enfants">Enfants à couvrir</label>
+            <select class="saisie" id="enfants" name="enfants">
+              <option value="0">Aucun enfant</option>
+              <option value="1">Un enfant</option>
+              <option value="2">Deux enfants</option>
+              <option value="3">Trois enfants</option>
+              <option value="4">Quatre enfants</option>
+            </select>
+            <span class="aide">Vos enfants de moins de 20 ans, rattachés à votre foyer.</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre département</legend>
+        <p class="bloc__d">Il nous sert à vous orienter vers le bon interlocuteur et à préparer votre dossier. Il n’entre pas dans le calcul du prix.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <label class="champ__e" for="departement">Département de résidence</label>
+            <select class="saisie" id="departement" name="departement" aria-describedby="e-departement">
+              <option value="">Choisissez votre département</option>
+              <option value="01">01 · Ain</option>
+              <option value="25">25 · Doubs</option>
+              <option value="39">39 · Jura</option>
+              <option value="68">68 · Haut-Rhin</option>
+              <option value="70">70 · Haute-Saône</option>
+              <option value="74">74 · Haute-Savoie</option>
+              <option value="88">88 · Vosges</option>
+              <option value="90">90 · Territoire de Belfort</option>
+              <option value="autre">Un autre département français</option>
+            </select>
+            <span class="erreur" id="e-departement" aria-live="polite"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="pilote">
+        <a class="btn btn--clair" href="index.html">Revenir à l’accueil</a>
+        <button class="btn btn--bleu" type="button" data-suivant="2">Continuer vers ma formule</button>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         ÉCRAN 2 — VOTRE FORMULE
+         ============================================================= -->
+    <section class="ecran" id="ecran-2" data-ecran="2" aria-labelledby="t-ecran-2">
+      <span class="sur">Écran 2 sur 3</span>
+      <h2 id="t-ecran-2" tabindex="-1" style="margin-top:var(--e3)">Votre formule</h2>
+      <p class="lead" style="margin-top:var(--e3)">Dites-nous ce que vous attendez de votre complémentaire. Nous vous remettons un conseil écrit et motivé, puis vous choisissez librement l’une des trois formules.</p>
+
+      <div class="erreurs" id="erreurs-2" role="alert" hidden>
+        <b>Il reste quelque chose à compléter.</b>
+        <ul></ul>
+      </div>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Vos exigences et vos besoins</legend>
+        <p class="bloc__d">Vos réponses sont conservées avec votre dossier : la loi nous demande de recueillir par écrit ce que vous attendez du contrat avant de vous conseiller. Aucune de ces questions ne porte sur votre état de santé.</p>
+
+        <div class="besoin">
+          <p class="champ__q" id="q-lieu">Où vous soignez-vous le plus souvent ?</p>
+          <div class="pastilles" role="radiogroup" aria-labelledby="q-lieu" aria-describedby="e-lieu">
+            <label class="pastille"><input type="radio" name="lieu" value="suisse"> Surtout en Suisse</label>
+            <label class="pastille"><input type="radio" name="lieu" value="deux"> Des deux côtés</label>
+            <label class="pastille"><input type="radio" name="lieu" value="france"> Surtout en France</label>
+          </div>
+          <span class="erreur" id="e-lieu" aria-live="polite"></span>
+        </div>
+
+        <div class="besoin">
+          <p class="champ__q" id="q-postes">Sur quels postes attendez-vous le plus de votre complémentaire ?</p>
+          <p class="aide">Plusieurs réponses possibles. Il s’agit de vos priorités de couverture, pas de vos soins en cours.</p>
+          <div class="pastilles" role="group" aria-labelledby="q-postes" aria-describedby="e-postes">
+            <label class="pastille"><input type="checkbox" name="postes" value="courants"> Soins courants</label>
+            <label class="pastille"><input type="checkbox" name="postes" value="hospitalisation"> Hospitalisation</label>
+            <label class="pastille"><input type="checkbox" name="postes" value="optique"> Optique</label>
+            <label class="pastille"><input type="checkbox" name="postes" value="dentaire"> Dentaire</label>
+            <label class="pastille"><input type="checkbox" name="postes" value="complementaires"> Médecines complémentaires</label>
+          </div>
+          <span class="erreur" id="e-postes" aria-live="polite"></span>
+        </div>
+
+        <div class="besoin">
+          <p class="champ__q" id="q-budget">Qu’attendez-vous d’abord de votre cotisation ?</p>
+          <div class="pastilles" role="radiogroup" aria-labelledby="q-budget" aria-describedby="e-budget">
+            <label class="pastille"><input type="radio" name="budget" value="bas"> La cotisation la plus basse</label>
+            <label class="pastille"><input type="radio" name="budget" value="equilibre"> Un équilibre entre prix et garanties</label>
+            <label class="pastille"><input type="radio" name="budget" value="large"> La couverture la plus large</label>
+          </div>
+          <span class="erreur" id="e-budget" aria-live="polite"></span>
+        </div>
+      </fieldset>
+
+      <div class="conseil" id="conseil" aria-live="polite">
+        <b class="conseil__t">Notre conseil</b>
+        <p class="conseil__p" data-conseil-texte>Répondez aux trois questions ci-dessus et notre conseil s’affiche ici, avec ses raisons.</p>
+        <ul class="conseil__l" data-conseil-raisons hidden></ul>
+        <p class="note conseil__n" hidden data-conseil-note>Ce conseil ne porte que sur les trois formules d’ALPICARE et ne résulte pas d’une analyse impartiale du marché. Vous restez libre de choisir une autre formule que celle que nous vous conseillons.</p>
+      </div>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre formule et votre prix</legend>
+        <p class="bloc__d" data-foyer-lu>Les prix ci-dessous sont ceux de votre foyer, tout compris : ni frais de dossier, ni droit d’entrée, ni cotisation d’association.</p>
+
+        <div class="trio" role="radiogroup" aria-label="Choisissez votre formule" aria-describedby="e-formule">
+
+          <label class="carte carte--choix" data-formule="essentiel">
+            <input type="radio" name="formule" value="essentiel">
+            <span class="carte__b" data-badge hidden></span>
+            <h3>Essentiel</h3>
+            <p class="note" style="margin-top:var(--e2)">Vous vous soignez surtout en Suisse et vous prévoyez des lunettes ou quelques séances d’ostéopathie.</p>
+            <ul>
+              <li><b>Soins courants</b><span>150 %</span></li>
+              <li><b>Dentaire</b><span>150 %, plafond 900 €</span></li>
+              <li><b>Optique</b><span>125 €</span></li>
+              <li><b>En Suisse</b><span data-suisse-essentiel>Quote-part remboursée à 100 %</span></li>
+            </ul>
+            <p class="prix"><span data-prix-mois>—</span><small><span data-prix-an>—</span> par an pour votre foyer</small></p>
+            <span class="carte__etat"><span class="carte__coche" aria-hidden="true"></span><span data-etat-formule>Choisir Essentiel</span></span>
+          </label>
+
+          <label class="carte carte--choix" data-formule="confort">
+            <input type="radio" name="formule" value="confort">
+            <span class="carte__b" data-badge>La plus choisie</span>
+            <h3>Confort</h3>
+            <p class="note" style="margin-top:var(--e2)">Vous vous soignez des deux côtés de la frontière, avec vos enfants, et vous prévoyez des soins dentaires.</p>
+            <ul>
+              <li><b>Soins courants</b><span>200 %</span></li>
+              <li><b>Dentaire</b><span>175 %, plafond 1 100 €</span></li>
+              <li><b>Optique</b><span>225 €</span></li>
+              <li><b>En Suisse</b><span data-suisse-confort>Quote-part remboursée à 100 % et 50 € de transport</span></li>
+            </ul>
+            <p class="prix"><span data-prix-mois>—</span><small><span data-prix-an>—</span> par an pour votre foyer</small></p>
+            <span class="carte__etat"><span class="carte__coche" aria-hidden="true"></span><span data-etat-formule>Choisir Confort</span></span>
+          </label>
+
+          <label class="carte carte--choix" data-formule="premium">
+            <input type="radio" name="formule" value="premium">
+            <span class="carte__b" data-badge hidden></span>
+            <h3>Premium</h3>
+            <p class="note" style="margin-top:var(--e2)">Vous prévoyez une prothèse dans l’année, des verres complexes ou un traitement d’orthodontie.</p>
+            <ul>
+              <li><b>Soins courants</b><span>250 %</span></li>
+              <li><b>Dentaire</b><span>225 %, plafond 1 200 €</span></li>
+              <li><b>Optique</b><span>325 / 450 €</span></li>
+              <li><b>En Suisse</b><span data-suisse-premium>Quote-part remboursée à 100 % et 100 € de transport</span></li>
+            </ul>
+            <p class="prix"><span data-prix-mois>—</span><small><span data-prix-an>—</span> par an pour votre foyer</small></p>
+            <span class="carte__etat"><span class="carte__coche" aria-hidden="true"></span><span data-etat-formule>Choisir Premium</span></span>
+          </label>
+
+        </div>
+        <span class="erreur" id="e-formule" aria-live="polite"></span>
+        <p class="note" style="margin-top:var(--e3)"><a class="lien" href="couverture.html">Lire le détail de ce qui est couvert, poste par poste</a>. Les garanties et les tarifs de cette maquette restent à confirmer avec l’assureur.</p>
+      </fieldset>
+
+      <div class="pilote">
+        <button class="btn btn--clair" type="button" data-precedent="1">Revenir à ma situation</button>
+        <button class="btn btn--bleu" type="button" data-suivant="3">Continuer vers mes informations</button>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         ÉCRAN 3 — VOS INFORMATIONS ET VOTRE SIGNATURE
+         ============================================================= -->
+    <section class="ecran" id="ecran-3" data-ecran="3" aria-labelledby="t-ecran-3">
+      <span class="sur">Écran 3 sur 3</span>
+      <h2 id="t-ecran-3" tabindex="-1" style="margin-top:var(--e3)">Vos informations et votre signature</h2>
+      <p class="lead" style="margin-top:var(--e3)">C’est le dernier écran. Vous n’avez aucune pièce à téléverser : votre justificatif de statut de frontalier vous sera demandé après la signature, par courriel.</p>
+
+      <div class="erreurs" id="erreurs-3" role="alert" hidden>
+        <b>Il reste quelque chose à compléter.</b>
+        <ul></ul>
+      </div>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre identité</legend>
+        <div class="champs champs--3">
+          <div class="champ">
+            <label class="champ__e" for="civilite">Civilité</label>
+            <select class="saisie" id="civilite" name="civilite" autocomplete="honorific-prefix" aria-describedby="e-civilite">
+              <option value="">À choisir</option>
+              <option value="madame">Madame</option>
+              <option value="monsieur">Monsieur</option>
+              <option value="autre">Je préfère ne pas préciser</option>
+            </select>
+            <span class="erreur" id="e-civilite" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="prenom">Prénom</label>
+            <input class="saisie" type="text" id="prenom" name="prenom" autocomplete="given-name" maxlength="60" aria-describedby="e-prenom">
+            <span class="erreur" id="e-prenom" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="nom">Nom</label>
+            <input class="saisie" type="text" id="nom" name="nom" autocomplete="family-name" maxlength="60" aria-describedby="e-nom">
+            <span class="erreur" id="e-nom" aria-live="polite"></span>
+          </div>
+        </div>
+        <p class="note" style="margin-top:var(--e3)">Votre date de naissance, <b data-naissance-lu>—</b>, a été saisie au premier écran. <button class="lien lien--bouton" type="button" data-precedent="1">La modifier</button>.</p>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre adresse et vos coordonnées</legend>
+        <div class="champs">
+          <div class="champ">
+            <label class="champ__e" for="adresse">Adresse</label>
+            <input class="saisie" type="text" id="adresse" name="adresse" autocomplete="address-line1" maxlength="120" aria-describedby="e-adresse">
+            <span class="erreur" id="e-adresse" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="complement">Complément d’adresse <b class="champ__f">facultatif</b></label>
+            <input class="saisie" type="text" id="complement" name="complement" autocomplete="address-line2" maxlength="120">
+          </div>
+        </div>
+        <div class="champs champs--2" style="margin-top:var(--e3)">
+          <div class="champ champ--court">
+            <label class="champ__e" for="cp">Code postal</label>
+            <input class="saisie" type="text" id="cp" name="cp" inputmode="numeric" autocomplete="postal-code" maxlength="5" aria-describedby="e-cp">
+            <span class="erreur" id="e-cp" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="commune">Commune</label>
+            <input class="saisie" type="text" id="commune" name="commune" autocomplete="address-level2" maxlength="80" aria-describedby="e-commune">
+            <span class="erreur" id="e-commune" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="champs champs--2" style="margin-top:var(--e3)">
+          <div class="champ">
+            <label class="champ__e" for="email">Adresse électronique</label>
+            <input class="saisie" type="email" id="email" name="email" autocomplete="email" maxlength="120" aria-describedby="a-email e-email">
+            <span class="aide" id="a-email">C’est à cette adresse que nous envoyons vos documents signés.</span>
+            <span class="erreur" id="e-email" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="tel">Téléphone</label>
+            <input class="saisie" type="tel" id="tel" name="tel" autocomplete="tel" maxlength="24" aria-describedby="a-tel e-tel">
+            <span class="aide" id="a-tel">Un numéro français ou suisse, par exemple 06 12 34 56 78 ou +41 79 123 45 67.</span>
+            <span class="erreur" id="e-tel" aria-live="polite"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre numéro de sécurité sociale</legend>
+        <p class="bloc__d">Quinze chiffres, clé comprise. Vous le trouvez sur votre carte Vitale, sur une attestation de droits ou sur un bulletin de salaire français. Nous vérifions sa clé de contrôle, rien d’autre.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <label class="champ__e" for="nir">Numéro de sécurité sociale</label>
+            <input class="saisie saisie--chiffres" type="text" id="nir" name="nir" inputmode="numeric" autocomplete="off" maxlength="21" placeholder="1 85 07 75 116 245 41" aria-describedby="a-nir e-nir">
+            <span class="aide" id="a-nir">Si vous relevez de la LAMal et n’avez pas encore de numéro français, laissez ce champ vide et cochez la case ci-dessous.</span>
+            <span class="erreur" id="e-nir" aria-live="polite"></span>
+          </div>
+        </div>
+        <label class="accord" for="sans-nir">
+          <input type="checkbox" id="sans-nir" name="sans-nir">
+          <span><b>Je n’ai pas encore de numéro de sécurité sociale français.</b><small>Nous vous le demanderons plus tard, avec votre justificatif de statut de frontalier. Cela ne retarde pas votre adhésion.</small></span>
+        </label>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Vos coordonnées bancaires</legend>
+        <p class="bloc__d">Votre cotisation est prélevée chaque mois sur ce compte. Nous vérifions la clé de contrôle de l’IBAN au moment où vous le saisissez.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <label class="champ__e" for="titulaire">Titulaire du compte</label>
+            <input class="saisie" type="text" id="titulaire" name="titulaire" autocomplete="off" maxlength="80" aria-describedby="e-titulaire">
+            <span class="erreur" id="e-titulaire" aria-live="polite"></span>
+          </div>
+          <div class="champ">
+            <label class="champ__e" for="iban">IBAN</label>
+            <input class="saisie saisie--chiffres" type="text" id="iban" name="iban" autocomplete="off" maxlength="42" placeholder="FR76 3000 1007 9412 3456 7890 185" aria-describedby="a-iban e-iban">
+            <span class="aide" id="a-iban">Un compte de la zone SEPA, en France, en Suisse ou ailleurs.</span>
+            <span class="erreur" id="e-iban" aria-live="polite"></span>
+          </div>
+        </div>
+        <label class="accord" for="sepa">
+          <input type="checkbox" id="sepa" name="sepa" aria-describedby="e-sepa">
+          <span><b>J’autorise ALPICARE à envoyer des ordres de prélèvement à ma banque, et ma banque à débiter mon compte.</b><small>C’est le mandat de prélèvement SEPA. Vous pouvez le révoquer à tout moment auprès de votre banque, et vous disposez de huit semaines pour vous faire rembourser un prélèvement.</small></span>
+        </label>
+        <span class="erreur" id="e-sepa" aria-live="polite"></span>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">La date d’effet souhaitée</legend>
+        <p class="bloc__d">Le contrat prend effet le premier jour d’un mois. Nous vous proposons le mois prochain, mais vous pouvez choisir plus tard.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <label class="champ__e" for="effet">Date d’effet</label>
+            <input class="saisie" type="date" id="effet" name="effet" aria-describedby="a-effet e-effet">
+            <span class="aide" id="a-effet" data-effet-note aria-live="polite">Le contrat prend effet le premier jour d’un mois : si vous choisissez une autre date, nous retenons le premier du mois suivant.</span>
+            <span class="erreur" id="e-effet" aria-live="polite"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre récapitulatif</legend>
+        <p class="bloc__d">Relisez ce que vous nous avez indiqué. Vous pouvez revenir en arrière : rien ne sera perdu.</p>
+        <dl class="recap" data-recap>
+          <div><dt>Votre situation</dt><dd data-recap-situation>—</dd></div>
+          <div><dt>Votre foyer</dt><dd data-recap-foyer>—</dd></div>
+          <div><dt>Votre formule</dt><dd data-recap-formule>—</dd></div>
+          <div><dt>Votre cotisation mensuelle</dt><dd data-recap-prix>—</dd></div>
+          <div><dt>Sur l’année</dt><dd data-recap-prix-an>—</dd></div>
+          <div><dt>Date d’effet souhaitée</dt><dd data-recap-effet>—</dd></div>
+        </dl>
+        <p class="note" style="margin-top:var(--e3)">Le prix affiché est le prix payé. Il n’y a ni frais de dossier, ni droit d’entrée, ni cotisation d’association.</p>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Vos documents</legend>
+        <p class="bloc__d">Ces documents vous sont remis avant la signature. Ils vous seront également envoyés par courriel, signés et datés.</p>
+        <ul class="docs">
+          <li><a href="docs/notice-sante-frontaliers-suisses.pdf" target="_blank" rel="noopener"><span><b>Notice d’information</b><small>Les garanties, les exclusions, les délais d’attente et la vie du contrat.</small></span><i>PDF</i></a></li>
+          <li><span><span><b>Document d’information normalisé</b><small>Le résumé standardisé du produit, sur deux pages.</small></span><i><mark>[à fournir]</mark></i></span></li>
+          <li><span><span><b>Conditions générales</b><small>Le texte contractuel complet.</small></span><i><mark>[à fournir]</mark></i></span></li>
+          <li><span><span><b>Notice de protection des données</b><small>Ce que nous faisons de vos données, combien de temps nous les gardons, et comment les faire corriger ou effacer.</small></span><i><mark>[à fournir]</mark></i></span></li>
+        </ul>
+        <label class="accord" for="docs-recus">
+          <input type="checkbox" id="docs-recus" name="docs-recus" aria-describedby="e-docs-recus">
+          <span><b>Je reconnais avoir reçu et pris connaissance de ces documents <span data-date-jour>aujourd’hui</span>, avant de signer.</b><small>Cette reconnaissance est horodatée et jointe à votre dossier.</small></span>
+        </label>
+        <span class="erreur" id="e-docs-recus" aria-live="polite"></span>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Vos accords</legend>
+        <label class="accord" for="consent-sante">
+          <input type="checkbox" id="consent-sante" name="consent-sante" aria-describedby="e-consent-sante">
+          <span><b>J’autorise ALPICARE et l’assureur à traiter les données relatives à ma santé nécessaires à la gestion de mon contrat et au remboursement de mes soins.</b><small>Cet accord est distinct de l’acceptation des conditions ci-dessous. Vous pouvez le retirer à tout moment, mais nous ne pourrons alors plus rembourser vos soins. Ces données ne servent qu’à cela et ne sont jamais transmises à des tiers commerciaux.</small></span>
+        </label>
+        <span class="erreur" id="e-consent-sante" aria-live="polite"></span>
+
+        <label class="accord" for="accepte-conditions">
+          <input type="checkbox" id="accepte-conditions" name="accepte-conditions" aria-describedby="e-accepte-conditions">
+          <span><b>J’accepte les conditions du contrat et je certifie l’exactitude des informations données.</b><small>Une déclaration inexacte peut entraîner la nullité du contrat ou la réduction des remboursements.</small></span>
+        </label>
+        <span class="erreur" id="e-accepte-conditions" aria-live="polite"></span>
+
+        <p class="note" style="margin-top:var(--e4)"><b>Votre délai de renonciation.</b> Vous disposez de quatorze jours calendaires à compter de la signature pour renoncer à ce contrat, sans avoir à vous justifier et sans frais. La renonciation s’exerce en ligne, par un simple courrier électronique, et nous vous remboursons alors l’intégralité de ce que vous avez versé.</p>
+      </fieldset>
+
+      <fieldset class="bloc">
+        <legend class="bloc__t">Votre signature</legend>
+        <p class="bloc__d">Écrivez vos prénom et nom tels que vous les avez saisis plus haut. Cette saisie vaut signature électronique de votre bulletin d’adhésion.</p>
+        <div class="champs champs--2">
+          <div class="champ">
+            <label class="champ__e" for="signature">Prénom et nom</label>
+            <input class="saisie saisie--signature" type="text" id="signature" name="signature" autocomplete="off" maxlength="120" aria-describedby="e-signature">
+            <span class="erreur" id="e-signature" aria-live="polite"></span>
+          </div>
+        </div>
+        <label class="accord" for="signe">
+          <input type="checkbox" id="signe" name="signe" aria-describedby="e-signe">
+          <span><b>Je signe électroniquement ce bulletin d’adhésion.</b><small>La signature est horodatée et conservée avec votre dossier.</small></span>
+        </label>
+        <span class="erreur" id="e-signe" aria-live="polite"></span>
+      </fieldset>
+
+      <div class="pilote">
+        <button class="btn btn--clair" type="button" data-precedent="2">Revenir à ma formule</button>
+        <button class="btn btn--bleu" type="submit" data-envoyer>Signer et envoyer mon adhésion</button>
+      </div>
+      <p class="annonce" id="annonce-envoi" role="status" aria-live="polite"></p>
+    </section>
+
+  </form>
+
+  <!-- Arrêt du parcours : la situation ne permet pas d’adhérer -->
+  <section class="env" id="arret" hidden aria-labelledby="t-arret">
+    <div class="panneau panneau--serre">
+      <span class="sur">Nous ne pouvons pas aller plus loin</span>
+      <h2 id="t-arret" tabindex="-1" style="margin-top:var(--e3)" data-arret-titre>Ce contrat ne vous est pas ouvert.</h2>
+      <p data-arret-texte></p>
+      <ul class="liste liste--clair" data-arret-suites></ul>
+      <div class="pilote pilote--clair">
+        <button class="btn btn--creme" type="button" data-reprendre>Modifier mes réponses</button>
+        <a class="btn btn--clair btn--sur-lac" href="guide-lamal-cmu.html">Lire le guide LAMal ou CMU</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fin du parcours : l’adhésion est signée -->
+  <section class="env" id="fin" hidden aria-labelledby="t-fin">
+    <div class="panneau panneau--serre">
+      <span class="sur">C’est signé</span>
+      <h2 id="t-fin" tabindex="-1" style="margin-top:var(--e3)">Votre adhésion nous est parvenue.</h2>
+      <p data-fin-texte></p>
+      <ul class="liste liste--clair">
+        <li><span><b>Vos documents arrivent par courriel</b><small>Bulletin signé, notice d’information et mandat de prélèvement, dans les prochaines minutes.</small></span></li>
+        <li><span><b>Votre justificatif de statut de frontalier</b><small>Nous vous demanderons une attestation de votre employeur suisse ou votre permis G, par courriel. C’est la seule pièce à fournir.</small></span></li>
+        <li><span><b>Votre délai de renonciation</b><small>Quatorze jours à compter d’aujourd’hui, sans justification et sans frais.</small></span></li>
+      </ul>
+      <div class="pilote pilote--clair">
+        <a class="btn btn--creme" href="index.html">Revenir à l’accueil</a>
+        <a class="btn btn--clair btn--sur-lac" href="couverture.html">Relire ce qui est couvert</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <a class="marque" href="index.html">ALPICARE</a>
+    <p class="pied__slogan">L’assurance qui survole la frontière</p>
+    <div class="pied__g">
+      <p>La complémentaire santé des frontaliers franco-suisses, proposée par l’équipe de Flytel. Maquette de travail : nous ne collectons aucune donnée et ne distribuons aucun contrat depuis cette page.</p>
+      <nav aria-label="L’offre">
+        <b>L’offre</b>
+        <a href="couverture.html">Les trois formules</a>
+        <a href="couverture.html">Ce qui est couvert</a>
+        <a href="couverture.html#jamais">Ce qui n’est pas couvert</a>
+        <a href="adherer.html">Adhérer en ligne</a>
+      </nav>
+      <nav aria-label="Comprendre">
+        <b>Comprendre</b>
+        <a href="guide-lamal-cmu.html">LAMal ou CMU</a>
+        <a href="guide-lamal-cmu.html#restes">Ce qui reste à payer</a>
+        <a href="couverture.html#toujours">Ce qui est inclus partout</a>
+        <a href="couverture.html#regimes">Ce que change votre régime</a>
+      </nav>
+    </div>
+    <div class="pied__legal">
+      <p><b>ALPICARE SAS</b>, courtier en assurance, immatriculation ORIAS <mark>[à compléter]</mark>, vérifiable sur orias.fr, sous le contrôle de l’ACPR. ALPICARE conçoit, distribue et gère le contrat ; le risque est porté par <mark>[assureur à confirmer]</mark>, entreprise d’assurance agréée. ALPICARE est rémunéré par une commission incluse dans la cotisation et ne fournit pas de service de recommandation fondé sur une analyse impartiale du marché.</p>
+      <p>Le contrat est réservé aux salariés frontaliers qui résident en France et travaillent en Suisse, jusqu’à 67 ans. Le prix affiché est le prix payé : ni frais de dossier, ni droit d’entrée, ni cotisation d’association. Un devis personnalisé vous est remis avant toute adhésion et fait foi. Contrat annuel, résiliable à tout moment après la première année avec un préavis d’un mois. Délai de renonciation : 14 jours, exerçable en ligne.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

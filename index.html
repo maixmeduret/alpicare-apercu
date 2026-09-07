@@ -28,7 +28,7 @@
       <a href="couverture.html">Ce qui est couvert</a>
       <a href="guide-lamal-cmu.html">LAMal ou CMU</a>
     </nav>
-    <a class="btn btn--sm" href="#adherer">Adhérer</a>
+    <a class="btn btn--sm" href="adherer.html">Adhérer</a>
   </div>
 </header>
 
@@ -89,7 +89,7 @@
           <div class="etape" data-img="2">
             <b>03 · Votre signature</b>
             <h3>En ligne, depuis votre téléphone.</h3>
-            <p>Vous signez électroniquement, sans questionnaire médical, sans rendez-vous et sans pièce à joindre. Vous êtes couvert dès le lendemain, des deux côtés de la frontière.</p>
+            <p>Vous signez électroniquement, sans questionnaire médical, sans rendez-vous et sans pièce à joindre. Votre couverture démarre à la date d’effet que vous avez choisie, des deux côtés de la frontière.</p>
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@
           <li><b>En Suisse</b><span data-suisse-2>Quote-part remboursée à 100 %</span></li>
         </ul>
         <p class="prix"><span data-prix>39 €</span><small>par mois</small></p>
-        <div class="carte__a"><a class="btn btn--clair" href="#adherer">Choisir Essentiel</a><a class="lien carte__plus" href="couverture.html#essentiel">En savoir plus sur la couverture</a></div>
+        <div class="carte__a"><a class="btn btn--clair" href="adherer.html?formule=essentiel">Choisir Essentiel</a><a class="lien carte__plus" href="couverture.html#essentiel">En savoir plus sur la couverture</a></div>
       </article>
 
       <article class="carte carte--phare pose" data-niveau="3">
@@ -160,7 +160,7 @@
           <li><b>En Suisse</b><span data-suisse-3>Quote-part remboursée à 100 % et 50 € de transport</span></li>
         </ul>
         <p class="prix"><span data-prix>49 €</span><small>par mois</small></p>
-        <div class="carte__a"><a class="btn btn--bleu" href="#adherer">Choisir Confort</a><a class="lien carte__plus" href="couverture.html#confort">En savoir plus sur la couverture</a></div>
+        <div class="carte__a"><a class="btn btn--bleu" href="adherer.html?formule=confort">Choisir Confort</a><a class="lien carte__plus" href="couverture.html#confort">En savoir plus sur la couverture</a></div>
       </article>
 
       <article class="carte pose" data-niveau="4">
@@ -173,7 +173,7 @@
           <li><b>En Suisse</b><span data-suisse-4>Quote-part remboursée à 100 % et 100 € de transport</span></li>
         </ul>
         <p class="prix"><span data-prix>59 €</span><small>par mois</small></p>
-        <div class="carte__a"><a class="btn btn--clair" href="#adherer">Choisir Premium</a><a class="lien carte__plus" href="couverture.html#premium">En savoir plus sur la couverture</a></div>
+        <div class="carte__a"><a class="btn btn--clair" href="adherer.html?formule=premium">Choisir Premium</a><a class="lien carte__plus" href="couverture.html#premium">En savoir plus sur la couverture</a></div>
       </article>
     </div>
 
@@ -211,13 +211,37 @@
   </section>
 
   <!-- ===== ADHÉSION ===== -->
+<!-- ===== POSEZ VOTRE QUESTION ===== -->
+  <section class="env" id="questions">
+    <div class="panneau panneau--questions pose">
+      <span class="sur">Une question avant de choisir</span>
+      <h2>Posez votre question,<br>la réponse arrive tout de suite.</h2>
+      <p>Notre assistant connaît les trois formules, ce qu’elles remboursent des deux côtés de la frontière et ce qui reste à votre charge. Il répond en quelques secondes, il cite les montants qu’il a calculés, et il vous dit franchement quand il ne sait pas.</p>
+
+      <div class="questions__g">
+        <button type="button" class="questions__q" data-assistant-ask="Quelle différence entre Essentiel, Confort et Premium ?">Quelle différence entre Essentiel, Confort et Premium ?</button>
+        <button type="button" class="questions__q" data-assistant-ask="Ma franchise LAMal de 300 CHF est-elle remboursée ?">Ma franchise LAMal de 300 CHF est-elle remboursée ?</button>
+        <button type="button" class="questions__q" data-assistant-ask="Combien coûte Confort pour un couple de 40 ans avec deux enfants ?">Combien coûte Confort pour un couple de 40 ans avec deux enfants ?</button>
+        <button type="button" class="questions__q" data-assistant-ask="Comment suis-je remboursé pour une consultation en Suisse ?">Comment suis-je remboursé pour une consultation en Suisse ?</button>
+      </div>
+
+      <div class="questions__a">
+        <button type="button" class="btn btn--creme" data-assistant-open>Poser une autre question</button>
+        <a class="lien" href="couverture.html">Ou lire le détail des garanties</a>
+      </div>
+
+      <p class="questions__n">L’assistant vous informe, il ne vous engage pas : le devis qui vous est remis avant l’adhésion fait foi. N’écrivez ici ni facture, ni décompte, ni donnée de santé.</p>
+      <p class="questions__n questions__sans">Cette conversation demande JavaScript. Sans lui, écrivez à l’équipe, dont l’adresse figure en pied de page.</p>
+    </div>
+  </section>
+
   <section class="adh env" id="adherer">
     <div class="adh__g">
       <div>
         <span class="sur pose">Adhérer</span>
-        <h2 class="pose" style="margin-top:var(--e3)">Cinq écrans à remplir,<br><span class="bleu">aucun document à joindre.</span></h2>
+        <h2 class="pose" style="margin-top:var(--e3)">Trois écrans à remplir,<br><span class="bleu">aucun document à joindre.</span></h2>
         <p class="lead pose" style="margin-top:var(--e4)">Vous n’avez aucune pièce à fournir avant de signer, ni de carte Vitale à envoyer : votre numéro de sécurité sociale suffit.</p>
-        <a class="btn btn--bleu pose" href="#adherer" style="margin-top:var(--e4)">Commencer mon adhésion</a>
+        <a class="btn btn--bleu pose" href="adherer.html" style="margin-top:var(--e4)">Commencer mon adhésion</a>
         <figure class="adh__img pose">
           <img src="img/table.webp" srcset="img/table@1000.webp 1000w, img/table.webp 1400w"
                sizes="(min-width:900px) 46vw, 100vw" width="1400" height="933" loading="lazy"
@@ -225,11 +249,9 @@
         </figure>
       </div>
       <ol class="pose">
-        <li><span><b>Y avez-vous droit ?</b><span>Nous vérifions en trente secondes votre statut de frontalier salarié, votre résidence, votre régime et la composition de votre foyer.</span></span></li>
-        <li><span><b>Ce qui compte pour vous</b><span>Nous vous posons cinq questions fermées, et aucune ne porte sur votre santé.</span></span></li>
-        <li><span><b>Votre formule et votre prix</b><span>Nous vous remettons un conseil écrit et motivé, avec le prix détaillé ligne par ligne.</span></span></li>
-        <li><span><b>Vos informations</b><span>Vous saisissez votre identité, votre adresse, votre numéro de sécurité sociale et vos coordonnées bancaires.</span></span></li>
-        <li><span><b>Vérifiez et signez</b><span>Vous téléchargez tous les documents, puis vous signez électroniquement.</span></span></li>
+        <li><span><b>Votre situation</b><span>Votre statut de frontalier salarié, votre âge, votre régime et la composition de votre foyer. Trente secondes, sans laisser vos coordonnées.</span></span></li>
+        <li><span><b>Votre formule</b><span>Cinq questions fermées sur vos soins, aucune sur votre santé. Nous vous remettons un conseil écrit et motivé, puis vous choisissez.</span></span></li>
+        <li><span><b>Votre signature</b><span>Vos informations, les documents à accepter, et la signature électronique. Aucune pièce à joindre.</span></span></li>
       </ol>
     </div>
     <p class="note pose" style="margin-top:var(--e5);max-width:76ch">Vous n’avez qu’une pièce à fournir, et c’est après la signature : un justificatif de votre statut de frontalier, que vous photographiez avec votre téléphone. Le délai de renonciation est de 14 jours et s’exerce en ligne.</p>
@@ -254,7 +276,7 @@
         <a href="couverture.html">Les trois formules</a>
         <a href="couverture.html">Ce qui est couvert</a>
         <a href="couverture.html#jamais">Ce qui n’est pas couvert</a>
-        <a href="#adherer">Adhérer en ligne</a>
+        <a href="adherer.html">Adhérer en ligne</a>
       </nav>
       <nav aria-label="Comprendre">
         <b>Comprendre</b>
