@@ -245,11 +245,11 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .barre nav a[aria-current]::after{content:"";display:block;height:1.5px;background:var(--terre);margin-top:3px}
 
 /* ---------- En-tête de page intérieure ---------- */
-.tete{padding:130px 0 var(--e5)}
-@media(min-width:900px){.tete{padding:160px 0 var(--e6)}}
-.tete h1{margin-top:var(--e3);max-width:18ch}
-.tete .lead{margin-top:var(--e4)}
-.tete__bas{display:flex;flex-wrap:wrap;gap:var(--e3);margin-top:var(--e5)}
+.tete{padding-top:112px;padding-bottom:var(--e3)}
+@media(min-width:900px){.tete{padding-top:132px;padding-bottom:var(--e4)}}
+.tete h1{margin-top:var(--e2);max-width:18ch}
+.tete .lead{margin-top:var(--e3)}
+.tete__bas{display:flex;flex-wrap:wrap;gap:var(--e3);margin-top:var(--e4)}
 
 /* ---------- Article long ---------- */
 .article{display:grid;gap:var(--e6);align-items:start}
@@ -504,321 +504,79 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .carte__plus{font-size:13px;color:var(--terre);text-decoration:underline;text-underline-offset:3px}
 .carte--phare .carte__plus{color:var(--terre-vif)}
 
-/* =====================================================================
-   Briques ajoutées le 7 septembre 2026 : parcours d’adhésion,
-   plateforme d’administration, assistant.
-   ===================================================================== */
-
-/* Un élément masqué l’est vraiment, quelle que soit sa mise en page. */
-[hidden]{display:none!important}
-
-
-/* =====================================================================
-   Parcours d'adhésion (adherer.html) — trois écrans successifs.
-   Rien de neuf en couleur ni en typographie : craie sur crème, filets
-   fins, terre pour l'accent, Literata réservé aux chapôs. Les écrans
-   se suivent quand le script ne s'exécute pas, et se remplacent quand
-   il s'exécute.
-   ===================================================================== */
-
-/* ---------- Barre d'avancement des trois écrans ---------- */
-.parcours{margin-top:var(--e4)}
-.parcours ol{list-style:none;counter-reset:p;display:grid;gap:var(--e2)}
 @media(min-width:760px){.parcours ol{grid-template-columns:repeat(3,1fr);gap:var(--e3)}}
-.parcours li{counter-increment:p;display:flex;align-items:baseline;gap:var(--e2);padding-top:var(--e2);
-  border-top:2px solid var(--regle);font-size:14px;line-height:1.35;color:var(--gris);
-  transition:color .3s var(--sortie),border-color .3s var(--sortie)}
-.parcours li::before{content:counter(p,decimal-leading-zero);font-family:var(--display);font-size:12px;
-  letter-spacing:.08em;color:var(--gris)}
-.parcours li[data-etat=fait]{border-top-color:var(--terre);color:var(--lac)}
 .parcours li[data-etat=fait]::before{color:var(--terre)}
-.parcours li[aria-current=step]{border-top-color:var(--terre);color:var(--lac);font-weight:600}
-.parcours li[aria-current=step]::before{color:var(--terre)}
-.parcours .note{margin-top:var(--e2)}
-
-/* ---------- Un écran du parcours ---------- */
-.ecran{padding:var(--e5) 0}
 /* Sans script, les trois écrans se lisent à la suite : il leur faut un filet de séparation. */
 .ecran+.ecran{border-top:1px solid var(--regle)}
 .js .ecran+.ecran{border-top:0}
 .ecran>h2{max-width:20ch}
 .ecran>h2:focus{outline:none}
 .ecran>h2:focus-visible{outline:2px solid var(--terre);outline-offset:6px}
-
-/* ---------- Groupe de champs ---------- */
-.bloc{border:0;margin-top:var(--e6)}
-.bloc__t{display:block;padding:0;font-family:var(--texte);font-size:11px;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--terre)}
-.bloc__d{margin-top:var(--e2);font-size:14px;line-height:1.6;color:var(--gris);max-width:64ch}
-.champ__q{margin-top:var(--e4);font-size:15px;font-weight:600;color:var(--lac)}
-
-/* ---------- Champs de saisie ---------- */
-.champs{display:grid;gap:var(--e3);margin-top:var(--e3)}
 @media(min-width:720px){
   .champs--2{grid-template-columns:repeat(2,minmax(0,1fr))}
   .champs--3{grid-template-columns:repeat(3,minmax(0,1fr))}
   .champ--court{max-width:180px}
 }
-.champ{display:grid;gap:6px;min-width:0;align-content:start}
 .champ .champ__l{margin-bottom:0}
-.champ__f{font-family:var(--texte);font-size:11px;font-weight:400;letter-spacing:.14em;color:var(--gris)}
-.saisie{width:100%;min-height:52px;padding:0 var(--e3);border:1px solid var(--regle);border-radius:12px;
-  background:var(--craie);color:var(--lac);font-family:var(--texte);font-size:16px;
-  transition:border-color .25s var(--sortie),box-shadow .25s var(--sortie)}
 .saisie:hover{border-color:color-mix(in srgb,var(--lac) 30%,var(--regle))}
-.saisie:focus{outline:none;border-color:var(--terre);box-shadow:0 0 0 3px rgba(176,69,32,.16)}
-.saisie::placeholder{color:color-mix(in srgb,var(--gris) 55%,transparent)}
-select.saisie{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:var(--e4);
-  background-image:linear-gradient(45deg,transparent 50%,var(--terre) 50%),
-    linear-gradient(135deg,var(--terre) 50%,transparent 50%);
-  background-position:calc(100% - 22px) 23px,calc(100% - 16px) 23px;
-  background-size:6px 6px,6px 6px;background-repeat:no-repeat}
-.saisie--chiffres{font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.saisie--signature{font-family:var(--edito);font-style:italic;font-size:19px}
-.saisie[aria-invalid=true]{border-color:var(--terre);background:color-mix(in srgb,var(--terre) 5%,var(--craie))}
-.aide{font-size:13px;line-height:1.45;color:var(--gris)}
-.erreur{font-size:13px;line-height:1.45;color:var(--terre);font-weight:500}
 .erreur:empty{display:none}
-
-/* Les groupes de boutons radio signalent eux aussi qu'il leur manque une réponse. */
-.choix[data-invalide],.pastilles[data-invalide],.trio[data-invalide]{outline:1px dashed var(--terre);
-  outline-offset:10px;border-radius:6px}
 .choix label:focus-within{border-color:var(--terre);box-shadow:0 0 0 3px rgba(176,69,32,.16)}
 .pastille:focus-within{outline:2px solid var(--terre);outline-offset:2px}
-
-/* ---------- Une question à choix multiple dans le recueil des besoins ---------- */
-.besoin{margin-top:var(--e5)}
 .besoin:first-of-type{margin-top:var(--e4)}
-.besoin .pastilles{margin-top:var(--e2)}
 .besoin .aide{margin-top:4px}
 .besoin .erreur{margin-top:var(--e2)}
-
-/* ---------- Le conseil motivé, remis avant le choix ---------- */
-.conseil{margin-top:var(--e5);padding:var(--e4) var(--e5);background:var(--craie);
-  border-left:3px solid var(--terre);border-radius:var(--rayon);box-shadow:var(--ombre)}
-.conseil__t{display:block;font-family:var(--texte);font-size:11px;font-weight:600;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--terre)}
-.conseil__p{margin-top:var(--e2);font-family:var(--edito);font-size:clamp(1.05rem,1.5vw,1.25rem);
-  line-height:1.55;max-width:60ch}
-.conseil__l{list-style:none;margin-top:var(--e3)}
-.conseil__l li{padding:var(--e2) 0;border-top:1px solid var(--regle);font-size:14px;line-height:1.55;
-  color:var(--gris)}
-.conseil__n{margin-top:var(--e3)}
-
-/* ---------- Carte de formule qui se choisit ---------- */
-.carte--choix{cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--regle)}
-.carte--choix input{position:absolute;opacity:0;width:1px;height:1px}
-.carte--choix:focus-within{outline:2px solid var(--terre);outline-offset:4px}
-.carte--choix[data-choisie=oui],.carte--choix:has(input:checked){box-shadow:inset 0 0 0 2px var(--terre),var(--ombre)}
 .carte--choix .prix{margin-top:var(--e4)}
-.carte__etat{display:flex;align-items:center;gap:10px;margin-top:var(--e3);padding-top:var(--e3);
-  border-top:1px solid var(--regle);font-size:14px;font-weight:600;color:var(--gris)}
-.carte__coche{width:20px;height:20px;flex:none;border-radius:50%;border:1.5px solid var(--regle);
-  position:relative;transition:border-color .25s var(--sortie)}
 .carte--choix[data-choisie=oui] .carte__etat,.carte--choix:has(input:checked) .carte__etat{color:var(--terre)}
 .carte--choix[data-choisie=oui] .carte__coche,.carte--choix:has(input:checked) .carte__coche{border-color:var(--terre)}
 .carte--choix[data-choisie=oui] .carte__coche::after,.carte--choix:has(input:checked) .carte__coche::after{
   content:"";position:absolute;inset:3px;border-radius:50%;background:var(--terre)}
 .carte__b[data-conseille=oui]{color:var(--terre)}
-
-/* ---------- Récapitulatif ---------- */
-.recap{display:grid;gap:0;margin-top:var(--e3)}
 .recap div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--e3);align-items:baseline;
   padding:var(--e3) 0;border-top:1px solid var(--regle)}
 .recap div:first-child{border-top:0}
-.recap dt{font-size:13px;color:var(--gris)}
-.recap dd{font-size:15px;font-weight:600;text-align:right}
-
-/* ---------- Cases à cocher engageantes : reconnaissances, consentements, signature ---------- */
-.accord{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--e3);align-items:start;
-  margin-top:var(--e3);padding:var(--e3) 0;border-top:1px solid var(--regle);cursor:pointer;
-  font-size:14px;line-height:1.55}
-.accord input{width:20px;height:20px;margin-top:2px;accent-color:var(--terre);cursor:pointer}
 .accord input:focus-visible{outline:2px solid var(--terre);outline-offset:3px}
-.accord b{font-weight:600}
-.accord small{display:block;margin-top:4px;font-size:13px;line-height:1.55;color:var(--gris)}
 .accord input[aria-invalid=true]{outline:2px solid var(--terre);outline-offset:3px}
-
-/* ---------- Résumé des points qui restent à compléter ---------- */
-.erreurs{margin-top:var(--e4);padding:var(--e3) var(--e4);border-radius:12px;font-size:14px;
-  background:color-mix(in srgb,var(--terre) 7%,var(--craie));
-  border:1px solid color-mix(in srgb,var(--terre) 28%,var(--craie))}
 .erreurs b{color:var(--terre)}
-.erreurs ul{margin:var(--e2) 0 0;padding-left:var(--e3)}
 .erreurs li{margin-top:4px;line-height:1.5}
-.erreurs a{color:var(--terre);text-underline-offset:3px}
-
-/* ---------- Ligne d'actions au pied d'un écran ---------- */
-.pilote{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e2);margin-top:var(--e5);
-  padding-top:var(--e4);border-top:1px solid var(--regle)}
 @media(min-width:600px){.pilote .btn--bleu,.pilote [type=submit]{margin-left:auto}}
-.pilote--clair{border-top-color:rgba(246,241,231,.2)}
-
-/* ---------- Annonces destinées aux lecteurs d'écran, visibles pour tous ---------- */
-.annonce{margin-top:var(--e3);font-size:14px;line-height:1.5;color:var(--terre)}
-.annonce:empty{display:none}
-
-/* ---------- Panneau sombre resserré : arrêt du parcours, ou confirmation ---------- */
-.panneau--serre{margin-top:var(--e5);padding:var(--e5)}
 @media(min-width:900px){.panneau--serre{padding:var(--e6)}}
 .panneau--serre h2:focus{outline:none}
 .panneau--serre h2:focus-visible{outline:2px solid var(--terre-vif);outline-offset:6px}
 .panneau--serre .liste{margin-top:var(--e5)}
-.btn--sur-lac{color:var(--creme);box-shadow:inset 0 0 0 1.5px rgba(246,241,231,.4)}
-.btn--sur-lac:hover{background:var(--creme);color:var(--lac);box-shadow:none}
-
-/* ---------- Un lien qui est en réalité un bouton ---------- */
-.lien--bouton{border:0;padding:0;background:transparent;font:inherit;cursor:pointer}
-
 /* ---------- Repli sans script : les trois écrans se lisent d'affilée ---------- */
 /* La barre n'indique alors plus d'étape en cours, puisqu'il n'y en a pas. */
 html:not(.js) .parcours [data-compte-ecrans]{display:none}
 html:not(.js) .parcours li{border-top-color:var(--terre);color:var(--lac)}
 html:not(.js) .parcours li::before{color:var(--terre)}
-
-/* ---------- Plateforme de gestion (site/admin.html) ---------- */
-/* Page interne : même papier, même encre, mêmes composants que le site public.
-   Rien ici n'est visible d'un visiteur ; la page ne figure dans aucune navigation. */
-[hidden]{display:none !important}
-
-.adm__barre{background:rgba(246,241,231,.94);backdrop-filter:blur(14px)}
-.adm__titre{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gris)}
-.adm__barre .btn{margin-left:var(--e3)}
-
-/* La porte */
-.adm__porte{display:grid;place-items:center;min-height:100vh;padding:120px 0 var(--e6)}
-.adm__carte{width:100%;max-width:520px;display:grid;justify-items:start;gap:var(--e2);
-  padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
-.adm__carte h1{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-top:var(--e2)}
-.adm__carte .lead{font-size:1rem;max-width:none;margin:var(--e2) 0 var(--e3)}
-.adm__carte .btn{width:100%;margin-top:var(--e2)}
 .adm code,.adm__carte code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;
   background:var(--sable);padding:1px 6px;border-radius:6px}
-
-/* Champs de saisie */
-.adm__l{display:block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gris);margin-bottom:var(--e1)}
-.adm__ob{font-style:normal;color:var(--terre);margin-left:4px}
-.adm__saisie{width:100%;min-height:46px;padding:0 var(--e3);border-radius:12px;border:1px solid var(--regle);
-  background:var(--craie);color:var(--lac);font-family:var(--texte);font-size:15px}
 .adm__saisie:focus-visible{outline:2px solid var(--terre);outline-offset:2px;border-color:var(--terre)}
-select.adm__saisie{appearance:none;-webkit-appearance:none;padding-right:var(--e4);
-  background-image:linear-gradient(45deg,transparent 50%,var(--terre) 50%),linear-gradient(135deg,var(--terre) 50%,transparent 50%);
-  background-position:calc(100% - 20px) 21px,calc(100% - 14px) 21px;background-size:6px 6px;background-repeat:no-repeat}
-.adm__saisie--court{max-width:230px}
-.adm__aide{display:block;margin-top:6px;font-size:12px;line-height:1.5;color:var(--gris)}
-
-/* Onglets */
-.adm__onglets{display:grid;gap:var(--e1);margin:var(--e4) 0 var(--e2);padding:var(--e2) 0;
-  border-top:1px solid var(--regle);border-bottom:1px solid var(--regle)}
 @media(min-width:760px){.adm__onglets{grid-template-columns:repeat(3,1fr)}}
-.adm__onglet{text-align:left;border:0;background:transparent;padding:var(--e3);border-radius:12px;cursor:pointer;
-  font-family:var(--texte);transition:background .25s var(--sortie)}
-.adm__onglet b{display:block;font-family:var(--display);font-size:14px;letter-spacing:-.01em;color:var(--lac)}
-.adm__onglet small{display:block;margin-top:4px;font-size:12.5px;color:var(--gris)}
-.adm__onglet:hover{background:var(--sable)}
-.adm__onglet[aria-selected=true]{background:var(--lac)}
-.adm__onglet[aria-selected=true] b{color:var(--creme)}
-.adm__onglet[aria-selected=true] small{color:rgba(246,241,231,.7)}
-.adm__panneau{padding-bottom:var(--e6)}
-.adm__panneau:focus{outline:none}
-.adm__tete{padding:120px 0 var(--e3)}
 .adm__tete h1{max-width:16ch}
-
-/* Barres d'outils et tableaux */
-.adm__outils{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--e3);
-  margin-top:var(--e5)}
 .adm__outils h2{font-size:clamp(1.4rem,2.4vw,1.95rem)}
 .adm__outils h3{margin-top:var(--e1)}
-.adm__outils .note{margin-top:var(--e2);max-width:70ch}
-.adm__actions{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--e2)}
-.adm__actions--large{margin-top:var(--e3)}
-.adm__tableau{margin-top:var(--e3)}
 .adm__tableau table{min-width:640px;font-size:13.5px}
 .adm__tableau th,.adm__tableau td{padding:var(--e2) var(--e3)}
-.adm__ligne{cursor:pointer}
-.adm__ligne:hover{background:color-mix(in srgb,var(--sable) 45%,var(--craie))}
 .adm__ligne:focus-visible{outline:2px solid var(--terre);outline-offset:-2px}
-.adm__vide{margin-top:var(--e3);padding:var(--e5);text-align:center;background:var(--craie);border-radius:var(--rayon);
-  font-family:var(--edito);color:var(--gris)}
-
-/* Pastille d'état d'un dossier */
-.adm__etat{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:999px;
-  background:var(--sable);font-size:12px;font-weight:600;white-space:nowrap}
 .adm__etat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gris)}
 .adm__etat[data-etat=a_relire]::before,.adm__etat[data-etat=pieces_attendues]::before{background:var(--terre)}
-.adm__etat[data-etat=valide]{background:var(--lac);color:var(--creme)}
 .adm__etat[data-etat=valide]::before{background:var(--terre-vif)}
 .adm__etat[data-etat=refuse],.adm__etat[data-etat=clos]{color:var(--gris);box-shadow:inset 0 0 0 1px var(--regle);background:transparent}
-
-/* Détail d'un dossier */
-.adm__detail{margin-top:var(--e3);padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
-.adm__champs{display:grid;margin-top:var(--e3)}
 @media(min-width:640px){.adm__champs{grid-template-columns:auto minmax(0,1fr);column-gap:var(--e4)}}
-.adm__champs dt{padding:var(--e2) 0;border-top:1px solid var(--regle);font-size:11px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
-.adm__champs dd{padding:var(--e2) 0;font-size:15px;word-break:break-word}
 @media(min-width:640px){.adm__champs dd{border-top:1px solid var(--regle)}}
-.adm__suivi{display:grid;gap:var(--e3);align-items:end;margin-top:var(--e4);padding-top:var(--e4);
-  border-top:1px solid var(--regle)}
 @media(min-width:820px){.adm__suivi{grid-template-columns:1fr 1.7fr auto}}
-
-/* Dépôt et lecture d'une pièce */
-.adm__lecture{display:grid;gap:var(--e4);margin-top:var(--e3);align-items:start}
 @media(min-width:960px){.adm__lecture{grid-template-columns:1.1fr .9fr;gap:var(--e5)}}
-.adm__depot{display:grid;place-items:center;gap:6px;text-align:center;padding:var(--e5) var(--e4);
-  border:1.5px dashed var(--regle);border-radius:var(--rayon);background:var(--craie);cursor:pointer;
-  transition:border-color .25s var(--sortie),background .25s var(--sortie)}
-.adm__depot:hover,.adm__depot--vise{border-color:var(--terre);background:var(--sable)}
-.adm__depot b{font-size:15px;font-weight:600;word-break:break-word}
-.adm__depot small{font-size:13px;color:var(--gris)}
-.adm__apercu{margin-top:var(--e3);padding:var(--e2);background:var(--sable);border-radius:12px}
-.adm__apercu img{max-height:320px;width:auto;margin:0 auto;border-radius:8px}
-.adm__encart{margin:0}
-.adm__encart--large{margin-top:var(--e3);max-width:none}
-
-/* Relecture et formulaire du flux */
-.adm__relecture{margin-top:var(--e4);padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
 .adm__relecture .adm__outils{margin-top:0}
-.adm__grille{display:grid;gap:var(--e3);margin-top:var(--e4)}
 @media(min-width:700px){.adm__grille{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1100px){.adm__grille{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .adm__champ{min-width:0}
-.adm__champ__h{display:flex;align-items:baseline;justify-content:space-between;gap:var(--e2)}
-
-/* Confiance de la lecture, champ par champ */
-.adm__conf{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
-  padding:3px 8px;border-radius:999px;background:var(--sable);color:var(--gris)}
-.adm__conf--haute{background:rgba(18,48,71,.09);color:var(--lac)}
-.adm__conf--moyenne{background:rgba(176,69,32,.12);color:var(--terre)}
-.adm__conf--basse{background:rgba(176,69,32,.22);color:var(--terre)}
 .adm__conf--absente{background:transparent;color:var(--gris);box-shadow:inset 0 0 0 1px var(--regle)}
-
-/* Messages */
-.adm__msg{margin-top:var(--e3);font-size:13.5px;line-height:1.6;color:var(--gris)}
-.adm__msg--ok{color:var(--lac)}
-.adm__msg--erreur{color:var(--terre)}
-.adm__msg--info{color:var(--gris)}
-.adm__liste-msg{list-style:none;display:grid;margin-top:var(--e3)}
-.adm__liste-msg li{position:relative;padding:var(--e2) 0 var(--e2) var(--e3);border-top:1px solid var(--regle);
-  font-size:14px;line-height:1.55;color:var(--gris)}
 .adm__liste-msg li::before{content:"";position:absolute;left:0;top:calc(var(--e2) + 6px);width:8px;height:8px;
   border-radius:50%;background:var(--gris)}
 .adm__liste-msg .adm__msg--erreur::before{background:var(--terre)}
 .adm__liste-msg .adm__msg--ok::before{background:var(--lac)}
-.adm__controle{margin-top:var(--e4);padding-top:var(--e4);border-top:1px solid var(--regle)}
 .adm__controle .adm__l{margin-top:var(--e4)}
-
-/* Sorties techniques et export */
-.adm__sortie{margin-top:var(--e2);padding:var(--e3);border-radius:12px;background:var(--lac);color:var(--creme);
-  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.7;
-  white-space:pre;overflow-x:auto}
-.adm__sortie--haute{max-height:420px;overflow-y:auto}
-.adm__export{margin-top:var(--e3);padding:var(--e5);background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
 .adm__export .adm__outils{margin-top:0}
-.adm__repli{margin-top:var(--e5)}
-.adm__pied{margin-top:var(--e6)}
-
 /* =====================================================================
    Assistant de questions et réponses : la section « Posez votre question »
    de l’accueil, le bouton flottant et le panneau de conversation.
@@ -847,7 +605,6 @@ select.adm__saisie{appearance:none;-webkit-appearance:none;padding-right:var(--e
 .panneau .lien{color:var(--terre-vif)}
 html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 .js .questions__sans{display:none}
-
 /* ---------- Bouton flottant ---------- */
 .assistant__btn{position:fixed;right:var(--marge);bottom:calc(var(--e3) + env(safe-area-inset-bottom,0px));
   z-index:60;display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 var(--e3);
@@ -859,7 +616,6 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 @media(max-width:899px){.assistant__btn{bottom:calc(76px + env(safe-area-inset-bottom,0px))}}
 @media(max-width:400px){.assistant__btn span{display:none}
   .assistant__btn{padding:0;width:52px;justify-content:center}}
-
 /* ---------- Panneau de conversation ---------- */
 .assistant{position:fixed;inset:0;z-index:65;display:flex;flex-direction:column;overflow:hidden;
   background:var(--craie);color:var(--lac);font-family:var(--texte);box-shadow:var(--ombre-haute)}
@@ -869,7 +625,6 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 }
 .assistant[hidden],.assistant__sugg[hidden],.assistant__eff[hidden]{display:none}
 @media(max-width:640px){body.assistant-ouvert{overflow:hidden}}
-
 .assistant__h{display:flex;align-items:flex-start;gap:var(--e2);padding:var(--e3);
   background:var(--lac);color:var(--creme)}
 .assistant__t b{display:block;font-family:var(--display);font-size:15px;letter-spacing:-.015em}
@@ -880,11 +635,9 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 .assistant__fermer{flex:none;width:32px;height:32px;display:grid;place-items:center;border:0;border-radius:50%;
   background:rgba(246,241,231,.12);color:var(--creme);cursor:pointer;transition:background .25s var(--sortie)}
 .assistant__fermer:hover{background:var(--terre-vif);color:var(--lac)}
-
 .assistant__fil{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--e2);
   padding:var(--e3);background:var(--creme)}
 .assistant__fil:focus-visible{outline:2px solid var(--terre);outline-offset:-2px}
-
 .assistant__m{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.55}
 .assistant__m p+p{margin-top:8px}
 .assistant__m ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
@@ -895,7 +648,6 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
   font-family:var(--edito);font-size:14.5px;line-height:1.6;color:var(--gris)}
 .assistant__m--info{max-width:100%;background:color-mix(in srgb,var(--terre) 9%,var(--craie));
   border-left:2px solid var(--terre);border-radius:4px 14px 14px 4px;box-shadow:none;font-size:14px;color:var(--lac)}
-
 .assistant__m--attente{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;color:var(--gris)}
 .assistant__pts{display:inline-flex;gap:4px}
 .assistant__pts i{width:5px;height:5px;border-radius:50%;background:var(--terre);
@@ -909,14 +661,12 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 .assistant__curseur{display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;
   background:var(--terre);animation:assistant-curseur 1s steps(2,end) infinite}
 @keyframes assistant-curseur{0%,49%{opacity:1}50%,100%{opacity:0}}
-
 .assistant__sugg{display:flex;flex-wrap:wrap;gap:var(--e1);padding:0 var(--e3) var(--e2);background:var(--creme)}
 .assistant__chip{padding:9px 14px;border:0;border-radius:999px;
   background:color-mix(in srgb,var(--sable) 55%,var(--craie));color:var(--lac);
   font-family:var(--texte);font-size:13px;line-height:1.3;text-align:left;cursor:pointer;
   transition:background .25s var(--sortie),color .25s var(--sortie)}
 .assistant__chip:hover{background:var(--lac);color:var(--creme)}
-
 .assistant__form{display:flex;align-items:flex-end;gap:var(--e1);padding:var(--e2) var(--e3);
   border-top:1px solid var(--regle);background:var(--craie)}
 .assistant__form textarea{flex:1;min-width:0;min-height:44px;max-height:132px;padding:11px 14px;
@@ -928,11 +678,9 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 .assistant__envoyer:hover{background:var(--lac)}
 .assistant__envoyer:disabled{opacity:.4;cursor:not-allowed}
 .assistant__note{padding:0 var(--e3) var(--e3);background:var(--craie);font-size:11.5px;line-height:1.5;color:var(--gris)}
-
 .assistant__btn:focus-visible,.assistant__chip:focus-visible,.assistant__eff:focus-visible,
 .assistant__fermer:focus-visible,.assistant__envoyer:focus-visible,.questions__q:focus-visible{
   outline:2px solid var(--terre-vif);outline-offset:3px}
-
 @media(prefers-reduced-motion:reduce){
   .assistant__pts i,.assistant__curseur{animation:none}
   .assistant__btn:hover,.questions__q:hover{transform:none}
@@ -955,7 +703,7 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 [hidden]{display:none!important}
 
 /* ---------- Le fil des trois écrans ---------- */
-.parcours{margin-top:var(--e5)}
+.parcours{margin-top:0}
 .parcours ol{list-style:none;counter-reset:e;display:grid;gap:var(--e2)}
 @media(min-width:760px){.parcours ol{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--e3)}}
 .parcours li{counter-increment:e;display:flex;align-items:baseline;gap:var(--e2);
@@ -968,7 +716,7 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 .parcours .note{margin-top:var(--e2)}
 
 /* ---------- Un écran ---------- */
-.ecran{margin-top:var(--e5);padding-bottom:var(--e6)}
+.ecran{margin-top:var(--e4);padding-bottom:var(--e5)}
 
 /* ---------- Le résumé de ce qui manque ---------- */
 .erreurs{margin-top:var(--e4);padding:var(--e4);border-radius:var(--rayon);
@@ -978,10 +726,10 @@ html:not(.js) .questions__g,html:not(.js) .questions__a{display:none}
 .erreurs a{font-size:14px;color:var(--terre);text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- Un bloc de questions ---------- */
-.bloc{border:0;min-width:0;min-inline-size:0;margin-top:var(--e5);padding:var(--e4);
+.bloc{border:0;min-width:0;min-inline-size:0;margin-top:var(--e4);padding:var(--e4);
   background:var(--craie);border-radius:var(--rayon);box-shadow:var(--ombre)}
 @media(min-width:760px){.bloc{padding:var(--e5)}}
-.bloc__t{padding:0;font-family:var(--texte);font-size:11px;font-weight:600;letter-spacing:.16em;
+.bloc__t{float:left;width:100%;padding:0;margin-bottom:var(--e2);font-family:var(--texte);font-size:11px;font-weight:600;letter-spacing:.16em;
   text-transform:uppercase;color:var(--terre)}
 .bloc__d{margin-top:var(--e2);font-size:14px;line-height:1.6;color:var(--gris);max-width:64ch}
 .bloc .choix{margin-top:var(--e3)}

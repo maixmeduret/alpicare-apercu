@@ -39,7 +39,6 @@
   <section class="tete env">
     <p class="slogan pose">L’assurance qui survole la frontière</p>
     <h1 class="pose">Votre adhésion,<br><span class="bleu">en trois écrans.</span></h1>
-    <p class="lead pose">Votre situation, votre formule, votre signature. Vous n’avez aucune pièce à joindre avant de signer : votre justificatif de statut de frontalier ne vous sera demandé qu’ensuite.</p>
   </section>
 
   <nav class="parcours env" aria-label="Votre progression dans l’adhésion">
@@ -48,7 +47,7 @@
       <li data-etape="2"><span>Votre formule</span></li>
       <li data-etape="3"><span>Vos informations et votre signature</span></li>
     </ol>
-    <p class="note" data-compte-ecrans>Écran 1 sur 3.</p>
+    <p class="sr" data-compte-ecrans>Écran 1 sur 3.</p>
   </nav>
 
   <noscript>
@@ -68,9 +67,8 @@
          ÉCRAN 1 — VOTRE SITUATION
          ============================================================= -->
     <section class="ecran" id="ecran-1" data-ecran="1" aria-labelledby="t-ecran-1">
-      <span class="sur">Écran 1 sur 3</span>
-      <h2 id="t-ecran-1" tabindex="-1" style="margin-top:var(--e3)">Votre situation</h2>
-      <p class="lead" style="margin-top:var(--e3)">Six questions fermées suffisent à savoir si ce contrat vous est ouvert et à calculer votre cotisation. Aucune ne porte sur votre santé.</p>
+      <h2 id="t-ecran-1" tabindex="-1">Votre situation</h2>
+      <p class="lead" style="margin-top:var(--e2)">Six questions fermées suffisent à savoir si ce contrat vous est ouvert et à calculer votre cotisation. Aucune ne porte sur votre santé.</p>
 
       <div class="erreurs" id="erreurs-1" role="alert" hidden>
         <b>Il reste quelque chose à compléter.</b>
@@ -177,9 +175,8 @@
          ÉCRAN 2 — VOTRE FORMULE
          ============================================================= -->
     <section class="ecran" id="ecran-2" data-ecran="2" aria-labelledby="t-ecran-2">
-      <span class="sur">Écran 2 sur 3</span>
-      <h2 id="t-ecran-2" tabindex="-1" style="margin-top:var(--e3)">Votre formule</h2>
-      <p class="lead" style="margin-top:var(--e3)">Dites-nous ce que vous attendez de votre complémentaire. Nous vous remettons un conseil écrit et motivé, puis vous choisissez librement l’une des trois formules.</p>
+      <h2 id="t-ecran-2" tabindex="-1">Votre formule</h2>
+      <p class="lead" style="margin-top:var(--e2)">Dites-nous ce que vous attendez de votre complémentaire. Nous vous remettons un conseil écrit et motivé, puis vous choisissez librement l’une des trois formules.</p>
 
       <div class="erreurs" id="erreurs-2" role="alert" hidden>
         <b>Il reste quelque chose à compléter.</b>
@@ -259,7 +256,7 @@
             <p class="note" style="margin-top:var(--e2)">Vous vous soignez des deux côtés de la frontière, avec vos enfants, et vous prévoyez des soins dentaires.</p>
             <ul>
               <li><b>Soins courants</b><span>200 %</span></li>
-              <li><b>Dentaire</b><span>175 %, plafond 1 100 €</span></li>
+              <li><b>Dentaire</b><span>175 %, plafond 1 100 €</span></li>
               <li><b>Optique</b><span>225 €</span></li>
               <li><b>En Suisse</b><span data-suisse-confort>Quote-part remboursée à 100 % et 50 € de transport</span></li>
             </ul>
@@ -274,7 +271,7 @@
             <p class="note" style="margin-top:var(--e2)">Vous prévoyez une prothèse dans l’année, des verres complexes ou un traitement d’orthodontie.</p>
             <ul>
               <li><b>Soins courants</b><span>250 %</span></li>
-              <li><b>Dentaire</b><span>225 %, plafond 1 200 €</span></li>
+              <li><b>Dentaire</b><span>225 %, plafond 1 200 €</span></li>
               <li><b>Optique</b><span>325 / 450 €</span></li>
               <li><b>En Suisse</b><span data-suisse-premium>Quote-part remboursée à 100 % et 100 € de transport</span></li>
             </ul>
@@ -297,9 +294,8 @@
          ÉCRAN 3 — VOS INFORMATIONS ET VOTRE SIGNATURE
          ============================================================= -->
     <section class="ecran" id="ecran-3" data-ecran="3" aria-labelledby="t-ecran-3">
-      <span class="sur">Écran 3 sur 3</span>
-      <h2 id="t-ecran-3" tabindex="-1" style="margin-top:var(--e3)">Vos informations et votre signature</h2>
-      <p class="lead" style="margin-top:var(--e3)">C’est le dernier écran. Vous n’avez aucune pièce à téléverser : votre justificatif de statut de frontalier vous sera demandé après la signature, par courriel.</p>
+      <h2 id="t-ecran-3" tabindex="-1">Vos informations et votre signature</h2>
+      <p class="lead" style="margin-top:var(--e2)">C’est le dernier écran. Vous n’avez aucune pièce à téléverser : votre justificatif de statut de frontalier vous sera demandé après la signature, par courriel.</p>
 
       <div class="erreurs" id="erreurs-3" role="alert" hidden>
         <b>Il reste quelque chose à compléter.</b>
@@ -368,7 +364,7 @@
           <div class="champ">
             <label class="champ__e" for="tel">Téléphone</label>
             <input class="saisie" type="tel" id="tel" name="tel" autocomplete="tel" maxlength="24" aria-describedby="a-tel e-tel">
-            <span class="aide" id="a-tel">Un numéro français ou suisse, par exemple 06 12 34 56 78 ou +41 79 123 45 67.</span>
+            <span class="aide" id="a-tel">Un numéro français ou suisse, par exemple 06 12 34 56 78 ou +41 79 123 45 67.</span>
             <span class="erreur" id="e-tel" aria-live="polite"></span>
           </div>
         </div>
@@ -380,7 +376,7 @@
         <div class="champs champs--2">
           <div class="champ">
             <label class="champ__e" for="nir">Numéro de sécurité sociale</label>
-            <input class="saisie saisie--chiffres" type="text" id="nir" name="nir" inputmode="numeric" autocomplete="off" maxlength="21" placeholder="1 85 07 75 116 245 41" aria-describedby="a-nir e-nir">
+            <input class="saisie saisie--chiffres" type="text" id="nir" name="nir" inputmode="numeric" autocomplete="off" maxlength="21" placeholder="1 85 07 75 116 245 41" aria-describedby="a-nir e-nir">
             <span class="aide" id="a-nir">Si vous relevez de la LAMal et n’avez pas encore de numéro français, laissez ce champ vide et cochez la case ci-dessous.</span>
             <span class="erreur" id="e-nir" aria-live="polite"></span>
           </div>
@@ -402,7 +398,7 @@
           </div>
           <div class="champ">
             <label class="champ__e" for="iban">IBAN</label>
-            <input class="saisie saisie--chiffres" type="text" id="iban" name="iban" autocomplete="off" maxlength="42" placeholder="FR76 3000 1007 9412 3456 7890 185" aria-describedby="a-iban e-iban">
+            <input class="saisie saisie--chiffres" type="text" id="iban" name="iban" autocomplete="off" maxlength="42" placeholder="FR76 3000 1007 9412 3456 7890 185" aria-describedby="a-iban e-iban">
             <span class="aide" id="a-iban">Un compte de la zone SEPA, en France, en Suisse ou ailleurs.</span>
             <span class="erreur" id="e-iban" aria-live="polite"></span>
           </div>
